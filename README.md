@@ -1,6 +1,7 @@
-# 'EasyVol' - Software Engineering WEB app Project
+# EasyVol
 
-Web app for a non profitable volunteering Organization in Mevaseret Zion, Israel
+<h4>Software Engineering WEB app Project</h4>
+<h4>Web app for a non profitable volunteering Organization in Mevaseret Zion, Israel</h4>
 
 ![project logo (this one is taken from basecamp)](http://s17.postimg.org/djicerynz/Easy_Vol_Logo.jpg)
 
@@ -21,9 +22,13 @@ Please visit our wiki for furthur project info:
 ### [User Manual](https://github.com/tomerach/EasyVol-SWE-Project/wiki/user-manual) (empty)
 
 ### [Team Page](https://github.com/tomerach/EasyVol-SWE-Project/wiki/team)
+| [Tomer Achdut](https://github.com/tomerach) |
+[Arye Kogan](https://github.com/aryeko) |
+[Amitay Ben-Atar](https://github.com/amitayben) |
+[Itay Saidoff](https://github.com/itaysaidoff) |
 
 ### Project Documents
-- [Project Idea](docs/idea.pdf) ([Presentation](docs/idea-slides.pdf))
+- [Project Idea](docs/idea.pdf) ([Presentation](https://github.com/tomerach/EasyVol-SWE-Project/blob/master/easyVol.pptx?raw=true))
 - [Project Inception](https://github.com/tomerach/EasyVol-SWE-Project/wiki/inception)
 - [Software Requirements Specification](https://github.com/tomerach/EasyVol-SWE-Project/wiki/srs)
 - [Software Design Specification](https://github.com/tomerach/EasyVol-SWE-Project/wiki/sds)

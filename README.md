@@ -1,9 +1,7 @@
 # EasyVol
+<h5>Volunteering couldn't be easier.</h5>
 
-<h4>Software Engineering WEB app Project</h4>
-<h4>Web app for a non profitable volunteering Organization in Mevaseret Zion, Israel</h4>
-
-![project logo (this one is taken from basecamp)](http://s17.postimg.org/djicerynz/Easy_Vol_Logo.jpg)
+![project logo (this one is taken from basecamp)](https://github.com/tomerach/EasyVol-SWE-Project/blob/master/EasyVolLogo.JPG)
 
 ## Please visit our [live application](https://demo.reactstarterkit.com/)
 - Alright, currently only a landing page...

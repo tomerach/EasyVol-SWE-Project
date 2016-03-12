@@ -1,13 +1,15 @@
-# seproject-team-template
+# 'EasyVol' - Software Engineering WEB app Project
 
-A template repository with wiki for a team project at JCE's software engineering course
+Web app for a non profitable volunteering Organization in Mevaseret Zion, Israel
 
-![project logo (this one is taken from basecamp)](http://klipfolio.com/sites/default/files/integrations/basecamp.png)
+![project logo (this one is taken from basecamp)](http://s17.postimg.org/djicerynz/Easy_Vol_Logo.jpg)
 
 ## Please visit our [live application](https://demo.reactstarterkit.com/)
 - Alright, currently only a landing page...
 
-[![Join the chat at https://gitter.im/robi-y/seproject-team-template](https://badges.gitter.im/robi-y/seproject-team-template.svg)](https://gitter.im/robi-y/seproject-team-template?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Gitter](https://badges.gitter.im/tomerach/EasyVol-SWE-Project.svg)](https://gitter.im/tomerach/EasyVol-SWE-Project?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
+Our E-mail: tomera90@gmail.com
 
 ## [Issue Board](https://huboard.com/robi-y/seproject-team-template#/)
 
@@ -16,18 +18,18 @@ This project is developed as part of the requirements for a [software engineerin
 
 Please visit our wiki for furthur project info: 
 
-### [User Manual](../../wiki/user-manual) (empty)
+### [User Manual](https://github.com/tomerach/EasyVol-SWE-Project/wiki/user-manual) (empty)
 
-### [Team Page](../../wiki/team)
+### [Team Page](https://github.com/tomerach/EasyVol-SWE-Project/wiki/team)
 
 ### Project Documents
 - [Project Idea](docs/idea.pdf) ([Presentation](docs/idea-slides.pdf))
-- [Project Inception](../../wiki/inception)
-- [Software Requirements Specification](../../wiki/srs)
-- [Software Design Specification](../../wiki/sds)
+- [Project Inception](https://github.com/tomerach/EasyVol-SWE-Project/wiki/inception)
+- [Software Requirements Specification](https://github.com/tomerach/EasyVol-SWE-Project/wiki/srs)
+- [Software Design Specification](https://github.com/tomerach/EasyVol-SWE-Project/wiki/sds)
 
 ### Iteration Pages
-- [Iteration 0 - ZFR](../../wiki/iter0-zfr)
+- [Iteration 0 - ZFR](https://github.com/tomerach/EasyVol-SWE-Project/wiki/iter0-zfr)
 - [Iteration 1 - MVP]()
 - [Iteration 2 - Feature X]()
 - [Iteration 3 - Feature Y]()

@@ -11,7 +11,7 @@ The main goal is to match a volunteer to an organization while considering the s
 
 [![Gitter](https://badges.gitter.im/tomerach/EasyVol-SWE-Project.svg)](https://gitter.im/tomerach/EasyVol-SWE-Project?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-Our E-mail: tomera90@gmail.com
+Our E-mail: easyvol.mevaseret@gmail.com
 
 ## [Issue Board](https://huboard.com/robi-y/seproject-team-template#/)
 

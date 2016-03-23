@@ -1,7 +1,7 @@
 # EasyVol
 <h5>Volunteering couldn't be easier.</h5>
 
-![project logo (this one is taken from basecamp)](https://github.com/tomerach/EasyVol-SWE-Project/blob/master/EasyVolLogo.JPG)
+![project logo (this one is taken from basecamp)](https://github.com/tomerach/EasyVol-SWE-Project/blob/master/Pics/EasyVolLogo.JPG)
 
 ## Please visit our [live application](https://demo.reactstarterkit.com/)
 - Alright, currently only a landing page...

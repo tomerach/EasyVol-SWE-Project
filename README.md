@@ -1,6 +1,9 @@
 # EasyVol
 <h5>Volunteering couldn't be easier.</h5>
 
+The main purpose of the prohect is to assign volunteers to non-profit organizations via web application.
+The main goal is to match a volunteer to an organization while considering the specifications of the volunteer and the organization.
+
 ![project logo (this one is taken from basecamp)](https://github.com/tomerach/EasyVol-SWE-Project/blob/master/Pics/EasyVolLogo.JPG)
 
 ## Please visit our [live application](https://demo.reactstarterkit.com/)

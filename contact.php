@@ -72,7 +72,7 @@ if(isset($_POST['email'])) {
 	 
 	'X-Mailer: PHP/' . phpversion();
 	 
-	@mail($email_to, $email_subject, $email_message, $headers);  
+	mail($email_to, $email_subject, $email_message, $headers);  
 
 
 ?>

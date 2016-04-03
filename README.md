@@ -20,7 +20,7 @@ This project is developed as part of the requirements for a [software engineerin
 
 Please visit our wiki for furthur project info: 
 
-### [User Manual](https://github.com/tomerach/EasyVol-SWE-Project/wiki/user-manual) (empty)
+### [User Manual](https://github.com/tomerach/EasyVol-SWE-Project/wiki/user-manual)
 
 ### [Team Page](https://github.com/tomerach/EasyVol-SWE-Project/wiki/team)
 | [Tomer Achdut](https://github.com/tomerach) |

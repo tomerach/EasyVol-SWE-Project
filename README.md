@@ -29,10 +29,11 @@ Please visit our wiki for furthur project info:
 [Itay Saidoff](https://github.com/itaysaidoff) |
 
 ### Project Documents
-- [Project Idea](docs/idea.pdf) ([Presentation](https://github.com/tomerach/EasyVol-SWE-Project/blob/master/easyVol.pptx?raw=true))
+- [Project Idea](https://github.com/tomerach/EasyVol-SWE-Project/blob/master/Docs/Project%20Docs/easyVol.docx) ([Presentation](https://github.com/tomerach/EasyVol-SWE-Project/blob/master/easyVol.pptx?raw=true))
 - [Project Inception](https://github.com/tomerach/EasyVol-SWE-Project/wiki/inception)
 - [Software Requirements Specification](https://github.com/tomerach/EasyVol-SWE-Project/wiki/srs)
 - [Software Design Specification](https://github.com/tomerach/EasyVol-SWE-Project/wiki/sds)
+- [Organization Facebook page](https://www.facebook.com/%D7%94%D7%99%D7%97%D7%99%D7%93%D7%94-%D7%9C%D7%94%D7%AA%D7%A0%D7%93%D7%91%D7%95%D7%AA-%D7%9E%D7%91%D7%A9%D7%A8%D7%AA-%D7%A6%D7%99%D7%95%D7%9F-1646063105656253/?fref=ts)
 
 ### Iteration Pages
 - [Iteration 0 - ZFR](https://github.com/tomerach/EasyVol-SWE-Project/wiki/iter0-zfr)

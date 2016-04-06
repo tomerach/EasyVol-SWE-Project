@@ -36,7 +36,7 @@ Please visit our wiki for furthur project info:
 - [Organization Facebook page](https://www.facebook.com/%D7%94%D7%99%D7%97%D7%99%D7%93%D7%94-%D7%9C%D7%94%D7%AA%D7%A0%D7%93%D7%91%D7%95%D7%AA-%D7%9E%D7%91%D7%A9%D7%A8%D7%AA-%D7%A6%D7%99%D7%95%D7%9F-1646063105656253/?fref=ts)
 
 ### Iteration Pages
-- [Iteration 0 - ZFR](https://github.com/tomerach/EasyVol-SWE-Project/wiki/iter0-zfr)
+- [Iteration 0 - ZFR](https://github.com/tomerach/EasyVol-SWE-Project/wiki/ZFR)
 - [Iteration 1 - MVP]()
 - [Iteration 2 - Feature X]()
 - [Iteration 3 - Feature Y]()

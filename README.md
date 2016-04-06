@@ -13,7 +13,7 @@ The main goal is to match a volunteer to an organization while considering the s
 
 Our E-mail: easyvol.mevaseret@gmail.com
 
-## [Issue Board](https://huboard.com/robi-y/seproject-team-template#/)
+## [Issue Board](https://huboard.com/tomerach/EasyVol-SWE-Project/#/)
 
 ## Disclaimer
 This project is developed as part of the requirements for a [software engineering course](https://github.com/jce-il/se-class/wiki) at the software engineering department - [Azrieli College of Engineering](http://www.jce.ac.il/), Jerusalem, Israel.

@@ -4,7 +4,7 @@
 The main purpose of the project is to assign volunteers to non-profit organizations via web application.
 The main goal is to match a volunteer to an organization while considering the specifications of the volunteer and the organization.
 
-![project logo (this one is taken from basecamp)](https://github.com/tomerach/EasyVol-SWE-Project/blob/master/Pics/EasyVolLogo.JPG)
+![project logo (this one is taken from basecamp)](https://github.com/tomerach/EasyVol-SWE-Project/blob/master/Docs/WebAppDocs/Pics/EasyVolLogo.JPG)
 
 ## Please visit our [live application](http://easyvol.azurewebsites.net/)
 - Alright, currently only a landing page...
@@ -13,14 +13,14 @@ The main goal is to match a volunteer to an organization while considering the s
 
 Our E-mail: easyvol.mevaseret@gmail.com
 
-## [Issue Board](https://huboard.com/robi-y/seproject-team-template#/)
+## [Issue Board](https://huboard.com/tomerach/EasyVol-SWE-Project/#/)
 
 ## Disclaimer
 This project is developed as part of the requirements for a [software engineering course](https://github.com/jce-il/se-class/wiki) at the software engineering department - [Azrieli College of Engineering](http://www.jce.ac.il/), Jerusalem, Israel.
 
 Please visit our wiki for furthur project info: 
 
-### [User Manual](https://github.com/tomerach/EasyVol-SWE-Project/wiki/user-manual) (empty)
+### [User Manual](https://github.com/tomerach/EasyVol-SWE-Project/wiki/user-manual)
 
 ### [Team Page](https://github.com/tomerach/EasyVol-SWE-Project/wiki/team)
 | [Tomer Achdut](https://github.com/tomerach) |
@@ -29,13 +29,14 @@ Please visit our wiki for furthur project info:
 [Itay Saidoff](https://github.com/itaysaidoff) |
 
 ### Project Documents
-- [Project Idea](docs/idea.pdf) ([Presentation](https://github.com/tomerach/EasyVol-SWE-Project/blob/master/easyVol.pptx?raw=true))
+- [Project Idea](https://github.com/tomerach/EasyVol-SWE-Project/blob/master/Docs/Project%20Docs/easyVol.docx) ([Presentation](https://github.com/tomerach/EasyVol-SWE-Project/blob/master/easyVol.pptx?raw=true))
 - [Project Inception](https://github.com/tomerach/EasyVol-SWE-Project/wiki/inception)
 - [Software Requirements Specification](https://github.com/tomerach/EasyVol-SWE-Project/wiki/srs)
 - [Software Design Specification](https://github.com/tomerach/EasyVol-SWE-Project/wiki/sds)
+- [Organization Facebook page](https://www.facebook.com/%D7%94%D7%99%D7%97%D7%99%D7%93%D7%94-%D7%9C%D7%94%D7%AA%D7%A0%D7%93%D7%91%D7%95%D7%AA-%D7%9E%D7%91%D7%A9%D7%A8%D7%AA-%D7%A6%D7%99%D7%95%D7%9F-1646063105656253/?fref=ts)
 
 ### Iteration Pages
-- [Iteration 0 - ZFR](https://github.com/tomerach/EasyVol-SWE-Project/wiki/iter0-zfr)
+- [Iteration 0 - ZFR](https://github.com/tomerach/EasyVol-SWE-Project/wiki/ZFR)
 - [Iteration 1 - MVP]()
 - [Iteration 2 - Feature X]()
 - [Iteration 3 - Feature Y]()

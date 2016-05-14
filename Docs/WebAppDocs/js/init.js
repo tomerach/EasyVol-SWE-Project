@@ -312,6 +312,8 @@
 function insertButtons(typeOfInsert){
     
     $("#intro").empty();
+    
+    //change modal
     $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light lime tooltipped modal-trigger2" href="#modal2" data-position="left" data-delay="50" data-tooltip="Add new ' +typeOfInsert+ '" type="submit" name="action" id = "add' +typeOfInsert+ '"></button>');
 	$('#add' +typeOfInsert).append('<i class="material-icons">add</i>');
     
@@ -331,6 +333,7 @@ function insertButtons(typeOfInsert){
    
 	$("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light green tooltipped" data-position="right" data-delay="50" data-tooltip="Find a Match" type="submit" name="action" id = "findMatch"></button>');
 	$("#findMatch").append('<i class="material-icons">repeat</i>');
+    
     $('.tooltipped').tooltip({delay: 50});
 }
       
@@ -404,6 +407,7 @@ function loadAdminPage(user){
         }
     });
     
+    $("#work").remove();
     
     
     /*

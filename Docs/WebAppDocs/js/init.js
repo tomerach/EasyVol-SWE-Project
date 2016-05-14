@@ -309,27 +309,27 @@
         }
     }
 
-function insertButtons(typeOfInsert){
+function insertButtons(typeOfInsert, heName){
     
     $("#intro").empty();
-    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light lime tooltipped modal-trigger2" href="#modal2" data-position="left" data-delay="50" data-tooltip="Add new ' +typeOfInsert+ '" type="submit" name="action" id = "add' +typeOfInsert+ '"></button>');
+    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light lime tooltipped modal-trigger2" href="#modal2" data-position="left" data-delay="50" data-tooltip="הוסף ' +heName+ '" type="submit" name="action" id = "add' +typeOfInsert+ '"></button>');
 	$('#add' +typeOfInsert).append('<i class="material-icons">add</i>');
     
     //change modal
-    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light light-blue lighten-1 tooltipped modal-trigger2" href="#modal2" data-position="top" data-delay="50" data-tooltip="Edit ' +typeOfInsert+ '" type="submit" name="action" id = "edit' +typeOfInsert+ '"></button>');
+    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light light-blue lighten-1 tooltipped modal-trigger2" href="#modal2" data-position="top" data-delay="50" data-tooltip="ערוך ' +heName+ '" type="submit" name="action" id = "edit' +typeOfInsert+ '"></button>');
 	$('#edit' +typeOfInsert).append('<i class="material-icons">mode_edit</i>');
     
     //change modal
-    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light red tooltipped modal-trigger3" href="#modal3" data-position="right" data-delay="50" data-tooltip=" Delete ' +typeOfInsert+ '" type="submit" name="action" id = "delete' +typeOfInsert+ '"></button>');
+    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light red tooltipped modal-trigger3" href="#modal3" data-position="right" data-delay="50" data-tooltip=" מחק ' +heName+ '" type="submit" name="action" id = "delete' +typeOfInsert+ '"></button>');
 	$('#delete' +typeOfInsert).append('<i class="material-icons">delete</i>');
     
-    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light orange tooltipped" data-position="left" data-delay="50" data-tooltip="Clear your selection" type="submit" name="action" id = "clearBtn"></button>');
+    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light orange tooltipped" data-position="left" data-delay="50" data-tooltip="נקה את בחירתך" type="submit" name="action" id = "clearBtn"></button>');
 	$("#clearBtn").append('<i class="material-icons">clear_all</i>');
 	
-    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light grey tooltipped" data-position="top" data-delay="50" data-tooltip="Print your selection" type="submit" name="action" id = "printBtn"></button>');
+    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light grey tooltipped" data-position="top" data-delay="50" data-tooltip="הדפס" type="submit" name="action" id = "printBtn"></button>');
 	$("#printBtn").append('<i class="material-icons">print</i>');
    
-	$("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light green tooltipped" data-position="right" data-delay="50" data-tooltip="Find a Match" type="submit" name="action" id = "findMatch"></button>');
+	$("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light green tooltipped" data-position="right" data-delay="50" data-tooltip="מציאת התאמה" type="submit" name="action" id = "findMatch"></button>');
 	$("#findMatch").append('<i class="material-icons">repeat</i>');
     $('.tooltipped').tooltip({delay: 50});
 }
@@ -349,21 +349,21 @@ function loadAdminPage(user){
     $("#Register").append('<div class="row" id="volOrg">');
     $("#volOrg").append('<div class="col s12" id="selectionUl">');
     $("#selectionUl").append('<ul class="tabs" id="ulTabs">');
-    $("#ulTabs").append('<li class="tab col s6" ><a class="active" id="volChooser">Volunteers</a></li>');
-    $("#ulTabs").append('<li class="tab col s6" ><a id="orgChooser">Organizations</a></li>');
+    $("#ulTabs").append('<li class="tab col s6" ><a class="active" id="volChooser">מתנדבים</a></li>');
+    $("#ulTabs").append('<li class="tab col s6" ><a id="orgChooser">ארגונים</a></li>');
     $('ul.tabs').tabs();
     
     $("#intro").wrap('<center>');
-    insertButtons("Volunteer");
+    insertButtons("Volunteer", "מתנדב");
     
     $("#Register").append('<div id="dataZoneScroll">');
-    $("#dataZoneScroll").append('<ul class="collection" id="volAvatar">');
+    $("#dataZoneScroll").append('<ul class="collection" id="volAvatar" dir="rtl">');
         for(var i=1; i<10; i++)
         {
             $("#volAvatar").append('<li class="collection-item avatar" id="volNum' +i+ '">');
             $("#volNum" +i).append('<i class="material-icons circle light-blue">perm_identity</i>');
-            $("#volNum" +i).append('<span class="title">Volunteer ' +i+ '</span>');
-            $("#volNum" +i).append('<p>First Line <br> Second Line');
+            $("#volNum" +i).append('<span class="title">מתנדב ' +i+ '</span>');
+            $("#volNum" +i).append('<p>שורה ראשונה <br> שורה שנייה');
             $("#volNum" +i).append('<p class="secondary-content" id="p' +i+'">');
             $("#p" +i).append('<input type="checkbox" id="volCheck' +i+ '"/><label for="volCheck' +i+ '"></label>');
      
@@ -371,17 +371,17 @@ function loadAdminPage(user){
     
     $("#volChooser").click(function(){
        
-        insertButtons("Volunteer");
+        insertButtons("Volunteer", "מתנדב");
         $("#dataZoneScroll").empty();
         // $("#volAvatar").remove();
-        $("#dataZoneScroll").append('<ul class="collection" id="volAvatar">');
+        $("#dataZoneScroll").append('<ul class="collection" id="volAvatar" dir="rtl">');
         for(var i=1; i<10; i++)
         {
             idfromsql=i*i;
-            $("#volAvatar").append('<li class="collection-item avatar" id="volNum' +i+ '" userId="'+idfromsql+'">');
+            $("#volAvatar").append('<li class="collection-item avatar" id="volNum' +i+ '">');
             $("#volNum" +i).append('<i class="material-icons circle light-blue">perm_identity</i>');
-            $("#volNum" +i).append('<span class="title">Volunteer ' +i+ '</span>');
-            $("#volNum" +i).append('<p>First Line <br> Second Line');
+            $("#volNum" +i).append('<span class="title">מתנדב ' +i+ '</span>');
+            $("#volNum" +i).append('<p>שורה ראשונה <br> שורה שנייה');
             $("#volNum" +i).append('<p class="secondary-content" id="p' +i+'">');
             $("#p" +i).append('<input type="checkbox" id="volCheck' +i+ '"/><label for="volCheck' +i+ '"></label>');        
         }
@@ -389,16 +389,16 @@ function loadAdminPage(user){
     
     $("#orgChooser").click(function(){
          
-        insertButtons("Organization");
+        insertButtons("Organization", "ארגון");
         $("#dataZoneScroll").empty();
         // $("#orgAvatar").remove();
-        $("#dataZoneScroll").append('<ul class="collection" id="orgAvatar">');
+        $("#dataZoneScroll").append('<ul class="collection" id="orgAvatar" dir="rtl">');
         for(var i=1; i<6; i++)
         {
             $("#orgAvatar").append('<li class="collection-item avatar" id="volNum' +i+ '">');
             $("#volNum" +i).append('<i class="material-icons circle red">description</i>');
-            $("#volNum" +i).append('<span class="title">Organization ' +i+ '</span>');
-            $("#volNum" +i).append('<p>First Line <br> Second Line');
+            $("#volNum" +i).append('<span class="title">ארגון ' +i+ '</span>');
+            $("#volNum" +i).append('<p>שורה ראשונה <br> שורה שנייה');
             $("#volNum" +i).append('<p class="secondary-content" id="p' +i+'">');
             $("#p" +i).append('<input type="checkbox" id="orgCheck' +i+ '"/><label for="orgCheck' +i+ '"></label>');  
         }

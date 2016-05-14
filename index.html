@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="he">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
@@ -32,13 +32,14 @@
         <div class="container">
             <div class="nav-wrapper">
             <a href="#" id="logo-container" class="brand-logo"><img style="width: 250px;" src="Docs/WebAppDocs/Pics/EasyVolLogo.jpg" alt="img 1"></a>
-                <ul class="right hide-on-med-and-down">
-                    <li><a href="#intro">Service</a></li>
-                    <li><a href="#work">Our Organizations</a></li>
-                    <li><a href="#team">Team</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li><a href="#Register">Start Volunteering</a></li>
-					<li><a class="waves-effect waves-light modal-trigger tooltipped" data-position="Down" data-delay="50" data-tooltip="Admin Login" href="#modal1"><i class="material-icons">supervisor_account</i></a></li>
+				
+                <ul class="right hide-on-med-and-down" dir="rtl">
+                    <li><a href="#intro">שירותים</a></li>
+                    <li><a href="#work">הארגונים שלנו</a></li>
+                    <li><a href="#team">צוות הפיתוח</a></li>
+                    <li><a href="#contact">צור קשר</a></li>
+                    <li><a href="#Register">התחל להתנדב!</a></li>
+					<li><a class="waves-effect waves-light modal-trigger tooltipped" data-position="Down" data-delay="50" data-tooltip="התחבר לשירות" href="#modalLogin"><i class="material-icons">supervisor_account</i></a></li>
                 </ul>
 				
                 <ul id="nav-mobile" class="side-nav">
@@ -56,80 +57,79 @@
 
 <!--Hero-->
 <div class="section no-pad-bot" id="index-banner">
-    <div class="container">
+    <div class="container" dir="rtl">
         <h1 class="text_h center header cd-headline letters type">
-            <span>I Love</span> 
+            <span>אני אוהב</span> 
             <span class="cd-words-wrapper waiting">
-                <b class="is-visible">Volunteering</b>
-                <b>Contributing</b>
-                <b>Donating</b>
+                <b class="is-visible">להתנדב</b>
+                <b>לתרום</b>
+                <b>להסתנג'ר</b>
             </span>
         </h1>
     </div>
 </div>
 
 <!--Register-->
-<div id="Register" class="section scrollspy">
-    
-	
-			<h4 style="font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif; color: #2196F3; margin: auto; letter-spacing: 3px;"><b><center>START VOLUNTEERING</center></b></h4>
+<div id="Register" class="section scrollspy" dir="rtl">
+
+			<h4 style="font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif; color: #2196F3; margin: auto; letter-spacing: 3px;"><b><center>הרשמה להתנדבות</center></b></h4>
 			<form class="col s12">
-			  <div class="row">
-				<div class="input-field col s6">
+			  <div class="row" dir="rtl">
+				<div class="input-field col s6" dir="ltr">
 				  <i class="material-icons prefix">account_circle</i>
 				  <input id="fName" type="text" class="validate">
-				  <label for="fName">First Name</label>
+				  <label for="fName">שם פרטי</label>
 				</div>
-				<div class="input-field col s6">
+				<div class="input-field col s6" dir="LTR">
 				  <i class="material-icons prefix">account_circle</i>
 				  <input id="lName" type="text" class="validate">
-				  <label for="lName">Last Name</label>
+				  <label for="lName">שם משפחה</label>
 				</div>
 			  </div>
 			  
-			  <div class="row">
+			  <div class="row" dir="ltr">
 				<div class="input-field col s6">
 				  <i class="material-icons prefix">phone</i>
 				  <input id="icon_telephone" type="tel" class="validate">
-				  <label for="icon_telephone">Telephone</label>
+				  <label for="icon_telephone" >טלפון</label>
 				</div>
 				
 					
-			  <div class="input-field col s6">
-				<select multiple>
-				  <option value="" disabled selected>Choose your option</option>
+			  <div class="input-field col s6" dir="rtl">
+				<select multiple dir="rtl">
+				  <option value="" disabled selected></option>
 				  
-					<option value="1">Technical</option>
-					<option value="2">Programmer</option>
+					<option value="1">טכני</option>
+					<option value="2">מתכנת</option>
 				 
 				  
-					<option value="3">Lecturer</option>
-					<option value="4">Tutor</option>
-					<option value="4">Instructor</option>
+					<option value="3">מרצה</option>
+					<option value="4">מדריך ילדים</option>
+					<option value="5">דובר אנגלית</option>
 				  
 				  
-					<option value="3">English</option>
-					<option value="4">Russian</option>
-					<option value="4">Spanish</option>
+					<option value="3">דובר ספרדית</option>
+					<option value="4">דובר רוסית</option>
+					<option value="4">דובר איטלקית</option>
 				  
 				</select>
-				<label>Select your benefits</label>
+				<label>בחר את יכולותיך</label>
 			  </div>
 					
 				 
 			  </div>
 			  
-			  <div class="row">
+			  <div class="row" dir="ltr">
 				<div class="input-field col s12">
 				  <input id="email" type="email" class="validate">
-				  <label for="email" data-error="You forgot @">Email Address</label>
+				  <label for="email" data-error="שכחת @">כתובת אימייל</label>
 				</div>
 			  </div>
 			  
 			</form>
 		</div>
 
-		<button id="submitBtnVol" class="btn waves-effect waves-light right" type="submit" name="action" onclick="Materialize.toast('Thank you!', 4000)">Submit
+		<button id="submitBtnVol" class="btn waves-effect waves-light right" type="submit" name="action" onclick="Materialize.toast('תודה יפראייר!', 4000)">שלח
 			<i class="material-icons right">send</i>
 		</button>
 
@@ -467,30 +467,112 @@
     </body>
 	
 	<!-- Modal Structure -->
-	<div id="modal1" class="modal">
-		<div class="modal-content">
-			<h4>Log Into Service</h4>
+	<div id="modalLogin" class="modal" collapse="false">
+		<div class="modal-content" dir="rtl">
+			<h4>התחבר לשירות</h4>
 			<form class="col s12">
 			  <div class="row">
-				<div class="input-field col s12">
+				<div class="input-field col s12" dir="ltr">
+				<i class="material-icons prefix">account_circle</i>
 				  <input id="username" type="text" class="validate">
-				  <label for="username">User Name</label>
+				  <label for="username" data-error="משתמש לא קיים">שם משתמש</label>
 				</div>
 			  </div>
 			  
 			  <div class="row">
-				<div class="input-field col s12">
+				<div class="input-field col s12" dir="ltr">
+					<i class="material-icons prefix">vpn_key</i>
 				  <input id="password" type="password" class="validate">
-				  <label for="password">Password</label>
+				  <label for="password" data-error="סיסמא שגויה">סיסמא</label>
+				  
 				</div>
 			  </div>
 			  
 			</form>
 		</div>
 		<div class="modal-footer">
-			<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" id = "loginBtn" onclick="">LOGIN</a>
+			<a href="#!" class=" modal-action waves-effect waves-green btn-flat left" id = "loginBtn">התחבר</a>
 		</div>
-	</div>	
+	</div>
+	
+	<div id="OrgQuestModal" class="modal">
+		<div class="modal-content">
+			<h4>Organization questionnaire</h4>
+			<form class="col s12">
+			  <div class="row">
+				<div class="input-field col s6">
+					<i class="material-icons prefix">class</i>
+				  <input id="orgName" type="text" class="validate">
+				  <label for="orgName">Organization Name</label>
+				</div>
+				<div class="input-field col s6">
+				<i class="material-icons prefix">view_agenda</i>
+				  <input id="programName" type="text">
+				  <label for="programName">Program Name (If exists)</label>
+				</div>
+			  </div>
+			  
+			  <div class="row">
+				<div class="input-field col s6">
+				  <i class="material-icons prefix">account_circle</i>
+				  <input id="conName" type="text" class="validate">
+				  <label for="conName">Contact Name</label>
+				</div>
+				<div class="input-field col s6">
+					<i class="material-icons prefix">android</i>
+				  <input id="conRole" type="text">
+				  <label for="conRole">Contact Role</label>
+				</div>
+			  </div>
+			  
+			   <div class="row">
+				<div class="input-field col s6">
+				  <i class="material-icons prefix">phone</i>
+				  <input id="officePhone" type="text" class="validate">
+				  <label for="officePhone">Office Phone Number</label>
+				</div>
+				<div class="input-field col s6">
+					<i class="material-icons prefix">phone</i>
+				  <input id="conPhone" type="text">
+				  <label for="conPhone">Contact Phone</label>
+				</div>
+			  </div>
+			  
+			  <div class="row">
+				<div class="input-field col s6">
+				  <i class="material-icons prefix">email</i>
+				  <input id="orgEmail" type="email" class="validate">
+				  <label for="orgEmail">Email Address</label>
+				</div>
+				<div class="input-field col s6">
+					<i class="material-icons prefix">account_circle</i>
+				  <input id="fieldMan" type="text">
+				  <label for="fieldMan" data-error="You forgot @">Field Agent</label>
+				</div>
+			  </div>
+			  
+			  <div class="row">
+				<div class="input-field col s6">
+				  <i class="material-icons prefix">mail</i>
+				  <input id="fieldEmail" type="email" class="validate">
+				  <label for="fieldEmail">Field Agent Email</label>
+				</div>
+				<div class="input-field col s4">
+					<i class="material-icons prefix">phone</i>
+				  <input id="fieldManPhone" type="text">
+				  <label for="fieldManPhone">Field Agent Phone</label>
+				</div>
+				<p class="col s2">
+				  <input type="checkbox" id="publicCheck" />
+				  <label for="publicCheck">Public Phone</label>
+				</p>
+			  </div>
+			</form>
+		</div>
+		<div class="modal-footer">
+			<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" id = "loginBtn" onclick="">SUBMIT</a>
+		</div>
+	</div>
 		
 	
 </html>

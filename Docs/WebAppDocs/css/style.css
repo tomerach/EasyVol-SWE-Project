@@ -84,23 +84,35 @@ td:hover {background-color: #f5f5f5}
 
 
 
-#addOrganization, #addVolunteer, #editVolunteer, #editOrganization,#printBtn, #findMatch{
+#addOrganization, #addVolunteer, #editVolunteer, #editOrganization,#printBtn, #findMatch, #clearBtn, #deleteOrganization{
 	margin-top: 95px;
 	margin-right: 20px;
 }
 
-#deleteOrganization, #deleteVolunteer{
+#deleteVolunteer{
 	margin-top: 95px;
-	margin-right: 100px;
+	margin-right: 300px;
 }
 
-#clearBtn, #addOrganization{
+#addOrganization{
 	margin-top: 95px;
-	margin-left: 100px;
-    	margin-right: 20px;
-
+	margin-left: 300px;
 }
 
 #permissionsSpan{
 	margin-top: 30px;
+}
+
+#VolunteerData-left{
+    float: left;
+margin: 20px;
+    border-style: solid;
+    border-width: 5px;
+}
+
+#OrganizationData-right{
+    float: right;
+    margin: 20px;
+    border-style: solid;
+    border-width: 5px;
 }

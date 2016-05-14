@@ -1,5 +1,5 @@
 
-(function($){
+(function ($){
   $(function(){
 
     $('.button-collapse').sideNav();
@@ -313,9 +313,10 @@ function loadAdminPage(user){
     $("#links").append('<li><a class="waves-effect waves-light modal-trigger tooltipped" data-position="Down" data-delay="50" data-tooltip="התנתק" href="index.html"><i class="material-icons">settings_power</i></a></li>');
     
     $("#index-banner").empty();
-    $("#index-banner").css("min-height","300px");
+    $("#index-banner").css("min-height","100px");
     $("#index-banner").css("color","white");
 	$("#index-banner").append('<center><h1>Welcome ' + user + '</h1></center>');
+    /*
 	$("#index-banner").append('<div class="row center" id = "row1">');
 	
 	$("#row1").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light lime tooltipped modal-trigger2" href="#modal2" data-position="left" data-delay="50" data-tooltip="Add new Volunteer" type="submit" name="action" id = "addVolunteer"></button>');
@@ -341,7 +342,29 @@ function loadAdminPage(user){
     $("#row1").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light red tooltipped modal-trigger3" href="#modal3" data-position="top" data-delay="50" data-tooltip="Delete Organiztion" type="submit" name="action" id = "deleteOrganization"></button>');
 	$("#deleteOrganization").append('<i class="material-icons">delete</i>');
 	
+    
+    */
+    
     $("#Register").empty();
+    $("#Register").removeAttr("dir");
+    $("#Register").append('<div class="row" id="volOrg">');
+    $("#volOrg").append('<div class="col s12" id="selectionUl">');
+    $("#selectionUl").append('<ul class="tabs" id="ulTabs">');
+    $("#ulTabs").append('<li class="tab col s6" ><a class="active" id="volChooser">Volunteers</a></li>');
+    $("#ulTabs").append('<li class="tab col s6" ><a id="orgChooser">Organizations</a></li>');
+    
+    $('ul.tabs').tabs();
+    
+    $("#volChooser").click(function(){
+        alert("ani gay");
+    });
+    
+    //$("#index-banner").append('<div id="volTab" class="col s12">Volunteers</div>');
+    //$("#index-banner").append('<div id="orgTab" class="col s12">Organizations</div>');
+    
+    
+    ///////////////////
+    //$("#Register").empty();
     $("#Register").css("color","black");
     $("#Register").append('<div id="VolunteerData-left">BLA left </div>');
     $("#Register").append('<div id="OrganizationData-right">BLA right </div>');

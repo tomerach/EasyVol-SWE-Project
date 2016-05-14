@@ -7,7 +7,7 @@
     <title>Easy Vol</title>
 
     <!-- CSS  -->
-    <link href="Docs/WebAppDocs/min/plugin-min.css" type="text/css" rel="stylesheet">
+  <!--  <link href="Docs/WebAppDocs/min/plugin-min.css" type="text/css" rel="stylesheet"> -->
     <link href="Docs/WebAppDocs/min/custom-min.css" type="text/css" rel="stylesheet" >
 	
 	<!-- CSS  -->
@@ -74,20 +74,21 @@
 
 			<h4 style="font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif; color: #2196F3; margin: auto; letter-spacing: 3px;"><b><center>הרשמה להתנדבות</center></b></h4>
 			<form class="col s12">
-			  <div class="row" dir="rtl">
-				<div class="input-field col s6" dir="ltr">
-				  <i class="material-icons prefix">account_circle</i>
+			  <div class="row" >
+				<div class="input-field col s6" >
+                  <i class="material-icons prefix">account_circle</i>
 				  <input id="fName" type="text" class="validate">
 				  <label for="fName">שם פרטי</label>
+
 				</div>
-				<div class="input-field col s6" dir="LTR">
+				<div class="input-field col s6" >
 				  <i class="material-icons prefix">account_circle</i>
 				  <input id="lName" type="text" class="validate">
 				  <label for="lName">שם משפחה</label>
 				</div>
 			  </div>
 			  
-			  <div class="row" dir="ltr">
+			  <div class="row" >
 				<div class="input-field col s6">
 				  <i class="material-icons prefix">phone</i>
 				  <input id="icon_telephone" type="tel" class="validate">
@@ -95,8 +96,8 @@
 				</div>
 				
 					
-			  <div class="input-field col s6" dir="rtl">
-				<select multiple dir="ltr">
+			  <div class="input-field col s6" >
+				<select multiple dir="rtl">
 				  <option value="" disabled selected></option>
 				  
 					<option value="1">טכני</option>
@@ -108,9 +109,9 @@
 					<option value="5">דובר אנגלית</option>
 				  
 				  
-					<option value="3">דובר ספרדית</option>
-					<option value="4">דובר רוסית</option>
-					<option value="4">דובר איטלקית</option>
+					<option value="6">דובר ספרדית</option>
+					<option value="7">דובר רוסית</option>
+					<option value="8">דובר איטלקית</option>
 				  
 				</select>
 				<label>בחר את יכולותיך</label>
@@ -119,7 +120,7 @@
 				 
 			  </div>
 			  
-			  <div class="row" dir="ltr">
+			  <div class="row" >
 				<div class="input-field col s12">
 				  <input id="email" type="email" class="validate">
 				  <label for="email" data-error="שכחת @">כתובת אימייל</label>
@@ -573,6 +574,310 @@
 			<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" id = "loginBtn" onclick="">SUBMIT</a>
 		</div>
 	</div>
-		
+
+
+	<div id="סXXXStudentQuestModal" class="modal">
+		<div class="modal-content">
+			<h4>Organization questionnaire</h4>
+			<form class="col s12">
+			  <div class="row">
+				<div class="input-field col s6">
+					<i class="material-icons prefix">class</i>
+				  <input id="orgName" type="text" class="validate">
+				  <label for="orgName">Organization Name</label>
+				</div>
+				<div class="input-field col s6">
+				<i class="material-icons prefix">view_agenda</i>
+				  <input id="programName" type="text">
+				  <label for="programName">Program Name (If exists)</label>
+				</div>
+			  </div>
+			  
+			  <div class="row">
+				<div class="input-field col s6">
+				  <i class="material-icons prefix">account_circle</i>
+				  <input id="conName" type="text" class="validate">
+				  <label for="conName">Contact Name</label>
+				</div>
+				<div class="input-field col s6">
+					<i class="material-icons prefix">android</i>
+				  <input id="conRole" type="text">
+				  <label for="conRole">Contact Role</label>
+				</div>
+			  </div>
+			  
+			   <div class="row">
+				<div class="input-field col s6">
+				  <i class="material-icons prefix">phone</i>
+				  <input id="officePhone" type="text" class="validate">
+				  <label for="officePhone">Office Phone Number</label>
+				</div>
+				<div class="input-field col s6">
+					<i class="material-icons prefix">phone</i>
+				  <input id="conPhone" type="text">
+				  <label for="conPhone">Contact Phone</label>
+				</div>
+			  </div>
+			  
+			  <div class="row">
+				<div class="input-field col s6">
+				  <i class="material-icons prefix">email</i>
+				  <input id="orgEmail" type="email" class="validate">
+				  <label for="orgEmail">Email Address</label>
+				</div>
+				<div class="input-field col s6">
+					<i class="material-icons prefix">account_circle</i>
+				  <input id="fieldMan" type="text">
+				  <label for="fieldMan" data-error="You forgot @">Field Agent</label>
+				</div>
+			  </div>
+			  
+			  <div class="row">
+				<div class="input-field col s6">
+				  <i class="material-icons prefix">mail</i>
+				  <input id="fieldEmail" type="email" class="validate">
+				  <label for="fieldEmail">Field Agent Email</label>
+				</div>
+				<div class="input-field col s4">
+					<i class="material-icons prefix">phone</i>
+				  <input id="fieldManPhone" type="text">
+				  <label for="fieldManPhone">Field Agent Phone</label>
+				</div>
+				<p class="col s2">
+				  <input type="checkbox" id="publicCheck" />
+				  <label for="publicCheck">Public Phone</label>
+				</p>
+			  </div>
+			</form>
+		</div>
+		<div class="modal-footer">
+			<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" id = "loginBtn" onclick="">SUBMIT</a>
+		</div>
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="StudentQuestModal" class="modal" dir="rtl">
+    <div class="modal-content">
+        <h4 dir="rtl">שאלון למלגאי\ת במועצה מקומית מבשרת ציון</h4>
+        <form class="col s12">
+            <div class="row">
+                <div class="input-field col s6 ">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input id="StudentName" type="text" class="validate">
+                    <label class="right" dir="rtl" for="StudentName">שם פרטי</label>
+                </div>
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input id="StudentLastName" type="text">
+                    <label for="StudentLastName">שם משפחה</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">contact_mail</i>
+                    <input id="StudentEmail" type="email" class="validate">
+                    <label for="StudentEmail">כתובת דואר אלקטרוני</label>
+                </div>
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">contact_phone</i>
+                    <input id="StudentPhone" type="text">
+                    <label for="StudentPhone">מספר טלפון</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">account_balance</i>
+                    <input id="StudentAcademicInstitution" type="text">
+                    <label for="StudentAcademicInstitution">היכן את\ה לומד\ת?</label>
+                </div>
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">import_contacts</i>
+                    <input id="StudentEducationDepartment" type="text">
+                    <label for="StudentEducationDepartment">מה חוג הלימודים המרכזי שלך?</label>
+                </div>
+            </div>
+             <div class="row">
+
+			  <div class="input-field col s6" dir="rtl">
+                                    <i class="material-icons prefix">date_range</i>
+				<select multiple dir="rtl">
+				  <option value="" disabled selected></option>
+				  
+					<option value="1">ראשון</option>
+					<option value="2">שני</option>
+					<option value="3">שלישי</option>
+					<option value="4">רביעי</option>
+					<option value="5">חמישי</option>  
+					<option value="6">שישי</option>
+
+                  </select>
+                  <label>באיזה ימים את\ה פנוי\ה לפעילות במסגרת המלגה?</label>
+                </div>
+
+			  <div class="input-field col s6" dir="rtl">
+                                    <i class="material-icons prefix">query_builder</i>
+				<select multiple dir="rtl">
+				  <option value="" disabled selected></option>
+				  
+					<option value="1">בבוקר - 08:00-12:00</option>
+					<option value="2">בצהוריים - 12:00-15:00</option>
+					<option value="3">אחה"צ - 15:00-18:00</option>
+					<option value="4">בשעות הערב - 18:00-22:00</option>
+
+                  </select>
+                  <label>באיזה שעות את\ה פנוי\ה לפעילות במסגרת המלגה?</label>
+                </div>
+					
+			 </div>	 
+            
+            <div class="row">
+                <div class="input-field col s1" dir="rtl">
+                                    <i class="material-icons prefix">room</i>
+                                </div>
+			  <div class="input-field col s5" dir="rtl">
+
+				<select multiple dir="rtl">
+				  <option value="" disabled selected></option>
+				  
+					<option value="1">במבשרת ציון</option>
+					<option value="2">היכן שידרש</option>
+                    
+                  </select>
+                  <label>בשעות שבהן את\ה פנוי\ה - היכן תוכל\י לעבוד במסגרת המלגה?</label>
+                </div>
+                <p class="col s2">
+                    <input type="checkbox" id="publicCheck" />
+                    <label for="VoluntaryCheck">אחר:</label>
+                </p>
+                
+                <div class="input-field col s4">
+                    <i class="material-icons prefix">create</i>
+                    <input id="StudentVoluntary" type="text">
+                    <label for="StudentVoluntary">אם כן - נא לציין באיזה תחום</label>
+                </div>
+					
+			 </div>	 
+
+            <div class="row">
+                <div class="input-field col s1" dir="rtl">
+                                    <i class="material-icons prefix">done_all</i>
+                                </div>
+			  <div class="input-field col s5" dir="rtl">
+
+				<select multiple dir="rtl">
+				  <option value="" disabled selected></option>
+				  
+					<option value="1">עבודה פרטנית עם ילדים \ נוער</option>
+					<option value="2">עבודה קבוצתית עם ילדים \ נוער</option>
+					<option value="3">עבודה פרטנית עם קשישים</option>
+					<option value="4">עבודה קבוצתית עם קשישים</option>
+					<option value="5">עזרה לימודית</option>  
+					<option value="6">הדרכה</option>
+					<option value="7">עבודה עם אוכלוסיות צרכים מיוחדים</option>
+					<option value="8">שיווק ופרסום</option>
+				    <option value="9">עבודה פיסית - גינון, שיפוץ וכו`</option>
+					<option value="10">העברת סקרים \ שאלונים</option>
+					<option value="11">בכל מה שצריך</option>
+                  </select>
+                  <label>באיזה תחומים היית מעוניין\ת לעסוק במסגרת המלגה?</label>
+                </div>
+                <p class="col s2">
+                    <input type="checkbox" id="publicCheck" />
+                    <label for="VoluntaryCheck">אחר:</label>
+                </p>
+                
+                <div class="input-field col s4">
+                    <i class="material-icons prefix">create</i>
+                    <input id="StudentVoluntary" type="text">
+                    <label for="StudentVoluntary">אם כן - נא לציין באיזה תחום</label>
+                </div>
+					
+			 </div>	 
+            
+            
+            <div class="row">
+                <div class="input-field col s1" dir="rtl">
+                                    <i class="material-icons prefix">hourglass_empty</i>
+                                </div>
+			  <div class="input-field col s5" dir="rtl">
+
+				<select multiple dir="rtl">
+				  <option value="" disabled selected></option>
+				  
+					<option value="1">באופן שווה על-פני השנה</option>
+					<option value="2">בעיקר בחופשת הסמסטר ובחופשת הקיץ</option>
+					<option value="3">בעיקר במהלך הסמסטרים, תוך-כדי הלימודים</option>
+                    
+                  </select>
+                  <label>באיזה אופן את\ה מעוניין\ת לחלק את הפעילות עבור המלגה על-פני השנה?</label>
+                </div>
+                <p class="col s2">
+                    <input type="checkbox" id="publicCheck" />
+                    <label for="VoluntaryCheck">אחר:</label>
+                </p>
+                
+                <div class="input-field col s4" >
+                    <i class="material-icons prefix">create</i>
+                    <input id="StudentVoluntary" type="text">
+                    <label for="StudentVoluntary">אם כן - נא לציין באיזה תחום</label>
+                </div>
+					
+			 </div>	 
+            
+                        <div class="row">
+                    <div class="input-field col s1">
+                    <i class="material-icons prefix">home</i>
+                    </div>
+                <div class="input-field col s5">
+
+                    <input id="StudentHomeTwon" type="text">
+                    <label for="StudentHomeTwon">ישוב מגורים במהלך הלימודים</label>
+                </div>
+                <p class="col s2">
+                    <input type="checkbox" id="publicCheck" />
+                    <label for="VoluntaryCheck">האם את\ה זקוק\ה להתנדבות מסוימת מטעם הלימודים?</label>
+                </p>
+                
+                <div class="input-field col s4">
+                    <i class="material-icons prefix">create</i>
+                    <input id="StudentVoluntary" type="text">
+                    <label for="StudentVoluntary">אם כן - נא לציין באיזה תחום</label>
+                </div>
+
+            </div>
+            
+            
+        </form>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" id = "loginBtn" onclick="">SUBMIT</a>
+    </div>
+</div>
 	
 </html>

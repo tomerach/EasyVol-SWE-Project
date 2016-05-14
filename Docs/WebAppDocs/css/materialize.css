@@ -8962,7 +8962,7 @@ textarea.materialize-textarea + label:after {
 .input-field .prefix ~ textarea {
   margin-right: 4rem;
   width: 92%;
-  width: calc(100% - 3rem);
+  width: calc(100% - 4rem);
 }
 
 .input-field .prefix ~ textarea {
@@ -8976,14 +8976,14 @@ textarea.materialize-textarea + label:after {
 @media only screen and (max-width: 992px) {
   .input-field .prefix ~ input {
     width: 86%;
-    width: calc(100% - 3rem);
+    width: calc(100% - 4rem);
   }
 }
 
 @media only screen and (max-width: 600px) {
   .input-field .prefix ~ input {
     width: 80%;
-    width: calc(100% - 3rem);
+    width: calc(100% - 4rem);
   }
 }
 
@@ -9445,7 +9445,7 @@ input[type=checkbox]:not(:disabled) ~ .lever:active:after {
   outline: none;
   height: 3rem;
   line-height: 3rem;
-  width: calc(100% - 3rem);
+  width: calc(100% - 4rem);
   font-size: 1rem;
   margin: 0 0 15px 0;
   padding: 0;

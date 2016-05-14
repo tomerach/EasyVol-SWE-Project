@@ -7,13 +7,14 @@
     <title>Easy Vol</title>
 
     <!-- CSS  -->
-  <!--  <link href="Docs/WebAppDocs/min/plugin-min.css" type="text/css" rel="stylesheet"> -->
+    <link href="Docs/WebAppDocs/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="Docs/WebAppDocs/min/plugin-min.css" type="text/css" rel="stylesheet"> 
     <link href="Docs/WebAppDocs/min/custom-min.css" type="text/css" rel="stylesheet" >
 	
 	<!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="Docs/WebAppDocs/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="Docs/WebAppDocs/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  
 </head>
 <body id="top" class="scrollspy">
 
@@ -39,7 +40,7 @@
                     <li><a href="#team">צוות הפיתוח</a></li>
                     <li><a href="#contact">צור קשר</a></li>
                     <li><a href="#Register">התחל להתנדב!</a></li>
-					<li><a class="waves-effect waves-light modal-trigger tooltipped" data-position="Down" data-delay="50" data-tooltip="התחבר לשירות" href="#modalLogin"><i class="material-icons">supervisor_account</i></a></li>
+					<li><a class="waves-effect waves-light modal-trigger tooltipped" data-position="Down" data-delay="50" data-tooltip="התחבר לשירות" href="#StudentQuestModal"><i class="material-icons">supervisor_account</i></a></li>
                 </ul>
 				
                 <ul id="nav-mobile" class="side-nav">
@@ -853,32 +854,27 @@
 			 </div>	 
             
                         <div class="row">
-                    <div class="input-field col s1">
-                    <i class="material-icons prefix">home</i>
-                    </div>
-                <div class="input-field col s5">
 
-                    <input id="StudentHomeTwon" type="text">
-                    <label for="StudentHomeTwon">ישוב מגורים במהלך הלימודים</label>
-                </div>
-                <p class="col s2">
-                    <input type="checkbox" id="publicCheck" />
-                    <label for="VoluntaryCheck">האם את\ה זקוק\ה להתנדבות מסוימת מטעם הלימודים?</label>
-                </p>
-                
-                <div class="input-field col s4">
+                <div class="input-field col s12">
                     <i class="material-icons prefix">create</i>
                     <input id="StudentVoluntary" type="text">
-                    <label for="StudentVoluntary">אם כן - נא לציין באיזה תחום</label>
+                    <label for="StudentVoluntary">האם את\ה זקוק\ה להתנדבות מסוימת מטעם הלימודים? אם כן - נא לציין באיזה תחום</label>
                 </div>
 
+                <div class="input-field col s6">
+                                        <i class="material-icons prefix">home</i>
+                    <input id="StudentHomeTwon" type="text">
+                  <label for="StudentHomeTwon">ישוב מגורים במהלך הלימודים</label>
+                </div>
             </div>
             
             
         </form>
     </div>
     <div class="modal-footer">
-        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" id = "loginBtn" onclick="">SUBMIT</a>
+		<button id="submitBtnVol" class="btn waves-effect waves-light right" type="submit" name="action">שלח
+			<i class="material-icons right">send</i>
+		</button>
     </div>
 </div>
 	

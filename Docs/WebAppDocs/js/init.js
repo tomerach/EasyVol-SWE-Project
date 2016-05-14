@@ -309,47 +309,55 @@ function loadAdminPage(user){
     
 	//$("#disconnect").show();
 	//Change page layout
+    $("#links").empty();
+    $("#links").append('<li><a class="waves-effect waves-light modal-trigger tooltipped" data-position="Down" data-delay="50" data-tooltip="התנתק" href="index.html"><i class="material-icons">settings_power</i></a></li>');
     
     $("#index-banner").empty();
-      $("#index-banner").css("min-height","300px");
-     $("#index-banner").css("color","white");
-    //$("#registar").empty();
+    $("#index-banner").css("min-height","300px");
+    $("#index-banner").css("color","white");
 	$("#index-banner").append('<center><h1>Welcome ' + user + '</h1></center>');
-	
 	$("#index-banner").append('<div class="row center" id = "row1">');
 	
 	$("#row1").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light lime tooltipped modal-trigger2" href="#modal2" data-position="left" data-delay="50" data-tooltip="Add new Volunteer" type="submit" name="action" id = "addVolunteer"></button>');
 	$("#addVolunteer").append('<i class="material-icons">add</i>');
     
+    //change modal
     $("#row1").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light lime tooltipped modal-trigger2" href="#modal2" data-position="top" data-delay="50" data-tooltip="Edit Volunteer" type="submit" name="action" id = "editVolunteer"></button>');
 	$("#editVolunteer").append('<i class="material-icons">mode_edit</i>');
     
+    //change modal
     $("#row1").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light red tooltipped modal-trigger3" href="#modal3" data-position="top" data-delay="50" data-tooltip="Delete Volunteer" type="submit" name="action" id = "deleteVolunteer"></button>');
 	$("#deleteVolunteer").append('<i class="material-icons">delete</i>');
     
-    
-    	$("#row1").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light lime darken-3 tooltipped modal-trigger2" href="#modal2" data-position="top" data-delay="50" data-tooltip="Add new Organization" type="submit" name="action" id = "addOrganization"></button>');
+    //change modal
+    $("#row1").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light lime darken-3 tooltipped modal-trigger2" href="#modal2" data-position="top" data-delay="50" data-tooltip="Add new Organization" type="submit" name="action" id = "addOrganization"></button>');
 	$("#addOrganization").append('<i class="material-icons">add</i>');
     
+    //change modal
     $("#row1").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light lime tooltipped modal-trigger2" href="#modal2" data-position="top" data-delay="50" data-tooltip="Edit Organization" type="submit" name="action" id = "editOrganization"></button>');
 	$("#editOrganization").append('<i class="material-icons">mode_edit</i>');
-    
 	
+    //change modal
     $("#row1").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light red tooltipped modal-trigger3" href="#modal3" data-position="top" data-delay="50" data-tooltip="Delete Organiztion" type="submit" name="action" id = "deleteOrganization"></button>');
 	$("#deleteOrganization").append('<i class="material-icons">delete</i>');
+	
+    $("#Register").empty();
+    $("#Register").css("color","black");
+    $("#Register").append('<div id="VolunteerData-left">BLA left </div>');
+    $("#Register").append('<div id="OrganizationData-right">BLA right </div>');
     
-	$("#row1").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light orange tooltipped" data-position="top" data-delay="50" data-tooltip="Clear your selection" type="submit" name="action" id = "clearBtn"></button>');
+    $("#intro").empty();
+    $("#intro").wrap('<center>')
+    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light orange tooltipped" data-position="top" data-delay="50" data-tooltip="Clear your selection" type="submit" name="action" id = "clearBtn"></button>');
 	$("#clearBtn").append('<i class="material-icons">clear_all</i>');
-    
 	
-	
-    $("#row1").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light grey tooltipped" data-position="top" data-delay="50" data-tooltip="Print your selection" type="submit" name="action" id = "printBtn"></button>');
+    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light grey tooltipped" data-position="top" data-delay="50" data-tooltip="Print your selection" type="submit" name="action" id = "printBtn"></button>');
 	$("#printBtn").append('<i class="material-icons">print</i>');
-    
    
-	$("#row1").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light green tooltipped" data-position="right" data-delay="50" data-tooltip="Find a Match" type="submit" name="action" id = "findMatch"></button>');
+	$("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light green tooltipped" data-position="right" data-delay="50" data-tooltip="Find a Match" type="submit" name="action" id = "findMatch"></button>');
 	$("#findMatch").append('<i class="material-icons">repeat</i>');
-	/*
+    
+    /*
 
 	$('.modal-trigger2').leanModal();
 	$('.modal-trigger3').leanModal();

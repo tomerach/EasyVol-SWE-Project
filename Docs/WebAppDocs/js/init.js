@@ -6,6 +6,9 @@
 	$('.scrollspy').scrollSpy();
 	$('select').material_select();
 	$('.modal-trigger').leanModal();
+      $('.collapsible').collapsible({
+      accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+    });
 	
     /*** Animate word ***/
 

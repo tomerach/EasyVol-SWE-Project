@@ -356,11 +356,10 @@ function loadAdminPage(user){
     
     $('ul.tabs').tabs();
     
-    $("#Register").append('<ul class="collection" id="volAvatar">');
+    $("#Register").append('<div id="dataZoneScroll">');
+    $("#dataZoneScroll").append('<ul class="collection" id="volAvatar">');
         for(var i=1; i<10; i++)
         {
-            //var randomColor = "#" + Math.floor(Math.random()*16777215).toString(16);
-           // console.log(randomColor);
             $("#volAvatar").append('<li class="collection-item avatar" id="volNum' +i+ '">');
             $("#volNum" +i).append('<i class="material-icons circle light-blue">perm_identity</i>');
             $("#volNum" +i).append('<span class="title">Volunteer ' +i+ '</span>');
@@ -372,15 +371,15 @@ function loadAdminPage(user){
     
     $("#volChooser").click(function(){
        
-       $("#orgAvatar").remove();
-        $("#volAvatar").remove();
-        $("#Register").append('<ul class="collection" id="volAvatar">');
+       $("#dataZoneScroll").empty();
+       // $("#volAvatar").remove();
+        $("#dataZoneScroll").append('<ul class="collection" id="volAvatar">');
         for(var i=1; i<10; i++)
         {
-             
-            $("#volAvatar").append('<li class="collection-item avatar" id="volNum' +i+ '">');
+            idfromsql=i*i;
+            $("#volAvatar").append('<li class="collection-item avatar" id="volNum' +i+ '" userId="'+idfromsql+'">');
             $("#volNum" +i).append('<i class="material-icons circle light-blue">perm_identity</i>');
-            $("#volNum" +i).append('<span class="title">Volunteer' +i+ '</span>');
+            $("#volNum" +i).append('<span class="title">Volunteer ' +i+ '</span>');
             $("#volNum" +i).append('<p>First Line <br> Second Line');
             $("#volNum" +i).append('<p class="secondary-content" id="p' +i+'">');
             $("#p" +i).append('<input type="checkbox" id="volCheck' +i+ '"/><label for="volCheck' +i+ '"></label>');        
@@ -388,9 +387,9 @@ function loadAdminPage(user){
     });
     
     $("#orgChooser").click(function(){
-         $("#volAvatar").remove();
-        $("#orgAvatar").remove();
-        $("#Register").append('<ul class="collection" id="orgAvatar">');
+         $("#dataZoneScroll").empty();
+       // $("#orgAvatar").remove();
+        $("#dataZoneScroll").append('<ul class="collection" id="orgAvatar">');
         for(var i=1; i<6; i++)
         {
             $("#orgAvatar").append('<li class="collection-item avatar" id="volNum' +i+ '">');
@@ -417,8 +416,8 @@ function loadAdminPage(user){
     
     
     $("#intro").empty();
-    $("#intro").wrap('<center>')
-    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light orange tooltipped" data-position="top" data-delay="50" data-tooltip="Clear your selection" type="submit" name="action" id = "clearBtn"></button>');
+    $("#intro").wrap('<center>');
+    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light orange tooltipped" data-position="left" data-delay="50" data-tooltip="Clear your selection" type="submit" name="action" id = "clearBtn"></button>');
 	$("#clearBtn").append('<i class="material-icons">clear_all</i>');
 	
     $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light grey tooltipped" data-position="top" data-delay="50" data-tooltip="Print your selection" type="submit" name="action" id = "printBtn"></button>');

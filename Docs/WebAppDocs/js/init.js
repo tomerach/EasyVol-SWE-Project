@@ -514,12 +514,12 @@ function loadAdminPage(user){
           
         if(userType == 0) //Admin
         {
-			$("#modal1").closeModal();
+			$("#modalLogin").closeModal();
 			loadAdminPage(user);
         }
         else if(userType == 1) //user
         {	
-			$("#modal1").closeModal();
+			$("#modalLogin").closeModal();
             loadUserPage(user);
         }
         else //error

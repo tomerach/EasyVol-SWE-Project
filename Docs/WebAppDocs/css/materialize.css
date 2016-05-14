@@ -3062,7 +3062,7 @@ td, th {
 
 .collection .collection-item.avatar {
   min-height: 84px;
-  padding-left: 72px;
+  padding-right: 72px;
   position: relative;
 }
 
@@ -3071,7 +3071,7 @@ td, th {
   width: 42px;
   height: 42px;
   overflow: hidden;
-  left: 15px;
+  right: 15px;
   display: inline-block;
   vertical-align: middle;
 }
@@ -3095,7 +3095,7 @@ td, th {
 .collection .collection-item.avatar .secondary-content {
   position: absolute;
   top: 16px;
-  right: 16px;
+  left: 16px;
 }
 
 .collection .collection-item:last-child {

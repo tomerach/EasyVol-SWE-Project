@@ -312,8 +312,13 @@
 function insertButtons(typeOfInsert, heName){
     
     $("#intro").empty();
-    //change modal
+<<<<<<< HEAD
     $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light lime tooltipped modal-trigger2" href="#modal2" data-position="left" data-delay="50" data-tooltip="הוסף ' +heName+ '" type="submit" name="action" id = "add' +typeOfInsert+ '"></button>');
+=======
+    
+    //change modal
+    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light lime tooltipped modal-trigger2" href="#modal2" data-position="left" data-delay="50" data-tooltip="Add new ' +typeOfInsert+ '" type="submit" name="action" id = "add' +typeOfInsert+ '"></button>');
+>>>>>>> eb834b95a7606209ba163090e25ccd651e8a0896
 	$('#add' +typeOfInsert).append('<i class="material-icons">add</i>');
     
     //change modal
@@ -332,6 +337,7 @@ function insertButtons(typeOfInsert, heName){
    
 	$("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light green tooltipped" data-position="right" data-delay="50" data-tooltip="מציאת התאמה" type="submit" name="action" id = "findMatch"></button>');
 	$("#findMatch").append('<i class="material-icons">repeat</i>');
+    
     $('.tooltipped').tooltip({delay: 50});
 }
       

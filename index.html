@@ -7,14 +7,13 @@
     <title>Easy Vol</title>
 
     <!-- CSS  -->
-    <link href="Docs/WebAppDocs/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="Docs/WebAppDocs/min/plugin-min.css" type="text/css" rel="stylesheet"> 
+    <link href="Docs/WebAppDocs/min/plugin-min.css" type="text/css" rel="stylesheet">
     <link href="Docs/WebAppDocs/min/custom-min.css" type="text/css" rel="stylesheet" >
 	
 	<!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="Docs/WebAppDocs/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  
+  <link href="Docs/WebAppDocs/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body id="top" class="scrollspy">
 
@@ -40,7 +39,7 @@
                     <li><a href="#team">צוות הפיתוח</a></li>
                     <li><a href="#contact">צור קשר</a></li>
                     <li><a href="#Register">התחל להתנדב!</a></li>
-					<li><a class="waves-effect waves-light modal-trigger tooltipped" data-position="Down" data-delay="50" data-tooltip="התחבר לשירות" href="#StudentQuestModal"><i class="material-icons">supervisor_account</i></a></li>
+					<li><a class="waves-effect waves-light modal-trigger tooltipped" data-position="Down" data-delay="50" data-tooltip="התחבר לשירות" href="#modalLogin"><i class="material-icons">supervisor_account</i></a></li>
                 </ul>
 				
                 <ul id="nav-mobile" class="side-nav">
@@ -174,8 +173,8 @@
 
 <!--Work-->
 <div class="section scrollspy" id="work">
-    <div class="container">
-        <h2 class="header text_b">Our Organizations </h2>
+    <div class="container" dir="rtl">
+        <h2 class="header text_b">שיתופי הפעולה שלנו</h2>
         <div class="row">
             <div class="col s12 m4 l4">
                 <div class="card">
@@ -183,7 +182,7 @@
                         <img class="activator" src="Docs/WebAppDocs/Pics/Organizations/CivilGuard.png">
                     </div>
                     <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">Civil Guard <i class="mdi-navigation-more-vert right"></i></span>
+                        <span class="card-title activator grey-text text-darken-4">משמר אזרחי<i class="mdi-navigation-more-vert right"></i></span>
                         <p><a href="#">Project link</a></p>
                     </div>
                     <div class="card-reveal">
@@ -198,7 +197,7 @@
                         <img class="activator" src="Docs/WebAppDocs/Pics/Organizations/Perach.jpg">
                     </div>
                     <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">Perach <i class="mdi-navigation-more-vert right"></i></span>
+                        <span class="card-title activator grey-text text-darken-4">פר"ח <i class="mdi-navigation-more-vert right"></i></span>
                         <p><a href="#">Project link</a></p>
                     </div>
                     <div class="card-reveal">
@@ -213,7 +212,7 @@
                         <img class="activator" src="Docs/WebAppDocs/Pics/Organizations/Latet.jpg">
                     </div>
                     <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">Latet <i class="mdi-navigation-more-vert right"></i></span>
+                        <span class="card-title activator grey-text text-darken-4">לתת <i class="mdi-navigation-more-vert right"></i></span>
                         <p><a href="#">Project link</a></p>
                     </div>
                     <div class="card-reveal">
@@ -228,7 +227,7 @@
                         <img class="activator" src="Docs/WebAppDocs/Pics/Organizations/Mada.jpg">
                     </div>
                     <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">Magen David Adom <i class="mdi-navigation-more-vert right"></i></span>
+                        <span class="card-title activator grey-text text-darken-4">מגן דוד אדום <i class="mdi-navigation-more-vert right"></i></span>
                         <p><a href="#">Project link</a></p>
                     </div>
                     <div class="card-reveal">
@@ -243,7 +242,7 @@
                         <img class="activator" src="Docs/WebAppDocs/Pics/Organizations/Vitso.png">
                     </div>
                     <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">Vitso <i class="mdi-navigation-more-vert right"></i></span>
+                        <span class="card-title activator grey-text text-darken-4">ויצ"ו <i class="mdi-navigation-more-vert right"></i></span>
                         <p><a href="#">Project link</a></p>
                     </div>
                     <div class="card-reveal">
@@ -258,7 +257,7 @@
                         <img class="activator" src="Docs/WebAppDocs/Pics/Organizations/Kakal.jpg">
                     </div>
                     <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">Kakal <i class="mdi-navigation-more-vert right"></i></span>
+                        <span class="card-title activator grey-text text-darken-4">קק"ל <i class="mdi-navigation-more-vert right"></i></span>
                         <p><a href="#">Project link</a></p>
                     </div>
                     <div class="card-reveal">
@@ -278,8 +277,8 @@
 
 <!--Team-->
 <div class="section scrollspy" id="team">
-    <div class="container">
-        <h2 class="header text_b"> Our Team </h2>
+    <div class="container" dir="rtl">
+        <h2 class="header text_b"> צוות הפיתוח </h2>
         <div class="row">
             <div class="col s12 m3">
                 <div class="card card-avatar">
@@ -287,19 +286,16 @@
                         <img class="activator" src="Docs/WebAppDocs/Pics/Team/Arye.jpg">
                     </div>
                     <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">Arye <br/>
-                            <small><em><a class="red-text text-darken-1" href="#">CEO</a></em></small></span>
+                        <span class="card-title activator grey-text text-darken-4">אריה <br/>
+                            <small><em><a class="red-text text-darken-1" href="#">JCE</a></em></small></span>
                         <p>
-                            <a class="blue-text text-lighten-2" href="https://www.facebook.com/joash.c.pereira">
+                            <a class="blue-text text-lighten-2" href="https://www.facebook.com/arye.kogan">
                                 <i class="fa fa-facebook-square"></i>
                             </a>
-                            <a class="blue-text text-lighten-2" href="https://twitter.com/im_joash">
-                                <i class="fa fa-twitter-square"></i>
+                            <a class="blue-text text-lighten-2" href="https://github.com/aryeko">
+                                <i class="fa fa-github-square"></i>
                             </a>
-                            <a class="blue-text text-lighten-2" href="https://plus.google.com/u/0/+JoashPereira">
-                                <i class="fa fa-google-plus-square"></i>
-                            </a>
-                            <a class="blue-text text-lighten-2" href="https://www.linkedin.com/in/joashp">
+                            <a class="blue-text text-lighten-2" href="https://il.linkedin.com/in/arye-kogan-7868b688">
                                 <i class="fa fa-linkedin-square"></i>
                             </a>
                         </p>
@@ -312,21 +308,15 @@
                         <img class="activator" src="Docs/WebAppDocs/Pics/Team/Amitay.jpg">
                     </div>
                     <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">Amitay<br/>
-                            <small><em><a class="red-text text-darken-1" href="#">Designer</a></em></small>
+                        <span class="card-title activator grey-text text-darken-4">אמיתי<br/>
+                            <small><em><a class="red-text text-darken-1" href="#">JCE</a></em></small>
                         </span>
                         <p>
-                            <a class="blue-text text-lighten-2" href="https://www.facebook.com/joash.c.pereira">
+                            <a class="blue-text text-lighten-2" href="https://www.facebook.com/amitay.atar">
                                 <i class="fa fa-facebook-square"></i>
                             </a>
-                            <a class="blue-text text-lighten-2" href="https://twitter.com/im_joash">
-                                <i class="fa fa-twitter-square"></i>
-                            </a>
-                            <a class="blue-text text-lighten-2" href="https://plus.google.com/u/0/+JoashPereira">
-                                <i class="fa fa-google-plus-square"></i>
-                            </a>
-                            <a class="blue-text text-lighten-2" href="https://www.linkedin.com/in/joashp">
-                                <i class="fa fa-linkedin-square"></i>
+                            <a class="blue-text text-lighten-2" href="https://github.com/amitayben">
+                                <i class="fa fa-github-square"></i>
                             </a>
                         </p>
                     </div>
@@ -338,20 +328,16 @@
                         <img class="activator" src="Docs/WebAppDocs/Pics/Team/Itay.jpg">
                     </div>
                     <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">
-                            Itay <br/>
-                            <small><em><a class="red-text text-darken-1" href="#">CMO</a></em></small></span>
+                        <span class="card-title activator grey-text text-darken-4"> איתי <br/>
+                            <small><em><a class="red-text text-darken-1" href="#">JCE</a></em></small></span>
                         <p>
-                            <a class="blue-text text-lighten-2" href="https://www.facebook.com/joash.c.pereira">
+                            <a class="blue-text text-lighten-2" href="https://www.facebook.com/saidoff">
                                 <i class="fa fa-facebook-square"></i>
                             </a>
-                            <a class="blue-text text-lighten-2" href="https://twitter.com/im_joash">
-                                <i class="fa fa-twitter-square"></i>
+                            <a class="blue-text text-lighten-2" href="https://github.com/itaysaidoff">
+                                <i class="fa fa-github-square"></i>
                             </a>
-                            <a class="blue-text text-lighten-2" href="https://plus.google.com/u/0/+JoashPereira">
-                                <i class="fa fa-google-plus-square"></i>
-                            </a>
-                            <a class="blue-text text-lighten-2" href="https://www.linkedin.com/in/joashp">
+                            <a class="blue-text text-lighten-2" href="https://il.linkedin.com/in/itay-saidoff-a85b56114">
                                 <i class="fa fa-linkedin-square"></i>
                             </a>
                         </p>
@@ -364,19 +350,16 @@
                         <img class="activator" src="Docs/WebAppDocs/Pics/Team/Tomer.jpg">
                     </div>
                     <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">Tomer<br/>
-                            <small><em><a class="red-text text-darken-1" href="#">Developer</a></em></small></span>
+                        <span class="card-title activator grey-text text-darken-4">תומר<br/>
+                            <small><em><a class="red-text text-darken-1" href="#">JCE</a></em></small></span>
                         <p>
-                            <a class="blue-text text-lighten-2" href="https://www.facebook.com/joash.c.pereira">
+                            <a class="blue-text text-lighten-2" href="https://www.facebook.com/tomera90">
                                 <i class="fa fa-facebook-square"></i>
                             </a>
-                            <a class="blue-text text-lighten-2" href="https://twitter.com/im_joash">
-                                <i class="fa fa-twitter-square"></i>
+                            <a class="blue-text text-lighten-2" href="https://github.com/tomerach">
+                                <i class="fa fa-github-square"></i>
                             </a>
-                            <a class="blue-text text-lighten-2" href="https://plus.google.com/u/0/+JoashPereira">
-                                <i class="fa fa-google-plus-square"></i>
-                            </a>
-                            <a class="blue-text text-lighten-2" href="https://www.linkedin.com/in/joashp">
+                            <a class="blue-text text-lighten-2" href="https://il.linkedin.com/in/tomer-achdut-380393aa">
                                 <i class="fa fa-linkedin-square"></i>
                             </a>
                         </p>
@@ -389,62 +372,62 @@
 
 <!--Footer-->
 <footer id="contact" class="page-footer default_color scrollspy">
-    <div class="container">  
+    <div class="container" dir="rtl">  
         <div class="row">
-            <div class="col l6 s12">
+            <div class="col l8 s12">
                 <form class="col s12" action="Docs/WebAppDocs/php/contact.php" method="post">
                     <div class="row">
                         <div class="input-field col s6">
                             <i class="mdi-action-account-circle prefix white-text"></i>
                             <input id="icon_prefix" name="name" type="text" class="validate white-text">
-                            <label for="icon_prefix" class="white-text">First Name</label>
+                            <label for="icon_prefix" class="white-text">שם פרטי</label>
                         </div>
                         <div class="input-field col s6">
                             <i class="mdi-communication-email prefix white-text"></i>
                             <input id="icon_email" name="email" type="email" class="validate white-text">
-                            <label for="icon_email" class="white-text">Email-id</label>
+                            <label for="icon_email" class="white-text">כתובת אי-מייל</label>
                         </div>
                         <div class="input-field col s12">
                             <i class="mdi-editor-mode-edit prefix white-text"></i>
                             <textarea id="icon_prefix2" name="message" class="materialize-textarea white-text"></textarea>
-                            <label for="icon_prefix2" class="white-text">Message</label>
+                            <label for="icon_prefix2" class="white-text">תוכן ההודעה</label>
                         </div>
-                        <div class="col offset-s7 s5">
-                            <button class="btn waves-effect waves-light red darken-1" type="submit">Submit
-                                <i class="mdi-content-send right white-text"></i>
+                        <div class="col offset-s0 s5">
+                            <button class="btn waves-effect waves-light red darken-1 left" type="submit">שלח
+                                <i class="mdi-content-send left white-text fa-rotate-180"></i>
                             </button>
                         </div>
                     </div>
                 </form>
             </div>
-            <div class="col l3 s12">
-                <h5 class="white-text">Settings</h5>
-                <ul>
-
-                    <li><a class="white-text" href="http://www.jce.ac.il/">Our College</a></li>
-                </ul>
-            </div>
-            <div class="col l3 s12">
-                <h5 class="white-text">Social</h5>
+			
+            <div class="col l4 s12">
+                <h5 class="white-text">חברתי</h5>
                 <ul>
                     <li>
-                        <a class="white-text" href="https://www.behance.net/joashp">
-                            <i class="small fa fa-behance-square white-text"></i> Behance
+                        <a class="white-text" href="https://www.facebook.com/היחידה-להתנדבות-מבשרת-ציון-1646063105656253/">
+                            <i class="small fa fa-facebook-square white-text"></i> היחידה להתנדבות 
                         </a>
                     </li>
                     <li>
-                        <a class="white-text" href="https://www.facebook.com/joash.c.pereira">
-                            <i class="small fa fa-facebook-square white-text"></i> Facebook
-                        </a>
-                    </li>
-                    <li>
-                        <a class="white-text" href="https://github.com/joashp">
+                        <a class="white-text" href="https://github.com/tomerach/EasyVol-SWE-Project">
                             <i class="small fa fa-github-square white-text"></i> Github
                         </a>
                     </li>
-                    <li>
-                        <a class="white-text" href="https://www.linkedin.com/in/joashp">
-                            <i class="small fa fa-linkedin-square white-text"></i> Linkedin
+                </ul>
+            </div>
+			
+			<div class="col l4 s12">
+                <h5 class="white-text">שותפים</h5>
+                <ul>
+					<li>
+                        <a class="white-text" href="http://jce.ac.il">
+                            <i class="small fa fa-mortar-board white-text"></i> המכללה להנדסה ירושלים
+                        </a>
+                    </li>
+					<li>
+                        <a class="white-text" href="http://www.m-zion.org.il/">
+                            <i class="small fa fa-university white-text"></i> המועצה האזורית, מבשרת ציון
                         </a>
                     </li>
                 </ul>

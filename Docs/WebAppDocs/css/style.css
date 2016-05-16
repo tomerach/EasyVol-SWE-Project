@@ -84,14 +84,14 @@ td:hover {background-color: #f5f5f5}
 
 
 
-#addVolunteer, #addOrganization, #editVolunteer, #editOrganization, #clearBtn, #printBtn, #findMatch{
+#addVolunteer, #addOrganization, #editVolunteer, #editOrganization, #deleteVolunteer, #deleteOrganization, #printBtn, #findMatch{
 	margin-right: 15px;
     margin-bottom: 25px;
 }
 
-#deleteVolunteer, #deleteOrganization{
+#clearBtn{
     margin-right: 200px;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 

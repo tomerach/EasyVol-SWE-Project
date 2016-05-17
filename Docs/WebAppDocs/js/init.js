@@ -334,27 +334,29 @@
 function insertButtons(typeOfInsert, heName){
     
     $("#intro").empty();
+    
+    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light green tooltipped" data-position="left" data-delay="50" data-tooltip="מציאת התאמה" type="submit" name="action" id = "findMatch"></button>');
+	$("#findMatch").append('<i class="material-icons">repeat</i>');
+    
+    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light grey tooltipped" data-position="top" data-delay="50" data-tooltip="הדפס" type="submit" name="action" id = "printBtn"></button>');
+	$("#printBtn").append('<i class="material-icons">print</i>');
+        
+    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light orange tooltipped" data-position="right" data-delay="50" data-tooltip="נקה את בחירתך" type="submit" name="action" id = "clearBtn"></button>');
+	$("#clearBtn").append('<i class="material-icons">clear_all</i>');
+    
     //change modal
-    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light lime tooltipped modal-trigger2" href="#modal2" data-position="left" data-delay="50" data-tooltip="הוסף ' +heName+ '" type="submit" name="action" id = "add' +typeOfInsert+ '"></button>');
-	$('#add' +typeOfInsert).append('<i class="material-icons">add</i>');
+    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light red tooltipped modal-trigger3" href="#modal3" data-position="left" data-delay="50" data-tooltip=" מחק ' +heName+ '" type="submit" name="action" id = "delete' +typeOfInsert+ '"></button>');
+	$('#delete' +typeOfInsert).append('<i class="material-icons">delete</i>');
     
     //change modal
     $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light light-blue lighten-1 tooltipped modal-trigger2" href="#modal2" data-position="top" data-delay="50" data-tooltip="ערוך ' +heName+ '" type="submit" name="action" id = "edit' +typeOfInsert+ '"></button>');
 	$('#edit' +typeOfInsert).append('<i class="material-icons">mode_edit</i>');
     
     //change modal
-    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light red tooltipped modal-trigger3" href="#modal3" data-position="right" data-delay="50" data-tooltip=" מחק ' +heName+ '" type="submit" name="action" id = "delete' +typeOfInsert+ '"></button>');
-	$('#delete' +typeOfInsert).append('<i class="material-icons">delete</i>');
-    
-    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light orange tooltipped" data-position="left" data-delay="50" data-tooltip="נקה את בחירתך" type="submit" name="action" id = "clearBtn"></button>');
-	$("#clearBtn").append('<i class="material-icons">clear_all</i>');
-	
-    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light grey tooltipped" data-position="top" data-delay="50" data-tooltip="הדפס" type="submit" name="action" id = "printBtn"></button>');
-	$("#printBtn").append('<i class="material-icons">print</i>');
-   
-	$("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light green tooltipped" data-position="right" data-delay="50" data-tooltip="מציאת התאמה" type="submit" name="action" id = "findMatch"></button>');
-	$("#findMatch").append('<i class="material-icons">repeat</i>');
-    $('.tooltipped').tooltip({delay: 50});
+    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light lime tooltipped modal-trigger2" href="#modal2" data-position="right" data-delay="50" data-tooltip="הוסף ' +heName+ '" type="submit" name="action" id = "add' +typeOfInsert+ '"></button>');
+	$('#add' +typeOfInsert).append('<i class="material-icons">add</i>');
+
+	$('.tooltipped').tooltip({delay: 50});
 }
       
 function loadAdminPage(user){
@@ -377,8 +379,8 @@ function loadAdminPage(user){
     $("#Register").append('<div class="row" id="volOrg">');
     $("#volOrg").append('<div class="col s12" id="selectionUl">');
     $("#selectionUl").append('<ul class="tabs" id="ulTabs">');
-    $("#ulTabs").append('<li class="tab col s6" ><a class="active" id="volChooser">מתנדבים</a></li>');
     $("#ulTabs").append('<li class="tab col s6" ><a id="orgChooser">ארגונים</a></li>');
+    $("#ulTabs").append('<li class="tab col s6" ><a class="active" id="volChooser">מתנדבים</a></li>');
     $('ul.tabs').tabs();
     
     $("#intro").wrap('<center>');

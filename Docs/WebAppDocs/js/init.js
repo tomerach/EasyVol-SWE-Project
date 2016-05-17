@@ -28,7 +28,29 @@
 		revealAnimationDelay = 1500;
 	
 	initHeadline();
-	
+
+	var cookie = getCookie();
+	  if(cookie)
+	  {
+		  //alert("Got cookie!!: ["+cookie+"]");
+		  loadPageByUser(cookie.user, cookie.password);
+	  }
+
+
+	function setCookie(user, password){
+		var date = new Date();
+		var minutes = 20;
+		date.setTime(date.getTime() + (minutes * 60 * 1000));
+		$.cookie("signin", JSON.stringify({'user' : user, 'password' : password}), { expires : date });
+	}
+
+	function getCookie(){
+		var cookieValue = $.cookie("signin");
+		if(cookieValue == null)
+			return false;
+		else
+			return JSON.parse(cookieValue);
+	}
 
 	function initHeadline() {
 		singleLetters($('.cd-headline.letters').find('b'));
@@ -340,8 +362,13 @@ function loadAdminPage(user){
 	//Change page layout
     $("#links").empty();
     $("#links").append('<li> ברוך הבא ' + user + '</li>');
-    $("#links").append('<li><a class="waves-effect waves-light modal-trigger tooltipped" data-position="Down" data-delay="50" data-tooltip="התנתק" href="index.html"><i class="material-icons">settings_power</i></a></li>');
-    
+    $("#links").append('<li><a class="waves-effect waves-light modal-trigger tooltipped" id="disconnectUser" data-position="Down" data-delay="50" data-tooltip="התנתק" ><i class="material-icons">settings_power</i></a></li>');
+
+	$("#disconnectUser").click(function(){
+		$.removeCookie("signin");
+		location.reload();
+	});
+
     $("#index-banner").empty();
     $("#index-banner").css("min-height","80px");
     
@@ -799,29 +826,35 @@ function loadOrganizationPage(user){
 		
         var user = $("#username").val();
         var pass = $("#password").val();
+
+		  loadPageByUser(user, pass);
+    });
+
+	  //TODO: get users from DB
+	function loadPageByUser(user, pass){
 		var userType = getUser(user, pass);
-		
-        console.log(user); 
-          
-        if(userType == 0) //Admin
-        {
+
+		console.log(user);
+
+		if(userType == 0) //Admin
+		{
 			$("#modalLogin").closeModal();
 			loadAdminPage(user);
-        }
-        else if(userType == 1) //Organization
-        {	
+		}
+		else if(userType == 1) //Organization
+		{
 			$("#modalLogin").closeModal();
-            loadOrganizationPage(user);
-        }
-        else //error
-        {	
+			loadOrganizationPage(user);
+		}
+		else //error
+		{
 			//$("#modal1").closeModal();
 			//sleep(1);
 			//$("#modal1").openModal();
-        }
-    });
-
-	
+		}
+		//TODO: exit function in the last else (on error)
+		setCookie(user,pass);
+	}
 
 	// [].forEach.call(card, function(card) {
 	// 	card.addEventListener('click', scaleCard, false);

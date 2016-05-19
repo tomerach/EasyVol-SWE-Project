@@ -36,7 +36,7 @@ http.createServer(function (req,res) {
 
     }
 
-    }).listen(80,'0.0.0.0');
+    }).listen(process.env.PORT || 3000);
 console.log('Server running.');
 
 

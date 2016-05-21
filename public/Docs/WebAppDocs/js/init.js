@@ -440,7 +440,7 @@ function loadAdminPage(user){
 		$("#dataZoneScroll").append('<ul class="collection" id="volAvatar" dir="rtl">');
 		var volunteers = [];
 		$.getJSON("/GetRecord?{?collection?:?volunteers?,?filter?:{}}",function(result) {
-			for(var i=1; i<result.length; i++)
+			for(var i=0; i<result.length; i++)
 			{
 				$("#volAvatar").append('<li class="collection-item avatar" id="volNum' +i+ '">');
 				$("#volNum" +i).append('<i class="material-icons circle light-blue">perm_identity</i>');

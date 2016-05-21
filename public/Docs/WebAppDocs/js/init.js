@@ -19,16 +19,22 @@
 			  	phone: $("#telephone").val()
 
 		  };
+
+			var form = $(this);
 		  console.log(volunteer);
 		  $.post("/AddRecord?volunteers",volunteer);
-		  //$.ajax({
-			//  type: "POST",
-			//  url: "/AddRecord?volunteers",
-			//  data: JSON.stringify(volunteer),
-			//  contentType: "application/json; charset=utf-8",
-			//  success: success,
-			//  dataType: "json"
-		  //});
+
+
+		  var $toastContent = $('<span>תודה, בקשתך נרשמה</span>');
+		  Materialize.toast($toastContent, 3000);
+
+		  setTimeout(function(){
+			  window.location.reload();
+		  }, 2000);
+
+
+
+
 	  });
 
     /*** Animate word ***/
@@ -378,8 +384,37 @@ function insertButtons(typeOfInsert, heName){
 	$('#add' +typeOfInsert).append('<i class="material-icons">add</i>');
 
 	$('.tooltipped').tooltip({delay: 50});
+
+	$("#deleteVolunteer").click(function(){
+		var n = $( "input:checked");
+		var filter = {};
+		filter['ids'] = [];
+		Array.from(n).forEach(function(item, index){
+			filter['ids'].push(item.id);
+		});
+
+		console.log(filter);
+		//var jsonFilter = JSON.parse(filter.toString());
+		//console.log(jsonFilter);
+		//var volunteer = {
+		//	firstName: $("#fName").val(),
+		//	lastName: $("#lName").val(),
+		//	phone: $("#telephone").val()
+        //
+		//};
+		//console.log(volunteer);
+		$.post("/DeleteRecord?volunteers",filter);
+		var $toastContent = $('<span>רשומה נמחקה</span>');
+		Materialize.toast($toastContent, 3000);
+
+		setTimeout(function(){
+			window.location.reload();
+		}, 2000);
+	})
 }
-      
+
+
+
 function loadAdminPage(user){
     
 	//Change page layout
@@ -440,14 +475,15 @@ function loadAdminPage(user){
 		$("#dataZoneScroll").append('<ul class="collection" id="volAvatar" dir="rtl">');
 		var volunteers = [];
 		$.getJSON("/GetRecord?{?collection?:?volunteers?,?filter?:{}}",function(result) {
+			console.log(result);
 			for(var i=0; i<result.length; i++)
 			{
-				$("#volAvatar").append('<li class="collection-item avatar" id="volNum' +i+ '">');
-				$("#volNum" +i).append('<i class="material-icons circle light-blue">perm_identity</i>');
-				$("#volNum" +i).append('<span class="title"> ' + result[i].firstName + '</span>');
-				$("#volNum" +i).append('<p>' + result[i].lastName + '<br>' + result[i].phone);
-				$("#volNum" +i).append('<p class="secondary-content" id="p' +i+'">');
-				$("#p" +i).append('<input type="checkbox" id="volCheck' +i+ '"/><label for="volCheck' +i+ '"></label>');
+				$("#volAvatar").append('<li class="collection-item avatar" id="li'+result[i]._id +'">');
+				$("#li" +result[i]._id).append('<i class="material-icons circle light-blue">perm_identity</i>');
+				$("#li" +result[i]._id).append('<span class="title" > ' + result[i].firstName + '</span>');
+				$("#li" +result[i]._id).append('<p>' + result[i].lastName + '<br>' + result[i].phone);
+				$("#li" +result[i]._id).append('<p class="secondary-content" id="p' +result[i]._id+'">');
+				$("#p" +result[i]._id).append('<input type="checkbox" id="' +result[i]._id+ '"/><label for="' +result[i]._id+ '"></label>');
 
 			}
 

@@ -6,12 +6,14 @@ var mongodb = require("mongodb"); // mongo module
 var VOLUNTEERS_COLLECTION = "volunteers";
 var db;
 var url  = require('url');
+var ObjectID = mongodb.ObjectID;
 
 module.exports = {
     VOLUNTEERS_COLLECTION : VOLUNTEERS_COLLECTION,
     ConnectDB: ConnectDB,
     AddRecord: AddRecord,
-    GetRecords: GetRecords
+    GetRecords: GetRecords,
+    DeleteRecord: DeleteRecord
 }
 
 
@@ -58,6 +60,30 @@ function GetRecords(req, res) {
             handleError(res, err.message, "Failed to get contacts.");
         } else {
             res.status(200).json(docs);
+        }
+    });
+}
+
+function DeleteRecord(req, res, filter){
+    var url_parts = url.parse(req.url);
+    var collection = url_parts.query;
+
+    var filterObj = {$or:[]};
+    if(filter['ids[]'] instanceof Array){
+        filter['ids[]'].forEach(function(item,index){
+            filterObj.$or.push({_id: new ObjectID(item)});
+        });
+    }
+    else{
+        filterObj = {_id: new ObjectID(filter['ids[]'])}
+    }
+
+
+    db.collection(collection).remove(filterObj, function(err, doc) {
+        if (err) {
+            handleError(res, err.message, "Failed to create new contact.");
+        } else {
+            res.status(204).end();
         }
     });
 }

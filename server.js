@@ -67,6 +67,24 @@ app.post("/AddRecord", function(req, res) {
   });
 });
 
+app.post("/DeleteRecord", function(req, res) {
+  var body = "";
+  req.on('data', function (data) {
+    body += data;
+    // Too much POST data, kill the connection!
+    // 1e6 === 1 * Math.pow(10, 6) === 1 * 1000000 ~~~ 1MB
+    if (body.length > 1e6)
+      req.connection.destroy();
+  });
+
+  req.on('end', function () {
+    var filter = qs.parse(body);
+    DBLogics.DeleteRecord(req, res,filter);
+  });
+
+
+});
+
 /*  "/contactDB/:id"
  *    GET: find contact by id
  *    PUT: update contact by id

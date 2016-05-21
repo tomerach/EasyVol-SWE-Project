@@ -1,8 +1,6 @@
 
 (function ($){
   $(function(){
-	  $("#intro").empty();
-	  $("#intro").append($.get("/GetRecord?{?collection?:?volunteers?,?filter?:{}}"));
     $('.button-collapse').sideNav();
 	$('.scrollspy').scrollSpy();
 	$('select').material_select();
@@ -18,9 +16,10 @@
 		  var volunteer = {
 				firstName: $("#fName").val(),
 			  	lastName: $("#lName").val(),
-			  	phone: $("#icon_telephone").val()
+			  	phone: $("#telephone").val()
 
 		  };
+		  console.log(volunteer);
 		  $.post("/AddRecord?volunteers",volunteer);
 		  //$.ajax({
 			//  type: "POST",
@@ -406,37 +405,13 @@ function loadAdminPage(user){
     $('ul.tabs').tabs();
     
     $("#intro").wrap('<center>');
-    insertButtons("Volunteer", "מתנדב");
-    
-    $("#Register").append('<div id="dataZoneScroll">');
-    $("#dataZoneScroll").append('<ul class="collection" id="volAvatar" dir="rtl">');
-        for(var i=1; i<10; i++)
-        {
-            $("#volAvatar").append('<li class="collection-item avatar" id="volNum' +i+ '">');
-            $("#volNum" +i).append('<i class="material-icons circle light-blue">perm_identity</i>');
-            $("#volNum" +i).append('<span class="title">מתנדב ' +i+ '</span>');
-            $("#volNum" +i).append('<p>שורה ראשונה <br> שורה שנייה');
-            $("#volNum" +i).append('<p class="secondary-content" id="p' +i+'">');
-            $("#p" +i).append('<input type="checkbox" id="volCheck' +i+ '"/><label for="volCheck' +i+ '"></label>');
-     
-        }
+
+	loadVolunteersView();
     
     $("#volChooser").click(function(){
-       
-        insertButtons("Volunteer", "מתנדב");
+
         $("#dataZoneScroll").empty();
-        // $("#volAvatar").remove();
-        $("#dataZoneScroll").append('<ul class="collection" id="volAvatar" dir="rtl">');
-        for(var i=1; i<10; i++)
-        {
-            idfromsql=i*i;
-            $("#volAvatar").append('<li class="collection-item avatar" id="volNum' +i+ '">');
-            $("#volNum" +i).append('<i class="material-icons circle light-blue">perm_identity</i>');
-            $("#volNum" +i).append('<span class="title">מתנדב ' +i+ '</span>');
-            $("#volNum" +i).append('<p>שורה ראשונה <br> שורה שנייה');
-            $("#volNum" +i).append('<p class="secondary-content" id="p' +i+'">');
-            $("#p" +i).append('<input type="checkbox" id="volCheck' +i+ '"/><label for="volCheck' +i+ '"></label>');        
-        }
+		loadVolunteersView();
     });
     
     $("#orgChooser").click(function(){
@@ -458,7 +433,27 @@ function loadAdminPage(user){
     
     $("#work").remove();
     
-    
+    function loadVolunteersView(){
+		insertButtons("Volunteer", "מתנדב");
+
+		$("#Register").append('<div id="dataZoneScroll">');
+		$("#dataZoneScroll").append('<ul class="collection" id="volAvatar" dir="rtl">');
+		var volunteers = [];
+		$.getJSON("/GetRecord?{?collection?:?volunteers?,?filter?:{}}",function(result) {
+			for(var i=1; i<result.length; i++)
+			{
+				$("#volAvatar").append('<li class="collection-item avatar" id="volNum' +i+ '">');
+				$("#volNum" +i).append('<i class="material-icons circle light-blue">perm_identity</i>');
+				$("#volNum" +i).append('<span class="title"> ' + result[i].firstName + '</span>');
+				$("#volNum" +i).append('<p>' + result[i].lastName + '<br>' + result[i].phone);
+				$("#volNum" +i).append('<p class="secondary-content" id="p' +i+'">');
+				$("#p" +i).append('<input type="checkbox" id="volCheck' +i+ '"/><label for="volCheck' +i+ '"></label>');
+
+			}
+
+		});
+
+	}
     /*
 
 	$('.modal-trigger2').leanModal();

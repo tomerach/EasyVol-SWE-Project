@@ -52,7 +52,7 @@ app.get("/GetRecord*", function(req, res) {
 app.post("/AddRecord", function(req, res) {
   //var newRecord = req.body;
   //DBLogics.AddRecord(req, res, newRecord);
-  var body;
+  var body = "";
   req.on('data', function (data) {
     body += data;
     // Too much POST data, kill the connection!

@@ -9,6 +9,14 @@
       accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
     });
 
+	  $('.datepicker').pickadate({
+		  selectMonths: true, // Creates a dropdown to control month
+		  min: [1940,1,01],
+		  max: [2006,7,14],
+		  selectYears: 15 // Creates a dropdown of 15 years to control year
+	  });
+
+
 	  $("#submitBtnVol").click(function(){
 
 		  //TODO: Add validations before submitting details

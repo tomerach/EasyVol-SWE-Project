@@ -70,75 +70,20 @@
     </div>
 </div>
 
-<!--Register-->
-<div id="Register" class="section scrollspy" dir="rtl">
-
-			<h4 style="font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif; color: #2196F3; margin: auto; letter-spacing: 3px;"><b><center>הרשמה להתנדבות</center></b></h4>
-			<form class="col s12">
-			  <div class="row">
-				<div class="input-field col s6" >
-                  <i class="material-icons prefix">account_circle</i>
-				  <input id="fName" type="text" class="validate">
-				  <label for="fName">שם פרטי</label>
-
-				</div>
-				<div class="input-field col s6" >
-				  <i class="material-icons prefix">account_circle</i>
-				  <input id="lName" type="text" class="validate">
-				  <label for="lName">שם משפחה</label>
-				</div>
-			  </div>
-			  
-			  <div class="row" >
-				<div class="input-field col s6">
-				  <i class="material-icons prefix">phone</i>
-				  <input id="telephone" type="tel" class="validate">
-				  <label for="telephone" >טלפון</label>
-				</div>
-				
-					
-			  <div class="input-field col s6" >
-                <i class="material-icons prefix">done_all</i>
-				<select multiple dir="rtl">
-				  <option value="" disabled selected></option>
-				  
-					<option value="1">טכני</option>
-					<option value="2">מתכנת</option>
-				 
-				  
-					<option value="3">מרצה</option>
-					<option value="4">מדריך ילדים</option>
-					<option value="5">דובר אנגלית</option>
-				  
-				  
-					<option value="6">דובר ספרדית</option>
-					<option value="7">דובר רוסית</option>
-					<option value="8">דובר איטלקית</option>
-				  
-				</select>
-				<label>בחר את יכולותיך</label>
-			  </div>
-					
-				 
-			  </div>
-			  
-			  <div class="row" >
-				<div class="input-field col s12">
-                 <i class="material-icons prefix">contact_mail</i>
-				  <input id="email" type="email" class="validate">
-				  <label for="email" data-error="שכחת @">כתובת אימייל</label>
-				</div>
-			  </div>
-			  
-			</form>
-		
-		<button id="submitBtnVol" class="btn waves-effect waves-light left" type="submit" name="action">שלח
-			<i class="material-icons left fa-rotate-180">send</i>
-		</button>
-
-
+<div id="Register" dir="rtl">
+    <h4 style="font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif; color: #2196F3; margin: auto; letter-spacing: 3px;"><b><center>להרשמה לחץ עכשיו!</center></b></h4>
+    <p class="big"></p>
+    <center>
+        <button class="btn-large waves-effect modal-trigger waves-light" type="submit" href="#VolunteerQuestModal" name="action">
+            מתנדב
+            <i class="material-icons right">send</i>
+        </button>
+        <button class="btn-large waves-effect modal-trigger waves-light" type="submit" href="#StudentQuestModal" name="action">
+            סטודנט
+            <i class="material-icons left fa-rotate-180">send</i>
+        </button>
+    </center>
 </div>
-
 <!--Intro and service-->
 <div id="intro" class="section scrollspy">
     <div class="container">
@@ -563,302 +508,704 @@
 	</div>
 
 
-	<div id="סXXXStudentQuestModal" class="modal">
-		<div class="modal-content">
-			<h4>Organization questionnaire</h4>
-			<form class="col s12">
-			  <div class="row">
-				<div class="input-field col s6">
-					<i class="material-icons prefix">class</i>
-				  <input id="orgName" type="text" class="validate">
-				  <label for="orgName">Organization Name</label>
-				</div>
-				<div class="input-field col s6">
-				<i class="material-icons prefix">view_agenda</i>
-				  <input id="programName" type="text">
-				  <label for="programName">Program Name (If exists)</label>
-				</div>
-			  </div>
-			  
-			  <div class="row">
-				<div class="input-field col s6">
-				  <i class="material-icons prefix">account_circle</i>
-				  <input id="conName" type="text" class="validate">
-				  <label for="conName">Contact Name</label>
-				</div>
-				<div class="input-field col s6">
-					<i class="material-icons prefix">android</i>
-				  <input id="conRole" type="text">
-				  <label for="conRole">Contact Role</label>
-				</div>
-			  </div>
-			  
-			   <div class="row">
-				<div class="input-field col s6">
-				  <i class="material-icons prefix">phone</i>
-				  <input id="officePhone" type="text" class="validate">
-				  <label for="officePhone">Office Phone Number</label>
-				</div>
-				<div class="input-field col s6">
-					<i class="material-icons prefix">phone</i>
-				  <input id="conPhone" type="text">
-				  <label for="conPhone">Contact Phone</label>
-				</div>
-			  </div>
-			  
-			  <div class="row">
-				<div class="input-field col s6">
-				  <i class="material-icons prefix">email</i>
-				  <input id="orgEmail" type="email" class="validate">
-				  <label for="orgEmail">Email Address</label>
-				</div>
-				<div class="input-field col s6">
-					<i class="material-icons prefix">account_circle</i>
-				  <input id="fieldMan" type="text">
-				  <label for="fieldMan" data-error="You forgot @">Field Agent</label>
-				</div>
-			  </div>
-			  
-			  <div class="row">
-				<div class="input-field col s6">
-				  <i class="material-icons prefix">mail</i>
-				  <input id="fieldEmail" type="email" class="validate">
-				  <label for="fieldEmail">Field Agent Email</label>
-				</div>
-				<div class="input-field col s4">
-					<i class="material-icons prefix">phone</i>
-				  <input id="fieldManPhone" type="text">
-				  <label for="fieldManPhone">Field Agent Phone</label>
-				</div>
-				<p class="col s2">
-				  <input type="checkbox" id="publicCheck" />
-				  <label for="publicCheck">Public Phone</label>
-				</p>
-			  </div>
-			</form>
-		</div>
-		<div class="modal-footer">
-			<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" id = "loginBtn" onclick="">SUBMIT</a>
-		</div>
-	</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div id="StudentQuestModal" class="modal" dir="rtl">
-    <div class="modal-content">
-        <h4 dir="rtl">שאלון למלגאי\ת במועצה מקומית מבשרת ציון</h4>
+	<div id="StudentQuestModal" class="modal" dir="rtl">
+        <div class="modal-content">
+            <h4 style="font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif; color: #2196F3; margin: auto; letter-spacing: 3px;"><b><center>שאלון למלגאי\ת במועצה מקומית מבשרת ציון</center></b></h4>
+        <p class="big"></p>
+        <h6 style="font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif; color: #2196F3; margin: auto; letter-spacing: 3px;"><b><center>פרטיים אישים</center></b></h6>
+        <p class="big"></p>
         <form class="col s12">
             <div class="row">
-                <div class="input-field col s6 ">
+                <div class="input-field col s4" >
                     <i class="material-icons prefix">account_circle</i>
-                    <input id="StudentName" type="text" class="validate">
-                    <label class="right" dir="rtl" for="StudentName">שם פרטי</label>
+                    <input id="fName" type="text" class="validate">
+                    <label for="fName">שם פרטי</label>
+
                 </div>
-                <div class="input-field col s6">
+                <div class="input-field col s4" >
                     <i class="material-icons prefix">account_circle</i>
-                    <input id="StudentLastName" type="text">
-                    <label for="StudentLastName">שם משפחה</label>
+                    <input id="lName" type="text" class="validate">
+                    <label for="lName">שם משפחה</label>
+                </div>
+                <div class="input-field col s4" >
+                    <i class="material-icons prefix">account_circle</i>
+                    <input id="IDnum" input type="number" name="quantity" min="10000000" max="1000000000" class="validate">
+                    <label for="IDnum">מספר תעודת  זהות</label>
                 </div>
             </div>
 
+
             <div class="row">
-                <div class="input-field col s6">
+                <div class="input-field col s4" >
+                    <i class="material-icons prefix">location_city</i>
+                    <input id="City" type="text" class="validate">
+                    <label for="City">עיר<label>
+
+                </div>
+                <div class="input-field col s4" >
+                    <i class="material-icons prefix">domain</i>
+                    <input id="HomeStreet" type="text" class="validate">
+                    <label for="HomeStreet">רחוב<label>
+                </div>
+
+                <div class="input-field col s4" >
+                    <i class="material-icons prefix">domain</i>
+                    <input id="Zipcode" input type="number" name="quantity" min="1000000" max="10000000" class="validate">
+                    <label for="Zipcode">מיקוד<label>
+                </div>
+
+            </div>
+            <div class="row" >
+                <div class="input-field col s4">
+                    <i class="material-icons prefix">phone</i>
+                    <input id="pelephone" type="tel" class="validate">
+                    <label for="pelephone" >טלפון בבית</label>
+                </div>
+
+                <div class="input-field col s4">
+                    <i class="material-icons prefix">phone_android</i>
+                    <input id="Hometelephone" type="tel" class="validate">
+                    <label for="Hometelephone" >טלפון נייד</label>
+                </div>
+
+                <div class="input-field col s4">
                     <i class="material-icons prefix">contact_mail</i>
-                    <input id="StudentEmail" type="email" class="validate">
-                    <label for="StudentEmail">כתובת דואר אלקטרוני</label>
-                </div>
-                <div class="input-field col s6">
-                    <i class="material-icons prefix">contact_phone</i>
-                    <input id="StudentPhone" type="text">
-                    <label for="StudentPhone">מספר טלפון</label>
+                    <input id="email" type="email" class="validate">
+                    <label for="email" data-error="שכחת @">כתובת אימייל</label>
                 </div>
             </div>
 
+            <div class="row" >
+                <div class="input-field col s4" >
+                    <i class="material-icons prefix">cake</i>
+                    <input id="Birthday" type="date"   class="datepicker">
+                    <label for="Birthday">תאריך לידה<label>
+
+                </div>
+                <div class="input-field col s4" >
+                    <i class="material-icons prefix">people_outline</i>
+                    <select>
+                        <option value="" disabled selected></option>
+
+                        <option value="1">רווק\ה</option>
+                        <option value="2">נשוי\אה</option>
+
+
+                        <option value="3">גרוש\ה</option>
+                        <option value="4"> אלמן\ה</option>
+                        <option value="5"> פרוד\ה</option>
+
+
+                    </select>
+                    <label>מצב משפחתי</label>
+                </div>
+
+
+
+                <div class="input-field col s4" >
+                    <i class="material-icons prefix">school</i>
+                    <select>
+                        <option value="" disabled selected></option>
+
+                        <option value="1">יסודי</option>
+                        <option value="2">על יסודי</option>
+
+
+                        <option value="3">הנדסאי\ת</option>
+                        <option value="4"> סטודנט\ית</option>
+                        <option value="5"> תואר ראשון</option>
+
+
+                        <option value="6">תואר שני </option>
+                        <option value="7"> דוקטור</option>
+                        <option value="8"> פרופסור</option>
+
+                    </select>
+                    <label>השכלה</label>
+                </div>
+
+
+            </div>
+
             <div class="row">
-                <div class="input-field col s6">
+                <div class="input-field col s4" >
+                    <i class="material-icons prefix">translate</i>
+                    <select multiple dir="rtl">
+                        <option value="" disabled selected></option>
+
+                        <option value="EN">דובר אנגלית</option>
+                        <option value="SPN">דובר ספרדית</option>
+                        <option value="RU">דובר רוסית</option>
+                        <option value="ITLITAN">דובר איטלקית</option>
+                        <option value="FR">דובר צרפתית</option>
+                        <option value="BLACK">דובר אמהרית</option>
+
+                    </select>
+                    <label>שפות נוספות</label>
+                </div>
+
+                <div class="input-field col s4">
                     <i class="material-icons prefix">account_balance</i>
                     <input id="StudentAcademicInstitution" type="text">
                     <label for="StudentAcademicInstitution">היכן את\ה לומד\ת?</label>
                 </div>
-                <div class="input-field col s6">
+                <div class="input-field col s4">
                     <i class="material-icons prefix">import_contacts</i>
                     <input id="StudentEducationDepartment" type="text">
                     <label for="StudentEducationDepartment">מה חוג הלימודים המרכזי שלך?</label>
                 </div>
             </div>
-             <div class="row">
 
-			  <div class="input-field col s6" dir="rtl">
-                                    <i class="material-icons prefix">date_range</i>
-				<select multiple dir="rtl">
-				  <option value="" disabled selected></option>
-				  
-					<option value="1">ראשון</option>
-					<option value="2">שני</option>
-					<option value="3">שלישי</option>
-					<option value="4">רביעי</option>
-					<option value="5">חמישי</option>  
-					<option value="6">שישי</option>
-
-                  </select>
-                  <label>באיזה ימים את\ה פנוי\ה לפעילות במסגרת המלגה?</label>
-                </div>
-
-			  <div class="input-field col s6" dir="rtl">
-                                    <i class="material-icons prefix">query_builder</i>
-				<select multiple dir="rtl">
-				  <option value="" disabled selected></option>
-				  
-					<option value="1">בבוקר - 08:00-12:00</option>
-					<option value="2">בצהוריים - 12:00-15:00</option>
-					<option value="3">אחה"צ - 15:00-18:00</option>
-					<option value="4">בשעות הערב - 18:00-22:00</option>
-
-                  </select>
-                  <label>באיזה שעות את\ה פנוי\ה לפעילות במסגרת המלגה?</label>
-                </div>
-					
-			 </div>	 
-            
+            <h6 style="font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif; color: #2196F3; margin: auto; letter-spacing: 3px;"><b><center>פנאי</center></b></h6>
+            <p class="big"></p>
             <div class="row">
-                <div class="input-field col s1" dir="rtl">
-                                    <i class="material-icons prefix">room</i>
-                                </div>
-			  <div class="input-field col s5" dir="rtl">
-
-				<select multiple dir="rtl">
-				  <option value="" disabled selected></option>
-				  
-					<option value="1">במבשרת ציון</option>
-					<option value="2">היכן שידרש</option>
-                    
-                  </select>
-                  <label>בשעות שבהן את\ה פנוי\ה - היכן תוכל\י לעבוד במסגרת המלגה?</label>
-                </div>
-                <p class="col s2">
-                    <input type="checkbox" id="publicCheck" />
-                    <label for="VoluntaryCheck">אחר:</label>
-                </p>
-                
-                <div class="input-field col s4">
-                    <i class="material-icons prefix">create</i>
-                    <input id="StudentVoluntary" type="text">
-                    <label for="StudentVoluntary">אם כן - נא לציין באיזה תחום</label>
-                </div>
-					
-			 </div>	 
-
-            <div class="row">
-                <div class="input-field col s1" dir="rtl">
-                                    <i class="material-icons prefix">done_all</i>
-                                </div>
-			  <div class="input-field col s5" dir="rtl">
-
-				<select multiple dir="rtl">
-				  <option value="" disabled selected></option>
-				  
-					<option value="1">עבודה פרטנית עם ילדים \ נוער</option>
-					<option value="2">עבודה קבוצתית עם ילדים \ נוער</option>
-					<option value="3">עבודה פרטנית עם קשישים</option>
-					<option value="4">עבודה קבוצתית עם קשישים</option>
-					<option value="5">עזרה לימודית</option>  
-					<option value="6">הדרכה</option>
-					<option value="7">עבודה עם אוכלוסיות צרכים מיוחדים</option>
-					<option value="8">שיווק ופרסום</option>
-				    <option value="9">עבודה פיסית - גינון, שיפוץ וכו`</option>
-					<option value="10">העברת סקרים \ שאלונים</option>
-					<option value="11">בכל מה שצריך</option>
-                  </select>
-                  <label>באיזה תחומים היית מעוניין\ת לעסוק במסגרת המלגה?</label>
-                </div>
-                <p class="col s2">
-                    <input type="checkbox" id="publicCheck" />
-                    <label for="VoluntaryCheck">אחר:</label>
-                </p>
-                
-                <div class="input-field col s4">
-                    <i class="material-icons prefix">create</i>
-                    <input id="StudentVoluntary" type="text">
-                    <label for="StudentVoluntary">אם כן - נא לציין באיזה תחום</label>
-                </div>
-					
-			 </div>	 
-            
-            
-            <div class="row">
-                <div class="input-field col s1" dir="rtl">
-                                    <i class="material-icons prefix">hourglass_empty</i>
-                                </div>
-			  <div class="input-field col s5" dir="rtl">
-
-				<select multiple dir="rtl">
-				  <option value="" disabled selected></option>
-				  
-					<option value="1">באופן שווה על-פני השנה</option>
-					<option value="2">בעיקר בחופשת הסמסטר ובחופשת הקיץ</option>
-					<option value="3">בעיקר במהלך הסמסטרים, תוך-כדי הלימודים</option>
-                    
-                  </select>
-                  <label>באיזה אופן את\ה מעוניין\ת לחלק את הפעילות עבור המלגה על-פני השנה?</label>
-                </div>
-                <p class="col s2">
-                    <input type="checkbox" id="publicCheck" />
-                    <label for="VoluntaryCheck">אחר:</label>
-                </p>
-                
-                <div class="input-field col s4" >
-                    <i class="material-icons prefix">create</i>
-                    <input id="StudentVoluntary" type="text">
-                    <label for="StudentVoluntary">אם כן - נא לציין באיזה תחום</label>
-                </div>
-					
-			 </div>	 
-            
-                        <div class="row">
-
-                <div class="input-field col s12">
-                    <i class="material-icons prefix">create</i>
-                    <input id="StudentVoluntary" type="text">
-                    <label for="StudentVoluntary">האם את\ה זקוק\ה להתנדבות מסוימת מטעם הלימודים? אם כן - נא לציין באיזה תחום</label>
-                </div>
-
-                <div class="input-field col s6">
-                                        <i class="material-icons prefix">home</i>
-                    <input id="StudentHomeTwon" type="text">
-                  <label for="StudentHomeTwon">ישוב מגורים במהלך הלימודים</label>
+                <div class="input-field col s12" >
+                    <i class="material-icons prefix">directions_bike</i>
+                    <input id="Hobby" type="text" class="validate">
+                    <label for="Hobby">תחביבים</label>
                 </div>
             </div>
-            
-            
+
+            <div class="row">
+                <div class="input-field col s12" >
+                    <i class="material-icons prefix">all_inclusive</i>
+                    <input id="VolunteerExperience" type="text" class="validate">
+                    <label for="VolunteerExperience">ניסיון עבד בהתנדבות</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s12" >
+                    <i class="material-icons prefix">pool</i>
+                    <input id="VolunteerTropic" type="text" class="validate">
+                    <label for="VolunteerTropic">השתתפות בחוגים</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s12" >
+                    <i class="material-icons prefix">color_lens</i>
+                    <input id="UniqueTalents" type="text" class="validate">
+                    <label for="UniqueTalents">כישרונות ייחודיים</label>
+                </div>
+            </div>
+
+            <h6 style="font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif; color: #2196F3; margin: auto; letter-spacing: 3px;"><b><center>התעניינות בהתנדבות</center></b></h6>
+            <p class="big"></p>
+            <div class="row">
+                <div class="input-field col s12" >
+                    <i class="material-icons prefix">thumb_up</i>
+                    <input id="VolunteerReasons" type="text" class="validate">
+                    <label for="VolunteerReasons">מדוע פנית להתנדב אצלנו?</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s12" >
+                    <i class="material-icons prefix">favorite</i>
+                    <input id="VolunteerExpectations" type="text" class="validate">
+                    <label for="VolunteerExpectations">מהן ציפיותיך מההתנדבות?</label>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="input-field col s6" dir="rtl">
+                    <i class="material-icons prefix">date_range</i>
+                    <select multiple dir="rtl">
+                        <option value="" disabled selected></option>
+
+                        <option value="1">ראשון</option>
+                        <option value="2">שני</option>
+                        <option value="3">שלישי</option>
+                        <option value="4">רביעי</option>
+                        <option value="5">חמישי</option>
+                        <option value="6">שישי</option>
+
+                    </select>
+                    <label>באיזה ימים את\ה פנוי\ה לפעילות במסגרת ההתנדבות?</label>
+                </div>
+
+                <div class="input-field col s6" dir="rtl">
+                    <i class="material-icons prefix">query_builder</i>
+                    <select multiple dir="rtl">
+                        <option value="" disabled selected></option>
+
+                        <option value="1">בבוקר - 08:00-12:00</option>
+                        <option value="2">בצהוריים - 12:00-15:00</option>
+                        <option value="3">אחה"צ - 15:00-18:00</option>
+                        <option value="4">בשעות הערב - 18:00-22:00</option>
+
+                    </select>
+                    <label>באיזה שעות את\ה פנוי\ה לפעילות במסגרת ההתנדבות?</label>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="input-field col s6" dir="rtl">
+                    <i class="material-icons prefix">room</i>
+                    <select>
+                        <option value="" disabled selected></option>
+
+                        <option value="1">במבשרת ציון</option>
+                        <option value="2">היכן שידרש</option>
+
+                    </select>
+                    <label>בשעות שבהן את\ה פנוי\ה - היכן תוכל\י לעבוד במסגרת ההתנדבות?</label>
+                </div>
+
+
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">create</i>
+                    <input id="StudentVoluntary" type="text">
+                    <label for="StudentVoluntary">אחר: אם כן - נא לציין באיזה תחום</label>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="input-field col s6" dir="rtl">
+                    <i class="material-icons prefix">done_all</i>
+                    <select multiple dir="rtl">
+                        <option value="" disabled selected></option>
+
+                        <option value="1">עבודה פרטנית עם ילדים \ נוער</option>
+                        <option value="2">עבודה קבוצתית עם ילדים \ נוער</option>
+                        <option value="3">עבודה פרטנית עם קשישים</option>
+                        <option value="4">עבודה קבוצתית עם קשישים</option>
+                        <option value="5">עזרה לימודית</option>
+                        <option value="6">הדרכה</option>
+                        <option value="7">עבודה עם אוכלוסיות צרכים מיוחדים</option>
+                        <option value="8">שיווק ופרסום</option>
+                        <option value="9">עבודה פיסית - גינון, שיפוץ וכו`</option>
+                        <option value="10">העברת סקרים \ שאלונים</option>
+                        <option value="11">בכל מה שצריך</option>
+                    </select>
+                    <label>באיזה תחומים היית מעוניין\ת לעסוק במסגרת ההתנדבות?</label>
+                </div>
+
+
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">create</i>
+                    <input id="StudentVoluntary" type="text">
+                    <label for="StudentVoluntary">אחר: אם כן - נא לציין באיזה תחום</label>
+                </div>
+
+            </div>
+
+
+
+            <div class="row" >
+
+                    <div class="input-field col s6" dir="rtl">
+                        <i class="material-icons prefix">hourglass_empty</i>
+                        <select multiple dir="rtl">
+                            <option value="" disabled selected></option>
+
+                            <option value="1">באופן שווה על-פני השנה</option>
+                            <option value="2">בעיקר בחופשת הסמסטר ובחופשת הקיץ</option>
+                            <option value="3">בעיקר במהלך הסמסטרים, תוך-כדי הלימודים</option>
+
+                        </select>
+                        <label>באיזה אופן את\ה מעוניין\ת לחלק את הפעילות עבור המלגה על-פני השנה?</label>
+                    </div>
+
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">create</i>
+                    <input id="StudentVoluntary" type="text">
+                    <label for="StudentVoluntary">אחר: אם כן - נא לציין באיזה תחום</label>
+                </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="input-field col s8">
+                        <i class="material-icons prefix">create</i>
+                        <input id="StudentVoluntary" type="text">
+                        <label for="StudentVoluntary">האם את\ה זקוק\ה להתנדבות מסוימת מטעם הלימודים? אם כן - נא לציין באיזה תחום</label>
+                    </div>
+
+                    <div class="input-field col s4">
+                        <i class="material-icons prefix">home</i>
+                        <input id="StudentHomeTwon" type="text">
+                        <label for="StudentHomeTwon">ישוב מגורים במהלך הלימודים</label>
+                    </div>
+                </div>
+
+
+
+
         </form>
+
+        <button id="submitBtnVol" class="btn waves-effect waves-light left" type="submit" name="action">שלח
+            <i class="material-icons left fa-rotate-180">send</i>
+        </button>
+        </div>
+
     </div>
-    <div class="modal-footer">
-		<button id="submitBtnVol" class="btn waves-effect waves-light right" type="submit" name="action">שלח
-			<i class="material-icons right">send</i>
-		</button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="VolunteerQuestModal" class="modal" dir="rtl">
+    <div class="modal-content">
+
+        <!--Register-->
+    <!--    <div id="Register" class="section scrollspy" dir="rtl">-->
+
+            <h4 style="font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif; color: #2196F3; margin: auto; letter-spacing: 3px;"><b><center>הרשמה להתנדבות</center></b></h4>
+            <p class="big"></p>
+            <h6 style="font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif; color: #2196F3; margin: auto; letter-spacing: 3px;"><b><center>פרטיים אישים</center></b></h6>
+            <p class="big"></p>
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s4" >
+                        <i class="material-icons prefix">account_circle</i>
+                        <input id="fName" type="text" class="validate">
+                        <label for="fName">שם פרטי</label>
+
+                    </div>
+                    <div class="input-field col s4" >
+                        <i class="material-icons prefix">account_circle</i>
+                        <input id="lName" type="text" class="validate">
+                        <label for="lName">שם משפחה</label>
+                    </div>
+                    <div class="input-field col s4" >
+                        <i class="material-icons prefix">account_circle</i>
+                        <input id="IDnum" input type="number" name="quantity" min="10000000" max="1000000000" class="validate">
+                        <label for="IDnum">מספר תעודת  זהות</label>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="input-field col s4" >
+                        <i class="material-icons prefix">location_city</i>
+                        <input id="City" type="text" class="validate">
+                        <label for="City">עיר<label>
+
+                    </div>
+                    <div class="input-field col s4" >
+                        <i class="material-icons prefix">domain</i>
+                        <input id="HomeStreet" type="text" class="validate">
+                        <label for="HomeStreet">רחוב<label>
+                    </div>
+
+                    <div class="input-field col s4" >
+                        <i class="material-icons prefix">domain</i>
+                        <input id="Zipcode" input type="number" name="quantity" min="1000000" max="10000000" class="validate">
+                        <label for="Zipcode">מיקוד<label>
+                    </div>
+
+                </div>
+                <div class="row" >
+                    <div class="input-field col s4">
+                        <i class="material-icons prefix">phone</i>
+                        <input id="pelephone" type="tel" class="validate">
+                        <label for="pelephone" >טלפון בבית</label>
+                    </div>
+
+                    <div class="input-field col s4">
+                        <i class="material-icons prefix">phone_android</i>
+                        <input id="Hometelephone" type="tel" class="validate">
+                        <label for="Hometelephone" >טלפון נייד</label>
+                    </div>
+
+                    <div class="input-field col s4">
+                        <i class="material-icons prefix">contact_mail</i>
+                        <input id="email" type="email" class="validate">
+                        <label for="email" data-error="שכחת @">כתובת אימייל</label>
+                    </div>
+                </div>
+
+                <div class="row" >
+                    <div class="input-field col s4" >
+                        <i class="material-icons prefix">cake</i>
+                        <input id="Birthday" type="date"   class="datepicker">
+                        <label for="Birthday">תאריך לידה<label>
+
+                    </div>
+                    <div class="input-field col s4" >
+                        <i class="material-icons prefix">people_outline</i>
+                        <select>
+                            <option value="" disabled selected></option>
+
+                            <option value="1">רווק\ה</option>
+                            <option value="2">נשוי\אה</option>
+
+
+                            <option value="3">גרוש\ה</option>
+                            <option value="4"> אלמן\ה</option>
+                            <option value="5"> פרוד\ה</option>
+
+
+                        </select>
+                        <label>מצב משפחתי</label>
+                    </div>
+
+
+
+                    <div class="input-field col s4" >
+                        <i class="material-icons prefix">school</i>
+                        <select>
+                            <option value="" disabled selected></option>
+
+                            <option value="1">יסודי</option>
+                            <option value="2">על יסודי</option>
+
+
+                            <option value="3">הנדסאי\ת</option>
+                            <option value="4"> סטודנט\ית</option>
+                            <option value="5"> תואר ראשון</option>
+
+
+                            <option value="6">תואר שני </option>
+                            <option value="7"> דוקטור</option>
+                            <option value="8"> פרופסור</option>
+
+                        </select>
+                        <label>השכלה</label>
+                    </div>
+
+
+                </div>
+
+
+                <h6 style="font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif; color: #2196F3; margin: auto; letter-spacing: 3px;"><b><center>עיסוק</center></b></h6>
+                <p class="big"></p>
+                <div class="row">
+                    <div class="input-field col s4" >
+                        <i class="material-icons prefix">business_center</i>
+                        <input id="occupation" type="text" class="validate">
+                        <label for="occupation">משלח-יד</label>
+                    </div>
+
+
+                    <div class="input-field col s4" >
+                        <i class="material-icons prefix">account_balance</i>
+                        <input id="Job" type="text" class="validate">
+                        <label for="Job">מקום עבודה נוכחי</label>
+                    </div>
+
+                    <div class="input-field col s4" >
+                        <i class="material-icons prefix">star_rate</i>
+                        <input id="Jobrole" type="text" class="validate">
+                        <label for="Jobrole">תפקיד</label>
+                    </div>
+                </div>
+
+                <h6 style="font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif; color: #2196F3; margin: auto; letter-spacing: 3px;"><b><center>פנאי</center></b></h6>
+                <p class="big"></p>
+                <div class="row">
+                    <div class="input-field col s12" >
+                        <i class="material-icons prefix">directions_bike</i>
+                        <input id="Hobby" type="text" class="validate">
+                        <label for="Hobby">תחביבים</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12" >
+                        <i class="material-icons prefix">all_inclusive</i>
+                        <input id="VolunteerExperience" type="text" class="validate">
+                        <label for="VolunteerExperience">ניסיון עבד בהתנדבות</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12" >
+                        <i class="material-icons prefix">pool</i>
+                        <input id="VolunteerTropic" type="text" class="validate">
+                        <label for="VolunteerTropic">השתתפות בחוגים</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12" >
+                        <i class="material-icons prefix">color_lens</i>
+                        <input id="UniqueTalents" type="text" class="validate">
+                        <label for="UniqueTalents">כישרונות ייחודיים</label>
+                    </div>
+                </div>
+
+                <h6 style="font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif; color: #2196F3; margin: auto; letter-spacing: 3px;"><b><center>התעניינות בהתנדבות</center></b></h6>
+                <p class="big"></p>
+                <div class="row">
+                    <div class="input-field col s12" >
+                        <i class="material-icons prefix">thumb_up</i>
+                        <input id="VolunteerReasons" type="text" class="validate">
+                        <label for="VolunteerReasons">מדוע פנית להתנדב אצלנו?</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12" >
+                        <i class="material-icons prefix">favorite</i>
+                        <input id="VolunteerExpectations" type="text" class="validate">
+                        <label for="VolunteerExpectations">מהן ציפיותיך מההתנדבות?</label>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="input-field col s6" dir="rtl">
+                        <i class="material-icons prefix">date_range</i>
+                        <select multiple dir="rtl">
+                            <option value="" disabled selected></option>
+
+                            <option value="1">ראשון</option>
+                            <option value="2">שני</option>
+                            <option value="3">שלישי</option>
+                            <option value="4">רביעי</option>
+                            <option value="5">חמישי</option>
+                            <option value="6">שישי</option>
+
+                        </select>
+                        <label>באיזה ימים את\ה פנוי\ה לפעילות במסגרת ההתנדבות?</label>
+                    </div>
+
+                    <div class="input-field col s6" dir="rtl">
+                        <i class="material-icons prefix">query_builder</i>
+                        <select multiple dir="rtl">
+                            <option value="" disabled selected></option>
+
+                            <option value="1">בבוקר - 08:00-12:00</option>
+                            <option value="2">בצהוריים - 12:00-15:00</option>
+                            <option value="3">אחה"צ - 15:00-18:00</option>
+                            <option value="4">בשעות הערב - 18:00-22:00</option>
+
+                        </select>
+                        <label>באיזה שעות את\ה פנוי\ה לפעילות במסגרת ההתנדבות?</label>
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="input-field col s6" dir="rtl">
+                        <i class="material-icons prefix">room</i>
+                        <select>
+                            <option value="" disabled selected></option>
+
+                            <option value="1">במבשרת ציון</option>
+                            <option value="2">היכן שידרש</option>
+
+                        </select>
+                        <label>בשעות שבהן את\ה פנוי\ה - היכן תוכל\י לעבוד במסגרת ההתנדבות?</label>
+                    </div>
+
+
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">create</i>
+                        <input id="StudentVoluntary" type="text">
+                        <label for="StudentVoluntary">אחר: אם כן - נא לציין באיזה תחום</label>
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="input-field col s6" dir="rtl">
+                        <i class="material-icons prefix">done_all</i>
+                        <select multiple dir="rtl">
+                            <option value="" disabled selected></option>
+
+                            <option value="1">עבודה פרטנית עם ילדים \ נוער</option>
+                            <option value="2">עבודה קבוצתית עם ילדים \ נוער</option>
+                            <option value="3">עבודה פרטנית עם קשישים</option>
+                            <option value="4">עבודה קבוצתית עם קשישים</option>
+                            <option value="5">עזרה לימודית</option>
+                            <option value="6">הדרכה</option>
+                            <option value="7">עבודה עם אוכלוסיות צרכים מיוחדים</option>
+                            <option value="8">שיווק ופרסום</option>
+                            <option value="9">עבודה פיסית - גינון, שיפוץ וכו`</option>
+                            <option value="10">העברת סקרים \ שאלונים</option>
+                            <option value="11">בכל מה שצריך</option>
+                        </select>
+                        <label>באיזה תחומים היית מעוניין\ת לעסוק במסגרת ההתנדבות?</label>
+                    </div>
+
+
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">create</i>
+                        <input id="StudentVoluntary" type="text">
+                        <label for="StudentVoluntary">אחר: אם כן - נא לציין באיזה תחום</label>
+                    </div>
+
+                </div>
+
+
+
+                <div class="row" >
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">update</i>
+                        <select>
+                            <option value="" disabled selected></option>
+
+                            <option value="EN"> עד שנה</option>
+                            <option value="SPN">שנה שנתיים </option>
+                            <option value="RU"> יותר משנתיים</option>
+
+
+                        </select>
+                        <label>לאיזה תקופת זמן חשבת להתנדב?</label>
+                    </div>
+
+
+                    <div class="input-field col s6" >
+                        <i class="material-icons prefix">translate</i>
+                        <select multiple dir="rtl">
+                            <option value="" disabled selected></option>
+
+                            <option value="EN">דובר אנגלית</option>
+                            <option value="SPN">דובר ספרדית</option>
+                            <option value="RU">דובר רוסית</option>
+                            <option value="ITLITAN">דובר איטלקית</option>
+                            <option value="FR">דובר צרפתית</option>
+                            <option value="BLACK">דובר אמהרית</option>
+
+                        </select>
+                        <label>שפות נוספות</label>
+                    </div>
+
+
+                </div>
+
+
+            </form>
+
+            <button id="submitBtnVol" class="btn waves-effect waves-light left" type="submit" name="action">שלח
+                <i class="material-icons left fa-rotate-180">send</i>
+            </button>
+
+
+        </div>
     </div>
 </div>
 	

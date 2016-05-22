@@ -4,7 +4,7 @@
 The main purpose of the project is to assign volunteers to non-profit organizations via web application.
 The main goal is to match a volunteer to an organization while considering the specifications of the volunteer and the organization.
 
-![project logo (this one is taken from basecamp)](https://github.com/tomerach/EasyVol-SWE-Project/blob/master/Docs/WebAppDocs/Pics/EasyVolLogo.JPG)
+![project logo (this one is taken from basecamp)](https://github.com/tomerach/EasyVol-SWE-Project/blob/master/public/Docs/WebAppDocs/Pics/EasyVolLogo.JPG)
 
 ## Please visit our [live application](http://easyvol.azurewebsites.net/)
 - Alright, currently only a landing page...
@@ -29,7 +29,7 @@ Please visit our wiki for furthur project info:
 [Itay Saidoff](https://github.com/itaysaidoff) |
 
 ### Project Documents
-- [Project Idea](https://github.com/tomerach/EasyVol-SWE-Project/blob/master/Docs/Project%20Docs/easyVol.docx) ([Presentation](https://github.com/tomerach/EasyVol-SWE-Project/blob/master/easyVol.pptx?raw=true))
+- [Project Idea](https://github.com/tomerach/EasyVol-SWE-Project/blob/master/public/Docs/Project%20Docs/easyVol.docx) ([Presentation](https://github.com/tomerach/EasyVol-SWE-Project/blob/master/public/Docs/Project%20Docs/easyVol%20Presentation.pptx))
 - [Project Inception](https://github.com/tomerach/EasyVol-SWE-Project/wiki/inception)
 - [Software Requirements Specification](https://github.com/tomerach/EasyVol-SWE-Project/wiki/srs)
 - [Software Design Specification](https://github.com/tomerach/EasyVol-SWE-Project/wiki/sds)

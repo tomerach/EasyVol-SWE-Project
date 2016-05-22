@@ -24,12 +24,12 @@
 		  var volunteer = {
 				firstName: $("#fName").val(),
 			  	lastName: $("#lName").val(),
-			  	phone: $("#telephone").val()
+			  	ID: $("#IDnum").val()
 
 		  };
 
 		  console.log(volunteer);
-
+		  $("#VolunteerQuestModal").closeModal();
 		  $.post("/AddRecord?volunteers",volunteer);
 
 
@@ -39,6 +39,7 @@
 		  setTimeout(function(){
 			  window.location.reload();
 		  }, 2000);
+
 	  });
 
     /*** Animate word ***/
@@ -482,14 +483,14 @@ function loadAdminPage(user){
 
 		$("#dataZoneScroll").append('<ul class="collection" id="volAvatar" dir="rtl">');
 		var volunteers = [];
-		$.getJSON("/GetRecord?{collection:volunteers,filter:{}}",function(result) {
+		$.getJSON("/GetRecord?{?collection?:?volunteers?,?filter?:{}}",function(result) {
 			console.log(result);
 			for(var i=0; i<result.length; i++)
 			{
 				$("#volAvatar").append('<li class="collection-item avatar" id="li'+result[i]._id +'">');
 				$("#li" +result[i]._id).append('<i class="material-icons circle light-blue">perm_identity</i>');
 				$("#li" +result[i]._id).append('<span class="title" > ' + result[i].firstName + '</span>');
-				$("#li" +result[i]._id).append('<p>' + result[i].lastName + '<br>' + result[i].phone);
+				$("#li" +result[i]._id).append('<p>' + result[i].lastName + '<br>' + result[i].ID);
 				$("#li" +result[i]._id).append('<p class="secondary-content" id="p' +result[i]._id+'">');
 				$("#p" +result[i]._id).append('<input type="checkbox" id="' +result[i]._id+ '"/><label for="' +result[i]._id+ '"></label>');
 

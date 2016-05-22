@@ -28,8 +28,8 @@
 
 		  };
 
-			var form = $(this);
 		  console.log(volunteer);
+
 		  $.post("/AddRecord?volunteers",volunteer);
 
 
@@ -39,10 +39,6 @@
 		  setTimeout(function(){
 			  window.location.reload();
 		  }, 2000);
-
-
-
-
 	  });
 
     /*** Animate word ***/
@@ -451,6 +447,7 @@ function loadAdminPage(user){
     $('ul.tabs').tabs();
     
     $("#intro").wrap('<center>');
+	$("#Register").append('<div id="dataZoneScroll">');
 
 	loadVolunteersView();
     
@@ -482,10 +479,10 @@ function loadAdminPage(user){
     function loadVolunteersView(){
 		insertButtons("Volunteer", "מתנדב");
 
-		$("#Register").append('<div id="dataZoneScroll">');
+
 		$("#dataZoneScroll").append('<ul class="collection" id="volAvatar" dir="rtl">');
 		var volunteers = [];
-		$.getJSON("/GetRecord?{?collection?:?volunteers?,?filter?:{}}",function(result) {
+		$.getJSON("/GetRecord?{collection:volunteers,filter:{}}",function(result) {
 			console.log(result);
 			for(var i=0; i<result.length; i++)
 			{

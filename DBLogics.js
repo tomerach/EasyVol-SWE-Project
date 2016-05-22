@@ -52,7 +52,7 @@ pattern:
 
 function GetRecords(req, res) {
     var url_parts = url.parse(req.url);
-    var queryTemp = url_parts.query.replace(/\?/g,'\"');
+    var queryTemp = url_parts.query;//.replace(/\?/g,'\"');
     var query = JSON.parse(queryTemp);
 
     db.collection(query.collection).find(query.filter).toArray(function(err, docs) {

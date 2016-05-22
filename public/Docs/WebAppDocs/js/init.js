@@ -359,7 +359,7 @@
     }
 
 function insertButtons(typeOfInsert, heName){
-    
+
     $("#intro").empty();
     
     $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light green tooltipped" data-position="left" data-delay="50" data-tooltip="מציאת התאמה" type="submit" name="action" id = "findMatch"></button>');
@@ -380,7 +380,7 @@ function insertButtons(typeOfInsert, heName){
 	$('#edit' +typeOfInsert).append('<i class="material-icons">mode_edit</i>');
     
     //change modal
-    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light lime tooltipped modal-trigger2" href="#modal2" data-position="right" data-delay="50" data-tooltip="הוסף ' +heName+ '" type="submit" name="action" id = "add' +typeOfInsert+ '"></button>');
+    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light lime tooltipped modal-trigger" href="#'+typeOfInsert+'QuestModal"'+ '"data-position="right" data-delay="50" data-tooltip="הוסף ' +heName+ '" type="submit" name="action" id = "add' +typeOfInsert+ '"></button>');
 	$('#add' +typeOfInsert).append('<i class="material-icons">add</i>');
 
 	$('.tooltipped').tooltip({delay: 50});
@@ -410,7 +410,10 @@ function insertButtons(typeOfInsert, heName){
 		setTimeout(function(){
 			window.location.reload();
 		}, 2000);
-	})
+
+
+	});
+	$('.modal-trigger').leanModal();
 }
 
 

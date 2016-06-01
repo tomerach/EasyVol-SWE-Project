@@ -45,8 +45,27 @@ function handleError(res, reason, message, code) {
  *    POST: creates a new contact
  */
 
+
 app.get("/GetRecord*", function(req, res) {
   DBLogics.GetRecords(req,res);
+});
+
+app.post("/UpdateRecord*", function(req, res) {
+  //var newRecord = req.body;
+  //DBLogics.AddRecord(req, res, newRecord);
+  var body = "";
+  req.on('data', function (data) {
+    body += data;
+    // Too much POST data, kill the connection!
+    // 1e6 === 1 * Math.pow(10, 6) === 1 * 1000000 ~~~ 1MB
+    if (body.length > 1e6)
+      req.connection.destroy();
+  });
+
+  req.on('end', function () {
+    var newRecord = qs.parse(body);
+    DBLogics.UpdateRecord(req, res, newRecord);
+  });
 });
 
 app.post("/AddRecord", function(req, res) {

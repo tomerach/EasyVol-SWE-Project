@@ -77,11 +77,11 @@
 
 		var $toastContent = $('<span>תודה, בקשתך נרשמה</span>');
 		Materialize.toast($toastContent, 3000);
-		/*
+
 		 setTimeout(function(){
 		 window.location.reload();
 		 }, 2000);
-		 */
+
 	});
 
 	 function getVolunteerObject(){

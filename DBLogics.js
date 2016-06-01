@@ -55,6 +55,7 @@ function GetRecords(req, res) {
     var url_parts = url.parse(req.url);
     var queryTemp = url_parts.query.replace(/\?/g,'\"');
     var query = JSON.parse(queryTemp);
+
     if('_id' in query.filter)
     {
         query.filter._id = new ObjectID(query.filter._id);
@@ -99,14 +100,16 @@ function handleError(res, reason, message, code) {
     res.status(code || 500).json({"error": message});
 }
 
-function UpdateRecord(req, res, oldVal, newVal)
+function UpdateRecord(req, res, newVal)
 {
     var url_parts = url.parse(req.url);
-    var collection = url_parts.query;
+    var queryTemp = url_parts.query.replace(/\?/g,'\"');
+    var query = JSON.parse(queryTemp);
 
-   // var filterObj = {_id: new ObjectID(filter['ids[]'])}
+    console.log(query.filter);
 
-    db.collection(collection).update(oldVal, newVal, function(err, doc) {
+
+    db.collection(query.collection).update({_id: new ObjectID(query.filter._id)}, newVal, function(err, doc) {
         if (err) {
             handleError(res, err.message, "Failed to update the record.");
         } else {

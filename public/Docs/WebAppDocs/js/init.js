@@ -22,12 +22,7 @@
           
 		  //TODO: Add validations before submitting details
 
-		  var volunteer = {
-				firstName: $("#fName").val(),
-			  	lastName: $("#lName").val(),
-			  	ID: $("#IDnum").val()
-
-		  };
+		  var volunteer = getVolunteerObject();
 
 		  console.log(volunteer);
 		  $("#VolunteerQuestModal").closeModal();
@@ -89,7 +84,17 @@
 		 }, 2000);
 		 */
 	});
-	/*** Animate word ***/
+
+	 function getVolunteerObject(){
+		  var volunteer = {
+			  firstName: $("#fName").val(),
+			  lastName: $("#lName").val(),
+			  ID: $("#IDnum").val()
+
+		  };
+
+		 return volunteer;
+	  }
 
     //set animation timing
 	var animationDelay = 2500,
@@ -513,14 +518,16 @@ function insertButtons(typeOfInsert, heName){
             
             console.log(filter['ids'][0]);
 
-            var oldVol = $.getJSON('/GetRecord?{?collection?:?volunteers?,?filter?:{?_id?:?"' +filter['ids'][0]+ '"?}}',function(result) {
-			console.log(result);
+            $.getJSON('/GetRecord?{?collection?:?volunteers?,?filter?:{?_id?:?'+filter['ids'][0]+'?}}',function(result) {
+				console.log(result);
+				$("#VolunteerQuestModal label").attr('class','active');
+				$("#fName").attr('_id',filter['ids'][0]);
+				$("#fName").val(result[0].firstName);
+				$("#lName").val(result[0].lastName);
+				$("#IDnum").val(result[0].ID);
             });
 
-            $("#VolunteerQuestModal label").attr('class','active');
-            $("#fName").val("oldVol.firstName");
-            $("#lName").val("oldVol.LastName");
-            $("#IDnum").val(345675657);
+
             
             //var jsonFilter = JSON.parse(filter.toString());
             //console.log(jsonFilter);
@@ -546,29 +553,19 @@ function insertButtons(typeOfInsert, heName){
             $('#updateBtnVol').hide();
             $('#volFormName').html("הרשמה להתנדבות");
 
-             var newVol = {
-				firstName: "",
-			  	lastName: "",
-
-		      };
-            var newVol = {
-				firstName: $("#fName").val(),
-			  	lastName: $("#lName").val(),
-			  	ID: $("#IDnum").val()
-
-		      };
-            
-            //console.log(oldVol);
+			var newVol = getVolunteerObject();
+			//console.log(oldVol);
             console.log(newVol);
-            $.post("/UpdateRecord?volunteers",oldVol, newVol);
+
+            $.post('/UpdateRecord?{?collection?:?volunteers?,?filter?:{?_id?:?'+$("#fName").attr("_id")+'?}}', newVol);
             var $toastContent = $('<span>רשומה נערכה בהצלחה</span>');
             Materialize.toast($toastContent, 3000);
 
             $("#VolunteerQuestModal input").val("");
 
-                /*    setTimeout(function(){
-                    window.location.reload();
-                }, 2000);*/
+			setTimeout(function(){
+				window.location.reload();
+			}, 2000);
         });
         
         });

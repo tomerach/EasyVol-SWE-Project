@@ -1,4 +1,3 @@
-
 (function ($){
   $(function(){
     $('.button-collapse').sideNav();
@@ -562,7 +561,39 @@ console.log(typeOfInsert);
 				$("#fName").attr('_id',filter['ids'][0]);
 				$("#fName").val(result[0].firstName);
 				$("#lName").val(result[0].lastName);
-				$("#IDnum").val(result[0].ID);
+				$("#telephone").val(result[0].phone);
+				$("#IDnum").val(result[0].IDnumber);
+				$("#City").val(result[0].HomeCity);
+				$("#HomeStreet").val(result[0].HomeStreet);
+				$("#Zipcode").val(result[0].HomeZipcode);
+				$("#Hometelephone").val(result[0].Hometelephone);
+				$("#email").val(result[0].emailAdress);
+				$("#Birthday").val(result[0].BirthdayDate);
+				$("#familyStatus").val(result[0].familyStatus);
+				$("#education").val(result[0].educationLevel);
+				$("#occupation").val(result[0].workOccupation);
+				$("#Job").val(result[0].workJob);
+				$("#duty").val(result[0].wrokDuty);
+				$("#Hobby").val(result[0].leisureHobby);
+				$("#VolunteerExperience").val(result[0].leisureVolunteerExperience);
+				$("#VolunteerTropic").val(result[0].leisureVolunteerTropic);
+				$("#UniqueTalents").val(result[0].leisureUniqueTalents);
+				$("#VolunteerReasons").val(result[0].InterestVolunteerReasons);
+				$("#VolunteerExpectations").val(result[0].InterestVolunteerExpectations);
+				$("#multiDates").val(result[0].InterestMultiDates);
+				$("#multiHours").val(result[0].InterestMultiHours);
+				$("#VolunteerLociton").val(result[0].InterestVolunteerLociton);
+				$("#VolunteerLocitonOther").val(result[0].InterestVolunteerLocitonOther);
+				$("#multiVolTypes").val(result[0].InterestmultiVolTypes);
+				$("#multiVolTypesOther").val(result[0].InterestmultiVolTypesOther);
+				$("#TimePeriod").val(result[0].InterestTimePeriod);
+				$("#multiLanguage").val(result[0].InterestmultiLanguage);
+				$("#StudentAcademicInstitution").val(result[0].StudentAcademicInstitution);
+				$("#StudentEducationDepartment").val(result[0].StudentEducationDepartment);
+				$("#YearDates").val(result[0].StudentYearDates);
+				$("#YearDatesOther").val(result[0].StudentYearDatesOther);
+				$("#StudentVoluntaryExtra").val(result[0].StudentVoluntaryExtra);
+				$("#StudentHomeTwon").val(result[0].StudentHomeTwon);
             });
 
 

@@ -1,7 +1,6 @@
 
 (function ($){
   $(function(){
-
     $('.button-collapse').sideNav();
 	$('.scrollspy').scrollSpy();
 	$('select').material_select();
@@ -9,8 +8,88 @@
       $('.collapsible').collapsible({
       accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
     });
-	
-    /*** Animate word ***/
+
+	  $('.datepicker').pickadate({
+		  selectMonths: true, // Creates a dropdown to control month
+		  min: [1940,1,01],
+		  max: [2006,7,14],
+		  selectYears: 15 // Creates a dropdown of 15 years to control year
+	  });
+
+    $('#updateBtnVol').hide();
+
+	  $("#submitBtnVol").click(function(){
+          
+		  //TODO: Add validations before submitting details
+
+		  var volunteer = {
+				firstName: $("#fName").val(),
+			  	lastName: $("#lName").val(),
+			  	ID: $("#IDnum").val()
+
+		  };
+
+		  console.log(volunteer);
+		  $("#VolunteerQuestModal").closeModal();
+		  $.post("/AddRecord?volunteers",volunteer);
+
+
+		  var $toastContent = $('<span>תודה, בקשתך נרשמה</span>');
+		  Materialize.toast($toastContent, 3000);
+
+		  setTimeout(function(){
+			  window.location.reload();
+		  }, 2000);
+
+	  });
+
+
+
+
+	$("#organizationSubmitBtn").click(function(){
+
+		//TODO: Add validations before submitting details
+
+		var organization = {
+			organizationName: $("#orgName").val(),
+			ProgramName: $("#programName").val(),
+			contactName: $("#conName").val(),
+			contactRole: $("#conRole").val(),
+			officePhone: $("#officePhone").val(),
+			contactPhone: $("#conPhone").val(),
+			organizationEmail: $("#orgEmail").val(),
+			fieldManName: $("#fieldMan").val(),
+			fieldManEmail: $("#fieldEmail").val(),
+			fieldManPhone: $("#fieldManPhone").val()
+		};
+
+		console.log(organization);
+
+		//validations
+
+		for (var key in organization) {
+			if (organization.hasOwnProperty(key)) {
+				if (organization[key].length == 0) {
+					alert("Some fields are empty");
+					return;
+				}
+			}
+		}
+		//  $("#modalLogin").closeModal();
+
+		$("#OrganizationQuestModal").closeModal();
+		$.post("/AddRecord?organizations",organization);
+
+
+		var $toastContent = $('<span>תודה, בקשתך נרשמה</span>');
+		Materialize.toast($toastContent, 3000);
+		/*
+		 setTimeout(function(){
+		 window.location.reload();
+		 }, 2000);
+		 */
+	});
+	/*** Animate word ***/
 
     //set animation timing
 	var animationDelay = 2500,
@@ -28,7 +107,29 @@
 		revealAnimationDelay = 1500;
 	
 	initHeadline();
-	
+
+	var cookie = getCookie();
+	  if(cookie)
+	  {
+		  //alert("Got cookie!!: ["+cookie+"]");
+		  loadPageByUser(cookie.user, cookie.password);
+	  }
+
+
+	function setCookie(user, password){
+		var date = new Date();
+		var minutes = 20;
+		date.setTime(date.getTime() + (minutes * 60 * 1000));
+		$.cookie("signin", JSON.stringify({'user' : user, 'password' : password}), { expires : date });
+	}
+
+	function getCookie(){
+		var cookieValue = $.cookie("signin");
+		if(cookieValue == null)
+			return false;
+		else
+			return JSON.parse(cookieValue);
+	}
 
 	function initHeadline() {
 		singleLetters($('.cd-headline.letters').find('b'));
@@ -310,44 +411,195 @@
     }
 
 function insertButtons(typeOfInsert, heName){
-    
+
     $("#intro").empty();
-<<<<<<< HEAD
-    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light lime tooltipped modal-trigger2" href="#modal2" data-position="left" data-delay="50" data-tooltip="הוסף ' +heName+ '" type="submit" name="action" id = "add' +typeOfInsert+ '"></button>');
-=======
+    
+    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light green tooltipped" data-position="left" data-delay="50" data-tooltip="מציאת התאמה" type="submit" name="action" id = "findMatch"></button>');
+	$("#findMatch").append('<i class="material-icons">repeat</i>');
+    
+    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light grey tooltipped" data-position="top" data-delay="50" data-tooltip="הדפס" type="submit" name="action" id = "printBtn"></button>');
+	$("#printBtn").append('<i class="material-icons">print</i>');
+        
+    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light orange tooltipped" data-position="right" data-delay="50" data-tooltip="נקה את בחירתך" type="submit" name="action" id = "clearBtn"></button>');
+	$("#clearBtn").append('<i class="material-icons">clear_all</i>');
     
     //change modal
-    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light lime tooltipped modal-trigger2" href="#modal2" data-position="left" data-delay="50" data-tooltip="Add new ' +typeOfInsert+ '" type="submit" name="action" id = "add' +typeOfInsert+ '"></button>');
->>>>>>> eb834b95a7606209ba163090e25ccd651e8a0896
-	$('#add' +typeOfInsert).append('<i class="material-icons">add</i>');
+    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light red tooltipped modal-trigger3" href="#modal3" data-position="left" data-delay="50" data-tooltip=" מחק ' +heName+ '" type="submit" name="action" id = "delete' +typeOfInsert+ '"></button>');
+	$('#delete' +typeOfInsert).append('<i class="material-icons">delete</i>');
     
     //change modal
-    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light light-blue lighten-1 tooltipped modal-trigger2" href="#modal2" data-position="top" data-delay="50" data-tooltip="ערוך ' +heName+ '" type="submit" name="action" id = "edit' +typeOfInsert+ '"></button>');
+    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light light-blue lighten-1 tooltipped" href="#" data-position="top" data-delay="50" data-tooltip="ערוך ' +heName+ '" type="submit" name="action" id = "edit' +typeOfInsert+ '"></button>');
 	$('#edit' +typeOfInsert).append('<i class="material-icons">mode_edit</i>');
     
     //change modal
-    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light red tooltipped modal-trigger3" href="#modal3" data-position="right" data-delay="50" data-tooltip=" מחק ' +heName+ '" type="submit" name="action" id = "delete' +typeOfInsert+ '"></button>');
-	$('#delete' +typeOfInsert).append('<i class="material-icons">delete</i>');
+    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light lime tooltipped modal-trigger" href="#'+typeOfInsert+'QuestModal"'+ 'data-position="right" data-delay="50" data-tooltip="הוסף ' +heName+ '" type="submit" name="action" id = "add' +typeOfInsert+ '"></button>');
+	$('#add' +typeOfInsert).append('<i class="material-icons">add</i>');
+
+    $('#updateBtnVol').hide();
+	$('.tooltipped').tooltip({delay: 50});
+
+<<<<<<< HEAD
+ /*   $('#VolunteerQuestModal')
+        .on('hide', function () {
+        alert("modal");
+        $('#submitBtnVol').show();
+        $('#updateBtnVol').hide();
+        $('#volFormName').html("הרשמה להתנדבות");  
+    })
+   .on('hidden', function(){
+       console.log('hidden');
+   })
+   .on('show', function() {
+       console.log('show');
+   })
+   .on('shown', function(){
+      console.log('shown' )
+   });
+   */ 
     
-    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light orange tooltipped" data-position="left" data-delay="50" data-tooltip="נקה את בחירתך" type="submit" name="action" id = "clearBtn"></button>');
-	$("#clearBtn").append('<i class="material-icons">clear_all</i>');
-	
-    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light grey tooltipped" data-position="top" data-delay="50" data-tooltip="הדפס" type="submit" name="action" id = "printBtn"></button>');
-	$("#printBtn").append('<i class="material-icons">print</i>');
-   
-	$("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light green tooltipped" data-position="right" data-delay="50" data-tooltip="מציאת התאמה" type="submit" name="action" id = "findMatch"></button>');
-	$("#findMatch").append('<i class="material-icons">repeat</i>');
+	$("#deleteVolunteer").click(function(){
+
+=======
+	$('#delete' +typeOfInsert).click(function(){
+>>>>>>> c8d98f4e582496b2efdd85178c0b3b4df140519d
+		var n = $( "input:checked");
+		var filter = {};
+		filter['ids'] = [];
+		Array.from(n).forEach(function(item, index){
+			filter['ids'].push(item.id);
+		});
+
+		console.log(filter);
+		//var jsonFilter = JSON.parse(filter.toString());
+		//console.log(jsonFilter);
+		//var volunteer = {
+		//	firstName: $("#fName").val(),
+		//	lastName: $("#lName").val(),
+		//	phone: $("#telephone").val()
+        //
+		//};
+		//console.log(volunteer);
+<<<<<<< HEAD
+        if(filter['ids'].length > 0)
+        {
+            
+		$.post("/DeleteRecord?volunteers",filter);
+=======
+		typeOfInsert == "Volunteer" ?  $.post("/DeleteRecord?volunteers",filter): $.post("/DeleteRecord?organizations",filter);
+>>>>>>> c8d98f4e582496b2efdd85178c0b3b4df140519d
+		var $toastContent = $('<span>רשומה נמחקה</span>');
+		Materialize.toast($toastContent, 3000);
+
+		setTimeout(function(){
+			window.location.reload();
+		}, 2000);
+        }
+        else{
+            var $toastContent = $('<span>יש לסמן מתנדב אחד לפחות</span>');
+		Materialize.toast($toastContent, 3000);
+        }
+
+
+	});
     
-    $('.tooltipped').tooltip({delay: 50});
+    $("#editVolunteer").click(function(){
+        
+        
+		var n = $("input:checked");
+		var filter = {};
+		filter['ids'] = [];
+		Array.from(n).forEach(function(item, index){
+			filter['ids'].push(item.id);
+		});
+
+        if(filter['ids'].length == 1)
+        {
+            $('#submitBtnVol').hide();
+            $('#updateBtnVol').show();
+            $('#volFormName').html("עריכת מתנדב");
+            $("#VolunteerQuestModal").openModal();
+            
+            console.log(filter['ids'][0]);
+
+            var oldVol = $.getJSON('/GetRecord?{?collection?:?volunteers?,?filter?:{?_id?:?"' +filter['ids'][0]+ '"?}}',function(result) {
+			console.log(result);
+            });
+
+            $("#VolunteerQuestModal label").attr('class','active');
+            $("#fName").val("oldVol.firstName");
+            $("#lName").val("oldVol.LastName");
+            $("#IDnum").val(345675657);
+            
+            //var jsonFilter = JSON.parse(filter.toString());
+            //console.log(jsonFilter);
+            //var volunteer = {
+            //	firstName: $("#fName").val(),
+            //	lastName: $("#lName").val(),
+            //	phone: $("#telephone").val()
+            //
+            //};
+            //console.log(volunteer);
+        }
+                     
+        else{  
+            var $toastContent = $('<span>יש לסמן מתנדב אחד בדיוק</span>');
+            Materialize.toast($toastContent, 3000);
+            return;
+        }
+        
+        $("#updateBtnVol").click(function(){
+            $("#VolunteerQuestModal").closeModal();
+            $("#VolunteerQuestModal label").removeAttr('class');
+            $('#submitBtnVol').show();
+            $('#updateBtnVol').hide();
+            $('#volFormName').html("הרשמה להתנדבות");
+
+             var newVol = {
+				firstName: "",
+			  	lastName: "",
+
+		      };
+            var newVol = {
+				firstName: $("#fName").val(),
+			  	lastName: $("#lName").val(),
+			  	ID: $("#IDnum").val()
+
+		      };
+            
+            //console.log(oldVol);
+            console.log(newVol);
+            $.post("/UpdateRecord?volunteers",oldVol, newVol);
+            var $toastContent = $('<span>רשומה נערכה בהצלחה</span>');
+            Materialize.toast($toastContent, 3000);
+
+            $("#VolunteerQuestModal input").val("");
+
+                /*    setTimeout(function(){
+                    window.location.reload();
+                }, 2000);*/
+        });
+        
+        });
+    
+    
+    
+	$('.modal-trigger').leanModal();
 }
-      
+
+
+
 function loadAdminPage(user){
     
 	//Change page layout
     $("#links").empty();
     $("#links").append('<li> ברוך הבא ' + user + '</li>');
-    $("#links").append('<li><a class="waves-effect waves-light modal-trigger tooltipped" data-position="Down" data-delay="50" data-tooltip="התנתק" href="index.html"><i class="material-icons">settings_power</i></a></li>');
-    
+    $("#links").append('<li><a class="waves-effect waves-light modal-trigger tooltipped" id="disconnectUser" data-position="Down" data-delay="50" data-tooltip="התנתק" ><i class="material-icons">settings_power</i></a></li>');
+
+	$("#disconnectUser").click(function(){
+		$.removeCookie("signin");
+		location.reload();
+	});
+
     $("#index-banner").empty();
     $("#index-banner").css("min-height","80px");
     
@@ -356,64 +608,69 @@ function loadAdminPage(user){
     $("#Register").append('<div class="row" id="volOrg">');
     $("#volOrg").append('<div class="col s12" id="selectionUl">');
     $("#selectionUl").append('<ul class="tabs" id="ulTabs">');
-    $("#ulTabs").append('<li class="tab col s6" ><a class="active" id="volChooser">מתנדבים</a></li>');
     $("#ulTabs").append('<li class="tab col s6" ><a id="orgChooser">ארגונים</a></li>');
+    $("#ulTabs").append('<li class="tab col s6" ><a class="active" id="volChooser">מתנדבים</a></li>');
     $('ul.tabs').tabs();
     
     $("#intro").wrap('<center>');
-    insertButtons("Volunteer", "מתנדב");
-    
-    $("#Register").append('<div id="dataZoneScroll">');
-    $("#dataZoneScroll").append('<ul class="collection" id="volAvatar" dir="rtl">');
-        for(var i=1; i<10; i++)
-        {
-            $("#volAvatar").append('<li class="collection-item avatar" id="volNum' +i+ '">');
-            $("#volNum" +i).append('<i class="material-icons circle light-blue">perm_identity</i>');
-            $("#volNum" +i).append('<span class="title">מתנדב ' +i+ '</span>');
-            $("#volNum" +i).append('<p>שורה ראשונה <br> שורה שנייה');
-            $("#volNum" +i).append('<p class="secondary-content" id="p' +i+'">');
-            $("#p" +i).append('<input type="checkbox" id="volCheck' +i+ '"/><label for="volCheck' +i+ '"></label>');
-     
-        }
+	$("#Register").append('<div id="dataZoneScroll">');
+
+	loadVolunteersView();
     
     $("#volChooser").click(function(){
-       
-        insertButtons("Volunteer", "מתנדב");
+
         $("#dataZoneScroll").empty();
-        // $("#volAvatar").remove();
-        $("#dataZoneScroll").append('<ul class="collection" id="volAvatar" dir="rtl">');
-        for(var i=1; i<10; i++)
-        {
-            idfromsql=i*i;
-            $("#volAvatar").append('<li class="collection-item avatar" id="volNum' +i+ '">');
-            $("#volNum" +i).append('<i class="material-icons circle light-blue">perm_identity</i>');
-            $("#volNum" +i).append('<span class="title">מתנדב ' +i+ '</span>');
-            $("#volNum" +i).append('<p>שורה ראשונה <br> שורה שנייה');
-            $("#volNum" +i).append('<p class="secondary-content" id="p' +i+'">');
-            $("#p" +i).append('<input type="checkbox" id="volCheck' +i+ '"/><label for="volCheck' +i+ '"></label>');        
-        }
+		loadVolunteersView();
     });
     
-    $("#orgChooser").click(function(){
-         
-        insertButtons("Organization", "ארגון");
-        $("#dataZoneScroll").empty();
-        // $("#orgAvatar").remove();
-        $("#dataZoneScroll").append('<ul class="collection" id="orgAvatar" dir="rtl">');
-        for(var i=1; i<6; i++)
-        {
-            $("#orgAvatar").append('<li class="collection-item avatar" id="volNum' +i+ '">');
-            $("#volNum" +i).append('<i class="material-icons circle red">description</i>');
-            $("#volNum" +i).append('<span class="title">ארגון ' +i+ '</span>');
-            $("#volNum" +i).append('<p>שורה ראשונה <br> שורה שנייה');
-            $("#volNum" +i).append('<p class="secondary-content" id="p' +i+'">');
-            $("#p" +i).append('<input type="checkbox" id="orgCheck' +i+ '"/><label for="orgCheck' +i+ '"></label>');  
-        }
-    });
+    $("#orgChooser").click(function() {
+		$("#dataZoneScroll").empty();
+		loadOrganizationsView();
+	});
     
     $("#work").remove();
     
-    
+    function loadVolunteersView(){
+		insertButtons("Volunteer", "מתנדב");
+
+
+		$("#dataZoneScroll").append('<ul class="collection" id="volAvatar" dir="rtl">');
+		var volunteers = [];
+		$.getJSON("/GetRecord?{?collection?:?volunteers?,?filter?:{}}",function(result) {
+			console.log(result);
+			for(var i=0; i<result.length; i++)
+			{
+				$("#volAvatar").append('<li class="collection-item avatar" id="li'+result[i]._id +'">');
+				$("#li" +result[i]._id).append('<i class="material-icons circle light-blue">perm_identity</i>');
+				$("#li" +result[i]._id).append('<span class="title" > ' + result[i].firstName + '</span>');
+				$("#li" +result[i]._id).append('<p>' + result[i].lastName + '<br>' + result[i].ID);
+				$("#li" +result[i]._id).append('<p class="secondary-content" id="p' +result[i]._id+'">');
+				$("#p" +result[i]._id).append('<input type="checkbox" id="' +result[i]._id+ '"/><label for="' +result[i]._id+ '"></label>');
+
+			}
+
+		});
+
+	}
+	function loadOrganizationsView(){
+		insertButtons("Organization", "ארגון");
+
+		$("#dataZoneScroll").append('<ul class="collection" id="orgAvatar" dir="rtl">');
+		$.getJSON("/GetRecord?{?collection?:?organizations?,?filter?:{}}", function (result) {
+			console.log(result);
+
+			for (var i = 0; i < result.length; i++) {
+				$("#orgAvatar").append('<li class="collection-item avatar" id="li' + result[i]._id + '">');
+				$("#li" + result[i]._id).append('<i class="material-icons circle red">description</i>');
+				$("#li" + result[i]._id).append('<span class="title" > ' + result[i].organizationName + '</span>');
+				$("#li" + result[i]._id).append('<p>' + result[i].contactName + '<br>' + result[i].contactPhone);
+				$("#li" + result[i]._id).append('<p class="secondary-content" id="p' + result[i]._id + '">');
+				$("#p" + result[i]._id).append('<input type="checkbox" id="' + result[i]._id + '"/><label for="' + result[i]._id + '"></label>');
+
+			}
+
+		});
+	}
     /*
 
 	$('.modal-trigger2').leanModal();
@@ -805,29 +1062,35 @@ function loadOrganizationPage(user){
 		
         var user = $("#username").val();
         var pass = $("#password").val();
+
+		  loadPageByUser(user, pass);
+    });
+
+	  //TODO: get users from DB
+	function loadPageByUser(user, pass){
 		var userType = getUser(user, pass);
-		
-        console.log(user); 
-          
-        if(userType == 0) //Admin
-        {
+
+		console.log(user);
+
+		if(userType == 0) //Admin
+		{
 			$("#modalLogin").closeModal();
 			loadAdminPage(user);
-        }
-        else if(userType == 1) //Organization
-        {	
+		}
+		else if(userType == 1) //Organization
+		{
 			$("#modalLogin").closeModal();
-            loadOrganizationPage(user);
-        }
-        else //error
-        {	
+			loadOrganizationPage(user);
+		}
+		else //error
+		{
 			//$("#modal1").closeModal();
 			//sleep(1);
 			//$("#modal1").openModal();
-        }
-    });
-
-	
+		}
+		//TODO: exit function in the last else (on error)
+		setCookie(user,pass);
+	}
 
 	// [].forEach.call(card, function(card) {
 	// 	card.addEventListener('click', scaleCard, false);

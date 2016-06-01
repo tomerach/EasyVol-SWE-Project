@@ -43,7 +43,53 @@
 
 	  });
 
-    /*** Animate word ***/
+
+
+
+	$("#organizationSubmitBtn").click(function(){
+
+		//TODO: Add validations before submitting details
+
+		var organization = {
+			organizationName: $("#orgName").val(),
+			ProgramName: $("#programName").val(),
+			contactName: $("#conName").val(),
+			contactRole: $("#conRole").val(),
+			officePhone: $("#officePhone").val(),
+			contactPhone: $("#conPhone").val(),
+			organizationEmail: $("#orgEmail").val(),
+			fieldManName: $("#fieldMan").val(),
+			fieldManEmail: $("#fieldEmail").val(),
+			fieldManPhone: $("#fieldManPhone").val()
+		};
+
+		console.log(organization);
+
+		//validations
+
+		for (var key in organization) {
+			if (organization.hasOwnProperty(key)) {
+				if (organization[key].length == 0) {
+					alert("Some fields are empty");
+					return;
+				}
+			}
+		}
+		//  $("#modalLogin").closeModal();
+
+		$("#OrganizationQuestModal").closeModal();
+		$.post("/AddRecord?organizations",organization);
+
+
+		var $toastContent = $('<span>תודה, בקשתך נרשמה</span>');
+		Materialize.toast($toastContent, 3000);
+		/*
+		 setTimeout(function(){
+		 window.location.reload();
+		 }, 2000);
+		 */
+	});
+	/*** Animate word ***/
 
     //set animation timing
 	var animationDelay = 2500,
@@ -410,7 +456,7 @@ function insertButtons(typeOfInsert, heName){
    });
    */ 
     
-	$("#deleteVolunteer").click(function(){
+	$('#delete' +typeOfInsert).click(function(){
 
 		var n = $( "input:checked");
 		var filter = {};
@@ -432,7 +478,7 @@ function insertButtons(typeOfInsert, heName){
         if(filter['ids'].length > 0)
         {
             
-		$.post("/DeleteRecord?volunteers",filter);
+		typeOfInsert == "Volunteer" ?  $.post("/DeleteRecord?volunteers",filter): $.post("/DeleteRecord?organizations",filter);
 		var $toastContent = $('<span>רשומה נמחקה</span>');
 		Materialize.toast($toastContent, 3000);
 
@@ -569,22 +615,10 @@ function loadAdminPage(user){
 		loadVolunteersView();
     });
     
-    $("#orgChooser").click(function(){
-         
-        insertButtons("Organization", "ארגון");
-        $("#dataZoneScroll").empty();
-        // $("#orgAvatar").remove();
-        $("#dataZoneScroll").append('<ul class="collection" id="orgAvatar" dir="rtl">');
-        for(var i=1; i<6; i++)
-        {
-            $("#orgAvatar").append('<li class="collection-item avatar" id="volNum' +i+ '">');
-            $("#volNum" +i).append('<i class="material-icons circle red">description</i>');
-            $("#volNum" +i).append('<span class="title">ארגון ' +i+ '</span>');
-            $("#volNum" +i).append('<p>שורה ראשונה <br> שורה שנייה');
-            $("#volNum" +i).append('<p class="secondary-content" id="p' +i+'">');
-            $("#p" +i).append('<input type="checkbox" id="orgCheck' +i+ '"/><label for="orgCheck' +i+ '"></label>');  
-        }
-    });
+    $("#orgChooser").click(function() {
+		$("#dataZoneScroll").empty();
+		loadOrganizationsView();
+	});
     
     $("#work").remove();
     
@@ -609,6 +643,25 @@ function loadAdminPage(user){
 
 		});
 
+	}
+	function loadOrganizationsView(){
+		insertButtons("Organization", "ארגון");
+
+		$("#dataZoneScroll").append('<ul class="collection" id="orgAvatar" dir="rtl">');
+		$.getJSON("/GetRecord?{?collection?:?organizations?,?filter?:{}}", function (result) {
+			console.log(result);
+
+			for (var i = 0; i < result.length; i++) {
+				$("#orgAvatar").append('<li class="collection-item avatar" id="li' + result[i]._id + '">');
+				$("#li" + result[i]._id).append('<i class="material-icons circle red">description</i>');
+				$("#li" + result[i]._id).append('<span class="title" > ' + result[i].organizationName + '</span>');
+				$("#li" + result[i]._id).append('<p>' + result[i].contactName + '<br>' + result[i].contactPhone);
+				$("#li" + result[i]._id).append('<p class="secondary-content" id="p' + result[i]._id + '">');
+				$("#p" + result[i]._id).append('<input type="checkbox" id="' + result[i]._id + '"/><label for="' + result[i]._id + '"></label>');
+
+			}
+
+		});
 	}
     /*
 

@@ -13,7 +13,8 @@ module.exports = {
     ConnectDB: ConnectDB,
     AddRecord: AddRecord,
     GetRecords: GetRecords,
-    DeleteRecord: DeleteRecord
+    DeleteRecord: DeleteRecord,
+    UpdateRecord: UpdateRecord
 }
 
 
@@ -54,7 +55,11 @@ function GetRecords(req, res) {
     var url_parts = url.parse(req.url);
     var queryTemp = url_parts.query.replace(/\?/g,'\"');
     var query = JSON.parse(queryTemp);
-
+    if('_id' in query.filter)
+    {
+        query.filter._id = new ObjectID(query.filter._id);
+        console.log(query.filter);
+    }
     db.collection(query.collection).find(query.filter).toArray(function(err, docs) {
         if (err) {
             handleError(res, err.message, "Failed to get contacts.");
@@ -92,4 +97,20 @@ function DeleteRecord(req, res, filter){
 function handleError(res, reason, message, code) {
     console.log("ERROR: " + reason);
     res.status(code || 500).json({"error": message});
+}
+
+function UpdateRecord(req, res, oldVal, newVal)
+{
+    var url_parts = url.parse(req.url);
+    var collection = url_parts.query;
+
+   // var filterObj = {_id: new ObjectID(filter['ids[]'])}
+
+    db.collection(collection).update(oldVal, newVal, function(err, doc) {
+        if (err) {
+            handleError(res, err.message, "Failed to update the record.");
+        } else {
+            res.status(204).end();
+        }
+    });
 }

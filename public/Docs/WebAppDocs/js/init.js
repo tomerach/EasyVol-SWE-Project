@@ -415,11 +415,11 @@
         }
     }
 
-function insertButtons(typeOfInsert, heName){
+function insertButtons(typeOfInsert, heName, typeOfPage){
 
     $("#intro").empty();
 console.log(typeOfInsert);
-    if(typeOfInsert === "Volunteer"){
+    if(typeOfPage === "AdminPage"){
         $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light green tooltipped" data-position="left" data-delay="50" data-tooltip="מציאת התאמה" type="submit" name="action" id = "findMatch"></button>');
         $("#findMatch").append('<i class="material-icons">repeat</i>');
     }
@@ -462,6 +462,10 @@ console.log(typeOfInsert);
       console.log('shown' )
    });
    */ 
+    
+    $("#clearBtn").click(function(){
+        $( "input:checked").prop('checked', false);   
+    });
     
 	$('#delete' +typeOfInsert).click(function(){
 
@@ -622,7 +626,7 @@ function loadAdminPage(user){
     $("#work").remove();
     
     function loadVolunteersView(){
-		insertButtons("Volunteer", "מתנדב");
+		insertButtons("Volunteer", "מתנדב", "AdminPage");
 
 		$("#dataZoneScroll").append('<ul class="collection" id="volAvatar" dir="rtl">');
 		var volunteers = [];
@@ -644,7 +648,7 @@ function loadAdminPage(user){
 	}
     
 	function loadOrganizationsView(){
-		insertButtons("Organization", "ארגון");
+		insertButtons("Organization", "ארגון", "AdminPage");
 
 		$("#dataZoneScroll").append('<ul class="collection" id="orgAvatar" dir="rtl">');
 		$.getJSON("/GetRecord?{?collection?:?organizations?,?filter?:{}}", function (result) {
@@ -706,38 +710,28 @@ function loadOrganizationPage(user){
     
     $("#intro").wrap('<center>');
 	$("#Register").append('<div id="dataZoneScroll">');
-
-	loadVolunteersView();
     
- /*   $("#volChooser").click(function(){
-        $("#dataZoneScroll").empty();
-		loadVolunteersView();
+    insertButtons("Volunteer", "מתנדב", "OrganizationPage");
+
+    $("#dataZoneScroll").append('<ul class="collection" id="volAvatar" dir="rtl">');
+    var volunteers = [];
+    $.getJSON("/GetRecord?{?collection?:?volunteers?,?filter?:{}}",function(result) {
+        console.log(result);
+        //TODO: implement Volunteers list
+        for(var i=0; i<result.length; i++)
+        {
+            $("#volAvatar").append('<li class="collection-item avatar" id="li'+result[i]._id +'">');
+            $("#li" +result[i]._id).append('<i class="material-icons circle light-blue">perm_identity</i>');
+            $("#li" +result[i]._id).append('<span class="title" > ' + result[i].firstName + '</span>');
+            $("#li" +result[i]._id).append('<p>' + result[i].lastName + '<br>' + result[i].ID);
+            $("#li" +result[i]._id).append('<p class="secondary-content" id="p' +result[i]._id+'">');
+            $("#p" +result[i]._id).append('<input type="checkbox" id="' +result[i]._id+ '"/><label for="' +result[i]._id+ '"></label>');
+
+        }
+
     });
-   */ 
+    
     $("#work").remove();
-    
-    function loadVolunteersView(){
-		insertButtons("Volunteer", "מתנדב");
-
-		$("#dataZoneScroll").append('<ul class="collection" id="volAvatar" dir="rtl">');
-		var volunteers = [];
-		$.getJSON("/GetRecord?{?collection?:?volunteers?,?filter?:{}}",function(result) {
-			console.log(result);
-			for(var i=0; i<result.length; i++)
-			{
-				$("#volAvatar").append('<li class="collection-item avatar" id="li'+result[i]._id +'">');
-				$("#li" +result[i]._id).append('<i class="material-icons circle light-blue">perm_identity</i>');
-				$("#li" +result[i]._id).append('<span class="title" > ' + result[i].firstName + '</span>');
-				$("#li" +result[i]._id).append('<p>' + result[i].lastName + '<br>' + result[i].ID);
-				$("#li" +result[i]._id).append('<p class="secondary-content" id="p' +result[i]._id+'">');
-				$("#p" +result[i]._id).append('<input type="checkbox" id="' +result[i]._id+ '"/><label for="' +result[i]._id+ '"></label>');
-
-			}
-
-		});
-
-	}
-    
 
 	$("#dataZone").empty();
     //To-Do: implement the data for the admin view

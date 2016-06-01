@@ -86,12 +86,44 @@
 	});
 
 	 function getVolunteerObject(){
-		  var volunteer = {
-			  firstName: $("#fName").val(),
-			  lastName: $("#lName").val(),
-			  ID: $("#IDnum").val()
+		 var volunteer = {
+			 firstName: $("#fName").val(),
+			 lastName: $("#lName").val(),
+			 phone: $("#telephone").val(),
+			 IDnumber: $("#IDnum").val(),
+			 HomeCity: $("#City").val(),
+			 HomeStreet: $("#HomeStreet").val(),
+			 HomeZipcode: $("#Zipcode").val(),
+			 Hometelephone: $("#Hometelephone").val(),
+			 emailAdress: $("#email").val(),
+			 BirthdayDate: $("#Birthday").val(),
+			 familyStatus: $("#familyStatus").val(),
+			 educationLevel: $("#education").val(),
+			 workOccupation: $("#occupation").val(),
+			 workJob: $("#Job").val(),
+			 wrokDuty: $("#duty").val(),
+			 leisureHobby: $("#Hobby").val(),
+			 leisureVolunteerExperience: $("#VolunteerExperience").val(),
+			 leisureVolunteerTropic: $("#VolunteerTropic").val(),
+			 leisureUniqueTalents: $("#UniqueTalents").val(),
+			 InterestVolunteerReasons: $("#VolunteerReasons").val(),
+			 InterestVolunteerExpectations: $("#VolunteerExpectations").val(),
+			 InterestMultiDates: $("#multiDates").val(),
+			 InterestMultiHours: $("#multiHours").val(),
+			 InterestVolunteerLociton: $("#VolunteerLociton").val(),
+			 InterestVolunteerLocitonOther: $("#VolunteerLocitonOther").val(),
+			 InterestmultiVolTypes: $("#multiVolTypes").val(),
+			 InterestmultiVolTypesOther: $("#multiVolTypesOther").val(),
+			 InterestTimePeriod: $("#TimePeriod").val(),
+			 InterestmultiLanguage: $("#multiLanguage").val(),
+			 StudentAcademicInstitution: $("#StudentAcademicInstitution").val(),
+			 StudentEducationDepartment: $("#StudentEducationDepartment").val(),
+			 StudentYearDates: $("#YearDates").val(),
+			 StudentYearDatesOther: $("#YearDatesOther").val(),
+			 StudentVoluntaryExtra: $("#StudentVoluntaryExtra").val(),
+			 StudentHomeTwon: $("#StudentHomeTwon").val()
 
-		  };
+		 };
 
 		 return volunteer;
 	  }

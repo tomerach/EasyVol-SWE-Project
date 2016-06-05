@@ -449,7 +449,7 @@
 function insertButtons(typeOfInsert, heName, typeOfPage){
 
     $("#intro").empty();
-console.log(typeOfInsert);
+    
     if(typeOfPage === "AdminPage"){
         $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light green tooltipped" data-position="left" data-delay="50" data-tooltip="מציאת התאמה" type="submit" name="action" id = "findMatch"></button>');
         $("#findMatch").append('<i class="material-icons">repeat</i>');
@@ -461,17 +461,25 @@ console.log(typeOfInsert);
     $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light orange tooltipped" data-position="right" data-delay="50" data-tooltip="נקה את בחירתך" type="submit" name="action" id = "clearBtn"></button>');
 	$("#clearBtn").append('<i class="material-icons">clear_all</i>');
     
-    //change modal
-    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light red tooltipped modal-trigger3" href="#modal3" data-position="left" data-delay="50" data-tooltip=" מחק ' +heName+ '" type="submit" name="action" id = "delete' +typeOfInsert+ '"></button>');
-	$('#delete' +typeOfInsert).append('<i class="material-icons">delete</i>');
+    if(typeOfPage === "AdminPage"){
+        $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light red tooltipped modal-trigger3" href="#modal3" data-position="left" data-delay="50" data-tooltip=" מחק ' +heName+ '" type="submit" name="action" id = "delete' +typeOfInsert+ '"></button>');
+        $('#delete' +typeOfInsert).append('<i class="material-icons">delete</i>');
+        
+        $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light light-blue lighten-1 tooltipped" href="#" data-position="top" data-delay="50" data-tooltip="ערוך ' +heName+ '" type="submit" name="action" id = "edit' +typeOfInsert+ '"></button>');
+        $('#edit' +typeOfInsert).append('<i class="material-icons">mode_edit</i>');
+
+        $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light lime tooltipped modal-trigger" href="#'+typeOfInsert+'QuestModal"'+ 'data-position="right" data-delay="50" data-tooltip="הוסף ' +heName+ '" type="submit" name="action" id = "add' +typeOfInsert+ '"></button>');
+        $('#add' +typeOfInsert).append('<i class="material-icons">add</i>');
+    }
     
-    //change modal
-    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light light-blue lighten-1 tooltipped" href="#" data-position="top" data-delay="50" data-tooltip="ערוך ' +heName+ '" type="submit" name="action" id = "edit' +typeOfInsert+ '"></button>');
-	$('#edit' +typeOfInsert).append('<i class="material-icons">mode_edit</i>');
-    
-    //change modal
-    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light lime tooltipped modal-trigger" href="#'+typeOfInsert+'QuestModal"'+ 'data-position="right" data-delay="50" data-tooltip="הוסף ' +heName+ '" type="submit" name="action" id = "add' +typeOfInsert+ '"></button>');
-	$('#add' +typeOfInsert).append('<i class="material-icons">add</i>');
+    else{ //Organization page
+        $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light red tooltipped" href="#" data-position="left" data-delay="50" data-tooltip=" המתנדב השלים 40 שעות" type="submit" name="action" id = "fourtyHours"></button>');
+        $('#fourtyHours').append('<i class="material-icons">done</i>');
+        
+        $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light light-blue lighten-1 tooltipped" href="#" data-position="top" data-delay="50" data-tooltip="המתנדב התחיל להתנדב" type="submit" name="action" id = "startedToVol"></button>');
+        $('#startedToVol').append('<i class="material-icons">play_arrow</i>');
+        
+    }
 
     $('#updateBtnVol').hide();
 	$('.tooltipped').tooltip({delay: 50});
@@ -496,6 +504,35 @@ console.log(typeOfInsert);
     
     $("#clearBtn").click(function(){
         $( "input:checked").prop('checked', false);   
+    });
+    
+    $('#fourtyHours').click(function(){
+        var n = $( "input:checked");
+        console.log(n);
+		var filter = {};
+		filter['ids'] = [];
+		Array.from(n).forEach(function(item, index){
+			filter['ids'].push(item.id);
+           $('#fourtyHoursImage' + item.id).show(); 
+		});
+        
+        if(filter['ids'].length > 0)
+        {   
+        //    typeOfInsert == "Volunteer" ?  $.post("/DeleteRecord?volunteers",filter): $.post("/DeleteRecord?organizations",filter);
+            var $toastContent = $('<span>הרשומה עודכנה</span>');
+            Materialize.toast($toastContent, 3000);
+
+            
+        /*    setTimeout(function(){
+                window.location.reload();
+            }, 2000);
+            */
+        }
+        else{
+            var $toastContent = $('<span>יש לסמן מתנדב אחד לפחות</span>');
+            Materialize.toast($toastContent, 3000);
+        }
+
     });
     
 	$('#delete' +typeOfInsert).click(function(){
@@ -702,8 +739,7 @@ function loadAdminPage(user){
 				$("#li" +result[i]._id).append('<span class="title" > ' + result[i].firstName + '</span>');
 				$("#li" +result[i]._id).append('<p>' + result[i].lastName + '<br>' + result[i].IDnumber);
 				$("#li" +result[i]._id).append('<p class="secondary-content" id="p' +result[i]._id+'">');
-				$("#p" +result[i]._id).append('<input type="checkbox" id="' +result[i]._id+ '"/><label for="' +result[i]._id+ '"></label>');
-
+                $("#p" +result[i]._id).append('<input type="checkbox" id="' +result[i]._id+ '"/><label for="' +result[i]._id+ '"></label>');
 			}
 
 		});
@@ -788,8 +824,9 @@ function loadOrganizationPage(user){
             $("#li" +result[i]._id).append('<span class="title" > ' + result[i].firstName + '</span>');
             $("#li" +result[i]._id).append('<p>' + result[i].lastName + '<br>' + result[i].ID);
             $("#li" +result[i]._id).append('<p class="secondary-content" id="p' +result[i]._id+'">');
+            $("#p" +result[i]._id).append('<img class="fourtyHoursImage" id="fourtyHoursImage'+ result[i]._id +'" src="Docs/WebAppDocs/Pics/fouryHours.png" />')
             $("#p" +result[i]._id).append('<input type="checkbox" id="' +result[i]._id+ '"/><label for="' +result[i]._id+ '"></label>');
-
+            $('#fourtyHoursImage' + result[i]._id).hide();
         }
 
     });

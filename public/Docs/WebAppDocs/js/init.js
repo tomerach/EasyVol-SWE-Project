@@ -24,6 +24,9 @@
 		  //TODO: Add validations before submitting details
 
 		  var volunteer = getVolunteerObject();
+		  volunteer.FourtyHours = false;
+		  volunteer.Organization= "";
+		  volunteer.StartedVolunteering = false;
 
 		  console.log(volunteer);
 		  $("#VolunteerQuestModal").closeModal();
@@ -123,9 +126,6 @@
 			 StudentYearDatesOther: $("#YearDatesOther").val(),
 			 StudentVoluntaryExtra: $("#StudentVoluntaryExtra").val(),
 			 StudentHomeTwon: $("#StudentHomeTwon").val(),
-			 FourtyHours : false,
-			 Organization: "",
-			 StartedVolunteering: false
 		 };
 
 		 return volunteer;
@@ -796,15 +796,21 @@ function insertVolunteersAvatars(records)
 
 	  records[i].FourtyHours == "false" ? $('#fourtyHoursImage' + records[i]._id).hide() : $('#fourtyHoursImage' + records[i]._id).show();
 	  records[i].StartedVolunteering == "false" ? $('#finishedImage' + records[i]._id).hide() : $('#finishedImage' + records[i]._id).show();
-
-	  if(records[i].Organization != ""){
+	  if(records[i].Organization != "") {
 		  g_array.push(records[i]);
-		  $.getJSON('/GetRecord?{?collection?:?organizations?,?filter?:{?_id?:?'+records[i].Organization+'?}}', function (result) {
-			  var tmp = g_array.pop();
-			  $("#contentPfirst" + tmp._id).text("מתנדב בארגון - " + result[0].organizationName);
-		  });
 	  }
   }
+	g_array = g_array.reverse();
+	for(var i=0; i<records.length; i++){
+		if(records[i].Organization != ""){
+			//g_array.push(records[i]);
+			$.getJSON('/GetRecord?{?collection?:?organizations?,?filter?:{?_id?:?'+records[i].Organization+'?}}', function (result) {
+				var tmp = g_array.pop();
+				$("#contentPfirst" + tmp._id).text("מתנדב בארגון - " + result[0].organizationName);
+			});
+		}
+	}
+
   $('.tooltipped').tooltip({delay: 50});
 }
 

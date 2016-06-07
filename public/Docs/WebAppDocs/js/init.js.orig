@@ -1,5 +1,6 @@
-
 (function ($){
+	var g_array;
+
   $(function(){
     $('.button-collapse').sideNav();
 	$('.scrollspy').scrollSpy();
@@ -22,12 +23,10 @@
           
 		  //TODO: Add validations before submitting details
 
-		  var volunteer = {
-				firstName: $("#fName").val(),
-			  	lastName: $("#lName").val(),
-			  	ID: $("#IDnum").val()
-
-		  };
+		  var volunteer = getVolunteerObject();
+		  volunteer.FourtyHours = false;
+		  volunteer.Organization= "";
+		  volunteer.StartedVolunteering = false;
 
 		  console.log(volunteer);
 		  $("#VolunteerQuestModal").closeModal();
@@ -39,7 +38,7 @@
 
 		  setTimeout(function(){
 			  window.location.reload();
-		  }, 2000);
+		  }, 1000);
 
 	  });
 
@@ -83,13 +82,54 @@
 
 		var $toastContent = $('<span>תודה, בקשתך נרשמה</span>');
 		Materialize.toast($toastContent, 3000);
-		/*
+
 		 setTimeout(function(){
 		 window.location.reload();
 		 }, 2000);
-		 */
+
 	});
-	/*** Animate word ***/
+
+	 function getVolunteerObject(){
+		 var volunteer = {
+			 firstName: $("#fName").val(),
+			 lastName: $("#lName").val(),
+			 phone: $("#telephone").val(),
+			 IDnumber: $("#IDnum").val(),
+			 HomeCity: $("#City").val(),
+			 HomeStreet: $("#HomeStreet").val(),
+			 HomeZipcode: $("#Zipcode").val(),
+			 Hometelephone: $("#Hometelephone").val(),
+			 emailAdress: $("#email").val(),
+			 BirthdayDate: $("#Birthday").val(),
+			 familyStatus: $("#familyStatus").val(),
+			 educationLevel: $("#education").val(),
+			 workOccupation: $("#occupation").val(),
+			 workJob: $("#Job").val(),
+			 wrokDuty: $("#duty").val(),
+			 leisureHobby: $("#Hobby").val(),
+			 leisureVolunteerExperience: $("#VolunteerExperience").val(),
+			 leisureVolunteerTropic: $("#VolunteerTropic").val(),
+			 leisureUniqueTalents: $("#UniqueTalents").val(),
+			 InterestVolunteerReasons: $("#VolunteerReasons").val(),
+			 InterestVolunteerExpectations: $("#VolunteerExpectations").val(),
+			 InterestMultiDates: $("#multiDates").val(),
+			 InterestMultiHours: $("#multiHours").val(),
+			 InterestVolunteerLociton: $("#VolunteerLociton").val(),
+			 InterestVolunteerLocitonOther: $("#VolunteerLocitonOther").val(),
+			 InterestmultiVolTypes: $("#multiVolTypes").val(),
+			 InterestmultiVolTypesOther: $("#multiVolTypesOther").val(),
+			 InterestTimePeriod: $("#TimePeriod").val(),
+			 InterestmultiLanguage: $("#multiLanguage").val(),
+			 StudentAcademicInstitution: $("#StudentAcademicInstitution").val(),
+			 StudentEducationDepartment: $("#StudentEducationDepartment").val(),
+			 StudentYearDates: $("#YearDates").val(),
+			 StudentYearDatesOther: $("#YearDatesOther").val(),
+			 StudentVoluntaryExtra: $("#StudentVoluntaryExtra").val(),
+			 StudentHomeTwon: $("#StudentHomeTwon").val(),
+		 };
+
+		 return volunteer;
+	  }
 
     //set animation timing
 	var animationDelay = 2500,
@@ -410,35 +450,44 @@
         }
     }
 
-function insertButtons(typeOfInsert, heName){
+function insertButtons(typeOfInsert, heName, typeOfPage){
 
     $("#intro").empty();
     
-    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light green tooltipped" data-position="left" data-delay="50" data-tooltip="מציאת התאמה" type="submit" name="action" id = "findMatch"></button>');
-	$("#findMatch").append('<i class="material-icons">repeat</i>');
+    if(typeOfPage === "AdminPage"){
+        $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light green tooltipped" data-position="top" data-delay="50" data-tooltip="מציאת התאמה" type="submit" name="action" id = "findMatch"></button>');
+        $("#findMatch").append('<i class="material-icons">repeat</i>');
+    }
     
     $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light grey tooltipped" data-position="top" data-delay="50" data-tooltip="הדפס" type="submit" name="action" id = "printBtn"></button>');
 	$("#printBtn").append('<i class="material-icons">print</i>');
         
-    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light orange tooltipped" data-position="right" data-delay="50" data-tooltip="נקה את בחירתך" type="submit" name="action" id = "clearBtn"></button>');
+    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light orange tooltipped" data-position="top" data-delay="50" data-tooltip="נקה את בחירתך" type="submit" name="action" id = "clearBtn"></button>');
 	$("#clearBtn").append('<i class="material-icons">clear_all</i>');
     
-    //change modal
-    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light red tooltipped modal-trigger3" href="#modal3" data-position="left" data-delay="50" data-tooltip=" מחק ' +heName+ '" type="submit" name="action" id = "delete' +typeOfInsert+ '"></button>');
-	$('#delete' +typeOfInsert).append('<i class="material-icons">delete</i>');
+    if(typeOfPage === "AdminPage"){
+        $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light red tooltipped modal-trigger3" href="#modal3" data-position="top" data-delay="50" data-tooltip=" מחק ' +heName+ '" type="submit" name="action" id = "delete' +typeOfInsert+ '"></button>');
+        $('#delete' +typeOfInsert).append('<i class="material-icons">delete</i>');
+        
+        $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light light-blue lighten-1 tooltipped" href="#" data-position="top" data-delay="50" data-tooltip="ערוך ' +heName+ '" type="submit" name="action" id = "edit' +typeOfInsert+ '"></button>');
+        $('#edit' +typeOfInsert).append('<i class="material-icons">mode_edit</i>');
+
+        $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light lime tooltipped modal-trigger" href="#'+typeOfInsert+'QuestModal"'+ 'data-position="top" data-delay="50" data-tooltip="הוסף ' +heName+ '" type="submit" name="action" id = "add' +typeOfInsert+ '"></button>');
+        $('#add' +typeOfInsert).append('<i class="material-icons">add</i>');
+    }
     
-    //change modal
-    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light light-blue lighten-1 tooltipped" href="#" data-position="top" data-delay="50" data-tooltip="ערוך ' +heName+ '" type="submit" name="action" id = "edit' +typeOfInsert+ '"></button>');
-	$('#edit' +typeOfInsert).append('<i class="material-icons">mode_edit</i>');
-    
-    //change modal
-    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light lime tooltipped modal-trigger" href="#'+typeOfInsert+'QuestModal"'+ 'data-position="right" data-delay="50" data-tooltip="הוסף ' +heName+ '" type="submit" name="action" id = "add' +typeOfInsert+ '"></button>');
-	$('#add' +typeOfInsert).append('<i class="material-icons">add</i>');
+    else{ //Organization page
+        $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light red tooltipped" href="#" data-position="top" data-delay="50" data-tooltip=" המתנדב השלים 40 שעות" type="submit" name="action" id = "fourtyHours"></button>');
+        $('#fourtyHours').append('<i class="material-icons">done</i>');
+        
+        $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light light-blue lighten-1 tooltipped" href="#" data-position="top" data-delay="50" data-tooltip="המתנדב התחיל להתנדב" type="submit" name="action" id = "startedToVol"></button>');
+        $('#startedToVol').append('<i class="material-icons">play_arrow</i>');
+        
+    }
 
     $('#updateBtnVol').hide();
 	$('.tooltipped').tooltip({delay: 50});
 
-<<<<<<< HEAD
  /*   $('#VolunteerQuestModal')
         .on('hide', function () {
         alert("modal");
@@ -457,11 +506,105 @@ function insertButtons(typeOfInsert, heName){
    });
    */ 
     
-	$("#deleteVolunteer").click(function(){
+    $("#clearBtn").click(function(){
+        $( "input:checked").prop('checked', false);   
+    });
+    
+    $('#fourtyHours').click(function(){
+        var n = $( "input:checked");
+        console.log(n);
+		var filter = {};
+		filter['ids'] = [];
+		Array.from(n).forEach(function(item, index){
+			filter['ids'].push(item.id);
+		});
+        
+        if(filter['ids'].length > 0)
+        {   
+            for(var i=0; i<filter['ids'].length; i++){
+                $.getJSON('/GetRecord?{?collection?:?volunteers?,?filter?:{?_id?:?'+filter['ids'][i]+'?}}',function(result) {
+                    var objId = result[0]._id;
+                    delete result[0]._id;
+                    result[0].FourtyHours =  result[0].FourtyHours == "false" ? "true" : "false";
+
+                    $.post('/UpdateRecord?{?collection?:?volunteers?,?filter?:{?_id?:?'+objId+'?}}', result[0]);
+                });
+
+            }
+
+            var $toastContent = $('<span>הרשומה עודכנה</span>');
+            Materialize.toast($toastContent, 3000);
+
+            setTimeout(function(){
+            window.location.reload();
+            }, 1000);
+
+        }
+        else{
+            var $toastContent = $('<span>יש לסמן מתנדב אחד לפחות</span>');
+            Materialize.toast($toastContent, 3000);
+        }
+
+    });
+
+    $('#startedToVol').click(function(){
+        var n = $( "input:checked");
+        console.log(n);
+		var filter = {};
+		filter['ids'] = [];
+		Array.from(n).forEach(function(item, index){
+			filter['ids'].push(item.id);
+		});
+
+        if(filter['ids'].length > 0)
+        {
+            for(var i=0; i<filter['ids'].length; i++){
+                $.getJSON('/GetRecord?{?collection?:?volunteers?,?filter?:{?_id?:?'+filter['ids'][i]+'?}}',function(result) {
+                    var objId = result[0]._id;
+                    delete result[0]._id;
+                    result[0].StartedVolunteering =  result[0].StartedVolunteering == "false" ? "true" : "false";
+<<<<<<< HEAD
+                    
+                    $.post('/UpdateRecord?{?collection?:?volunteers?,?filter?:{?_id?:?'+objId+'?}}', result[0]); 
+                    
+                    //TODO: Add organiztion name!
+                   
+                    var details = {
+                        firstName : result[0].firstName,
+                        lastName : result[0].lastName,
+                        IDnumber : result[0].IDnumber,
+                        emailAdress : result[0].emailAdress,
+                        orgName : "שם זמני"
+                    };
+                    
+                    $.post('/SendMail', details); 
 
 =======
+
+                    $.post('/UpdateRecord?{?collection?:?volunteers?,?filter?:{?_id?:?'+objId+'?}}', result[0]);
+>>>>>>> 4c5fcb0e9e240ce23111bc1a2ecc0ed07973d0ad
+                });
+
+            }
+
+            var $toastContent = $('<span>הרשומה עודכנה</span>');
+            Materialize.toast($toastContent, 3000);
+
+
+            setTimeout(function(){
+            window.location.reload();
+            }, 1000);
+
+        }
+        else{
+            var $toastContent = $('<span>יש לסמן מתנדב אחד לפחות</span>');
+            Materialize.toast($toastContent, 3000);
+        }
+
+    });
+    
 	$('#delete' +typeOfInsert).click(function(){
->>>>>>> c8d98f4e582496b2efdd85178c0b3b4df140519d
+
 		var n = $( "input:checked");
 		var filter = {};
 		filter['ids'] = [];
@@ -470,41 +613,25 @@ function insertButtons(typeOfInsert, heName){
 		});
 
 		console.log(filter);
-		//var jsonFilter = JSON.parse(filter.toString());
-		//console.log(jsonFilter);
-		//var volunteer = {
-		//	firstName: $("#fName").val(),
-		//	lastName: $("#lName").val(),
-		//	phone: $("#telephone").val()
-        //
-		//};
-		//console.log(volunteer);
-<<<<<<< HEAD
+
         if(filter['ids'].length > 0)
         {
             
-		$.post("/DeleteRecord?volunteers",filter);
-=======
 		typeOfInsert == "Volunteer" ?  $.post("/DeleteRecord?volunteers",filter): $.post("/DeleteRecord?organizations",filter);
->>>>>>> c8d98f4e582496b2efdd85178c0b3b4df140519d
 		var $toastContent = $('<span>רשומה נמחקה</span>');
 		Materialize.toast($toastContent, 3000);
 
 		setTimeout(function(){
 			window.location.reload();
-		}, 2000);
+		}, 1000);
         }
         else{
             var $toastContent = $('<span>יש לסמן מתנדב אחד לפחות</span>');
 		Materialize.toast($toastContent, 3000);
         }
-
-
 	});
     
     $("#editVolunteer").click(function(){
-        
-        
 		var n = $("input:checked");
 		var filter = {};
 		filter['ids'] = [];
@@ -521,24 +648,46 @@ function insertButtons(typeOfInsert, heName){
             
             console.log(filter['ids'][0]);
 
-            var oldVol = $.getJSON('/GetRecord?{?collection?:?volunteers?,?filter?:{?_id?:?"' +filter['ids'][0]+ '"?}}',function(result) {
-			console.log(result);
+            $.getJSON('/GetRecord?{?collection?:?volunteers?,?filter?:{?_id?:?'+filter['ids'][0]+'?}}',function(result) {
+				console.log(result);
+				$("#VolunteerQuestModal label").attr('class','active');
+				$("#fName").attr('_id',filter['ids'][0]);
+				$("#fName").val(result[0].firstName);
+				$("#lName").val(result[0].lastName);
+				$("#telephone").val(result[0].phone);
+				$("#IDnum").val(result[0].IDnumber);
+				$("#City").val(result[0].HomeCity);
+				$("#HomeStreet").val(result[0].HomeStreet);
+				$("#Zipcode").val(result[0].HomeZipcode);
+				$("#Hometelephone").val(result[0].Hometelephone);
+				$("#email").val(result[0].emailAdress);
+				$("#Birthday").val(result[0].BirthdayDate);
+				$("#familyStatus").val(result[0].familyStatus);
+				$("#education").val(result[0].educationLevel);
+				$("#occupation").val(result[0].workOccupation);
+				$("#Job").val(result[0].workJob);
+				$("#duty").val(result[0].wrokDuty);
+				$("#Hobby").val(result[0].leisureHobby);
+				$("#VolunteerExperience").val(result[0].leisureVolunteerExperience);
+				$("#VolunteerTropic").val(result[0].leisureVolunteerTropic);
+				$("#UniqueTalents").val(result[0].leisureUniqueTalents);
+				$("#VolunteerReasons").val(result[0].InterestVolunteerReasons);
+				$("#VolunteerExpectations").val(result[0].InterestVolunteerExpectations);
+				$("#multiDates").val(result[0].InterestMultiDates);
+				$("#multiHours").val(result[0].InterestMultiHours);
+				$("#VolunteerLociton").val(result[0].InterestVolunteerLociton);
+				$("#VolunteerLocitonOther").val(result[0].InterestVolunteerLocitonOther);
+				$("#multiVolTypes").val(result[0].InterestmultiVolTypes);
+				$("#multiVolTypesOther").val(result[0].InterestmultiVolTypesOther);
+				$("#TimePeriod").val(result[0].InterestTimePeriod);
+				$("#multiLanguage").val(result[0].InterestmultiLanguage);
+				$("#StudentAcademicInstitution").val(result[0].StudentAcademicInstitution);
+				$("#StudentEducationDepartment").val(result[0].StudentEducationDepartment);
+				$("#YearDates").val(result[0].StudentYearDates);
+				$("#YearDatesOther").val(result[0].StudentYearDatesOther);
+				$("#StudentVoluntaryExtra").val(result[0].StudentVoluntaryExtra);
+				$("#StudentHomeTwon").val(result[0].StudentHomeTwon);
             });
-
-            $("#VolunteerQuestModal label").attr('class','active');
-            $("#fName").val("oldVol.firstName");
-            $("#lName").val("oldVol.LastName");
-            $("#IDnum").val(345675657);
-            
-            //var jsonFilter = JSON.parse(filter.toString());
-            //console.log(jsonFilter);
-            //var volunteer = {
-            //	firstName: $("#fName").val(),
-            //	lastName: $("#lName").val(),
-            //	phone: $("#telephone").val()
-            //
-            //};
-            //console.log(volunteer);
         }
                      
         else{  
@@ -554,39 +703,145 @@ function insertButtons(typeOfInsert, heName){
             $('#updateBtnVol').hide();
             $('#volFormName').html("הרשמה להתנדבות");
 
-             var newVol = {
-				firstName: "",
-			  	lastName: "",
-
-		      };
-            var newVol = {
-				firstName: $("#fName").val(),
-			  	lastName: $("#lName").val(),
-			  	ID: $("#IDnum").val()
-
-		      };
-            
-            //console.log(oldVol);
+			var newVol = getVolunteerObject();
+			//console.log(oldVol);
             console.log(newVol);
-            $.post("/UpdateRecord?volunteers",oldVol, newVol);
+
+            $.post('/UpdateRecord?{?collection?:?volunteers?,?filter?:{?_id?:?'+$("#fName").attr("_id")+'?}}', newVol);
             var $toastContent = $('<span>רשומה נערכה בהצלחה</span>');
             Materialize.toast($toastContent, 3000);
 
             $("#VolunteerQuestModal input").val("");
 
-                /*    setTimeout(function(){
-                    window.location.reload();
-                }, 2000);*/
+			setTimeout(function(){
+				window.location.reload();
+			}, 1000);
+<<<<<<< HEAD
+=======
         });
-        
-        });
-    
-    
+>>>>>>> 4c5fcb0e9e240ce23111bc1a2ecc0ed07973d0ad
+	});
+
+	$("#findMatch").click(function(){
+		var selected = GetCheckedAvatars();
+
+		if(selected.length != 1){
+			var $toastContent = $('<span>יש לסמן מתנדב אחד בדיוק</span>');
+			Materialize.toast($toastContent, 3000);
+			return;
+		}
+		else{
+
+			$("#Tinder").empty();
+			$.getJSON("/GetRecord?{?collection?:?organizations?,?filter?:{}}", function (result) {
+				for (var i = 0; i < result.length; i++) {
+					$("#Tinder").append('<li class="collection-item avatar MatchingOrgs" id="li' + result[i]._id + '">');
+					$("#li" + result[i]._id).append('<i class="material-icons circle red">description</i>');
+					$("#li" + result[i]._id).append('<span class="title" > ' + result[i].organizationName + '</span>');
+					$("#li" + result[i]._id).append('<p>' + result[i].contactName + '<br>' + result[i].contactPhone);
+				}
+				$(".MatchingOrgs").click(function(){
+					$(".MatchingOrgs").removeClass("active");
+					$(this).addClass("active");
+				});
+			});
+
+
+
+			$("#MatchBtn").click(function(){
+				var selectedOrganization = $(".active.MatchingOrgs").attr("id");
+				console.log(selectedOrganization);
+				if(selectedOrganization == undefined || selectedOrganization.length == 0){
+					var $toastContent = $('<span>יש לבחור ארגון להתאמה</span>');
+					Materialize.toast($toastContent, 3000);
+					return;
+				}
+				var myRegexp = /li(.*)/g;
+				var match = myRegexp.exec(selectedOrganization);
+				var selectedOrgId = match[1];
+
+				$.getJSON('/GetRecord?{?collection?:?volunteers?,?filter?:{?_id?:?'+selected[0]+'?}}',function(result) {
+					var objId = result[0]._id;
+					delete result[0]._id;
+
+					result[0].Organization = selectedOrgId;
+
+					$.post('/UpdateRecord?{?collection?:?volunteers?,?filter?:{?_id?:?'+objId+'?}}', result[0]);
+
+					$("#MatchingModal").closeModal();
+
+					var $toastContent = $('<span>רשומה עודכנה</span>');
+					Materialize.toast($toastContent, 3000);
+<<<<<<< HEAD
+					
+					setTimeout(function(){
+						window.location.reload();
+					}, 1000);
+=======
+>>>>>>> 4c5fcb0e9e240ce23111bc1a2ecc0ed07973d0ad
+				});
+			});
+		}
+
+
+		$("#MatchingModal").openModal();
+	});
     
 	$('.modal-trigger').leanModal();
 }
 
+function GetCheckedAvatars()
+{
+	var n = $("input:checked");
+	var selectedIds = [];
+	Array.from(n).forEach(function(item, index){
+		selectedIds.push(item.id);
+	});
 
+	return selectedIds;
+}
+
+function insertVolunteersAvatars(records)
+{
+	g_array = [];
+  for(var i=0; i<records.length; i++)
+  {
+	  var relatedOrganization = "אינו משוייך לארגון";
+
+      $("#volAvatar").append('<li class="collection-item avatar" id="li'+records[i]._id +'">');
+      $("#li" +records[i]._id).append('<i class="material-icons circle light-blue">perm_identity</i>');
+      $("#li" +records[i]._id).append('<span class="title" > ' + records[i].firstName + " " + records[i].lastName + '</span>');
+      $("#li" +records[i]._id).append('<p id="contentP' +records[i]._id+'">');
+	  $("#contentP" +records[i]._id).append('<div class="row" id="row'+ records[i]._id + '" style="margin-bottom: 0px">');
+	  $("#row" +records[i]._id).append('<div class="col s8" id="contentPfirst' +records[i]._id+'"><b>'+ relatedOrganization + '</b></div>');
+	  //$("#contentP" +records[i]._id).append('</br>');
+	  $("#row" +records[i]._id).append('<div class="col s8" id="contentPsecond' +records[i]._id+'">'+  "טלפון - " + records[i].phone + '</div>');
+
+      $("#row" +records[i]._id).append('<img class="avatarImage left tooltipped" id="fourtyHoursImage'+ records[i]._id + '" data-position="top" data-delay="50" data-tooltip="המתנדב השלים 40 שעות" src="Docs/WebAppDocs/Pics/fouryHours.png"/>');
+      $("#row" +records[i]._id).append('<img class="avatarImage left tooltipped" id="finishedImage'+ records[i]._id +'" data-position="top" data-delay="50" data-tooltip="המתנדב התחיל להתנדב" src="Docs/WebAppDocs/Pics/finished.png"/>');
+
+      $("#li" +records[i]._id).append('<p class="secondary-content" id="p' +records[i]._id+'">');
+      $("#p" +records[i]._id).append('<input type="checkbox" id="' +records[i]._id+ '"/><label for="' +records[i]._id+ '"></label>');
+
+	  records[i].FourtyHours == "false" ? $('#fourtyHoursImage' + records[i]._id).hide() : $('#fourtyHoursImage' + records[i]._id).show();
+	  records[i].StartedVolunteering == "false" ? $('#finishedImage' + records[i]._id).hide() : $('#finishedImage' + records[i]._id).show();
+	  if(records[i].Organization != "") {
+		  g_array.push(records[i]);
+	  }
+  }
+	g_array = g_array.reverse();
+	for(var i=0; i<records.length; i++){
+		if(records[i].Organization != ""){
+			//g_array.push(records[i]);
+			$.getJSON('/GetRecord?{?collection?:?organizations?,?filter?:{?_id?:?'+records[i].Organization+'?}}', function (result) {
+				var tmp = g_array.pop();
+				$("#contentPfirst" + tmp._id).text("מתנדב בארגון - " + result[0].organizationName);
+			});
+		}
+	}
+
+  $('.tooltipped').tooltip({delay: 50});
+}
 
 function loadAdminPage(user){
     
@@ -631,29 +886,17 @@ function loadAdminPage(user){
     $("#work").remove();
     
     function loadVolunteersView(){
-		insertButtons("Volunteer", "מתנדב");
-
+		insertButtons("Volunteer", "מתנדב", "AdminPage");
 
 		$("#dataZoneScroll").append('<ul class="collection" id="volAvatar" dir="rtl">');
 		var volunteers = [];
 		$.getJSON("/GetRecord?{?collection?:?volunteers?,?filter?:{}}",function(result) {
-			console.log(result);
-			for(var i=0; i<result.length; i++)
-			{
-				$("#volAvatar").append('<li class="collection-item avatar" id="li'+result[i]._id +'">');
-				$("#li" +result[i]._id).append('<i class="material-icons circle light-blue">perm_identity</i>');
-				$("#li" +result[i]._id).append('<span class="title" > ' + result[i].firstName + '</span>');
-				$("#li" +result[i]._id).append('<p>' + result[i].lastName + '<br>' + result[i].ID);
-				$("#li" +result[i]._id).append('<p class="secondary-content" id="p' +result[i]._id+'">');
-				$("#p" +result[i]._id).append('<input type="checkbox" id="' +result[i]._id+ '"/><label for="' +result[i]._id+ '"></label>');
-
-			}
-
+			insertVolunteersAvatars(result);
 		});
-
 	}
+    
 	function loadOrganizationsView(){
-		insertButtons("Organization", "ארגון");
+		insertButtons("Organization", "ארגון", "AdminPage");
 
 		$("#dataZoneScroll").append('<ul class="collection" id="orgAvatar" dir="rtl">');
 		$.getJSON("/GetRecord?{?collection?:?organizations?,?filter?:{}}", function (result) {
@@ -671,108 +914,7 @@ function loadAdminPage(user){
 
 		});
 	}
-    /*
 
-	$('.modal-trigger2').leanModal();
-	$('.modal-trigger3').leanModal();
-	
-	$("#addBtn").click(function(){
-		$("#addUserName").focus();
-	});
-	
-	$("#deleteBtn").click(function(){
-		$("#delName").focus();
-	});
-	
-    
-	$("#clearBtn").click(function(){
-		$('.tooltipped').tooltip('remove');
-		loadAdminPage(user);
-	});
-    
-	$("#loginAddBtn").click(function(event){
-		
-		if($("#addUserName").val() === ""){
-			$('#addUserName').removeClass('valid');
-			$('#addUserName').addClass('invalid');
-			$("#addUserName").val("");
-			$("#addUserName").focus();
-			//$('#modal2').openModal();
-
-			//alert("User exists, please choose another username!");
-			return;
-		}	
-		for(var i=1; i<=employeeID; i++)
-		{
-			if(JSON.parse(localStorage.getItem(i.toString())) === null)
-				continue;
-				
-			if(JSON.parse(localStorage.getItem(i.toString())).userName == $("#addUserName").val()){
-				$('#addUserName').removeClass('valid');
-				$('#addUserName').addClass('invalid');
-				$("#addUserName").val("");
-				$("#addUserName").focus();
-				//$('#modal2').openModal();
-
-				//alert("User exists, please choose another username!");
-				return;
-			}		
-		}
-		if($("#choosePass").val() === "")
-		{
-			$('#choosePass').removeClass('valid');
-			$('#choosePass').addClass('invalid');
-			$("#choosePass").val("");
-			$("#choosePass").focus();
-			//$('#modal2').openModal();
-			return;
-		}	
-		
-		var obj = new Object();
-		obj.userName = $("#addUserName").val();
-		obj.password = $("#choosePass").val();	
-		obj.telephone = $("#icon_telephone").val();
-		obj.permissions = $('#permissions:checked').val();
-		obj.email = $("#email").val();
-		Materialize.toast("Employee Registered!!", 4000)
-		//alert("Employee Registered!!");
-		employeeID++;
-		localStorage.setItem(employeeID.toString(), JSON.stringify(obj));
-		localStorage.setItem("numberOfEmployees", employeeID.toString());
-						$("#addUserName").val("");
-		$("#modal2").closeModal();
-	});
-
-	$("#delBtn").click(function(event){
-		var userToDel = $("#delName").val();
-		for(var i=1; i<=employeeID; i++){
-			if(JSON.parse(localStorage.getItem(i.toString())) === null)
-				continue;
-			if(JSON.parse(localStorage.getItem(i.toString())).userName == userToDel){
-				localStorage.removeItem(i.toString());
-				for(var j=(i+1); j<= employeeID; j++)
-				{
-					var tmpItem = localStorage.getItem(j.toString());
-					localStorage.setItem(i.toString(), tmpItem);
-					i++;
-				}
-				localStorage.removeItem(i.toString());
-				employeeID--;
-				localStorage.setItem("numberOfEmployees", employeeID.toString());
-				Materialize.toast("User deleted successfully!", 4000)
-				//alert("User deleted successfully!");
-				$("#modal3").closeModal();
-				return;
-			}
-			$('#delName').removeClass('valid');
-			$('#delName').addClass('invalid');
-			$("#delName").val("");
-			$("#delName").focus();
-		}
-			//$('#modal3').openModal();
-		//alert("User doesn't exists, please choose another username and try again!");		
-	});
-	*/
 	$("#dataZone").empty();
     //To-Do: implement the data for the admin view
 	
@@ -787,224 +929,48 @@ function loadAdminPage(user){
     });
 	$('select').material_select();
 	
-	$("#submitBtn").click(function(event){
-		if(localStorage.getItem("Shifts"))
-			localStorage.removeItem("Shifts");
-	
-		var obj = new Object();
-		obj.givenShifts = new Array(3);
-		obj.givenShifts[0] = new Array(7);
-		obj.givenShifts[1] = new Array(7);
-		obj.givenShifts[2] = new Array(7);
-		
-		for(var i = 0; i<7; i++)
-		{
-			obj.givenShifts[0][i] = [];
-			obj.givenShifts[1][i] = [];
-			obj.givenShifts[2][i] = [];
-		}
-		
-		for(var i = 0; i<3; i++)
-		{
-			for(var j = 0; j<7; j++)
-			{
-				//Selecting the related <select> to <td>
-				$('#'+i+j+'s :selected').each(function(k, selected){
-						if($(selected).text() !== "")
-							obj.givenShifts[i][j].push($(selected).text());
-				});
-				//alert(obj.givenShifts[i][j] + " number of elements: " + obj.givenShifts[i][j].length);
-			}
-		}
-		
-		localStorage.setItem("Shifts", JSON.stringify(obj));
-		Materialize.toast("Thank you", 4000)
-		//alert("Thank you");
-	});
-	
-	
+
 	$('.tooltipped').tooltip({delay: 50});
 }
 
 function loadOrganizationPage(user){
-    
+     
 	//Change page layout
     $("#links").empty();
     $("#links").append('<li> ברוך הבא ' + user + '</li>');
-    $("#links").append('<li><a class="waves-effect waves-light modal-trigger tooltipped" data-position="Down" data-delay="50" data-tooltip="התנתק" href="index.html"><i class="material-icons">settings_power</i></a></li>');
-    
+    $("#links").append('<li><a class="waves-effect waves-light modal-trigger tooltipped" id="disconnectUser" data-position="Down" data-delay="50" data-tooltip="התנתק" ><i class="material-icons">settings_power</i></a></li>');
+
+	$("#disconnectUser").click(function(){
+		$.removeCookie("signin");
+		location.reload();
+	});
+
     $("#index-banner").empty();
     $("#index-banner").css("min-height","80px");
-    //$("#index-banner").css("color","white");
-	//$("#index-banner").append('<center><h1>Welcome ' + user + '</h1></center>');
-    /*
-	$("#index-banner").append('<div class="row center" id = "row1">');
-	
-	$("#row1").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light lime tooltipped modal-trigger2" href="#modal2" data-position="left" data-delay="50" data-tooltip="Add new Volunteer" type="submit" name="action" id = "addVolunteer"></button>');
-	$("#addVolunteer").append('<i class="material-icons">add</i>');
-    
-    //change modal
-    $("#row1").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light lime tooltipped modal-trigger2" href="#modal2" data-position="top" data-delay="50" data-tooltip="Edit Volunteer" type="submit" name="action" id = "editVolunteer"></button>');
-	$("#editVolunteer").append('<i class="material-icons">mode_edit</i>');
-    
-    //change modal
-    $("#row1").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light red tooltipped modal-trigger3" href="#modal3" data-position="top" data-delay="50" data-tooltip="Delete Volunteer" type="submit" name="action" id = "deleteVolunteer"></button>');
-	$("#deleteVolunteer").append('<i class="material-icons">delete</i>');
-    
-    //change modal
-    $("#row1").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light lime darken-3 tooltipped modal-trigger2" href="#modal2" data-position="top" data-delay="50" data-tooltip="Add new Organization" type="submit" name="action" id = "addOrganization"></button>');
-	$("#addOrganization").append('<i class="material-icons">add</i>');
-    
-    //change modal
-    $("#row1").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light lime tooltipped modal-trigger2" href="#modal2" data-position="top" data-delay="50" data-tooltip="Edit Organization" type="submit" name="action" id = "editOrganization"></button>');
-	$("#editOrganization").append('<i class="material-icons">mode_edit</i>');
-	
-    //change modal
-    $("#row1").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light red tooltipped modal-trigger3" href="#modal3" data-position="top" data-delay="50" data-tooltip="Delete Organiztion" type="submit" name="action" id = "deleteOrganization"></button>');
-	$("#deleteOrganization").append('<i class="material-icons">delete</i>');
-	
-    
-    */
     
     $("#Register").empty();
     $("#Register").removeAttr("dir");
     $("#Register").append('<div class="row" id="volOrg">');
     $("#volOrg").append('<div class="col s12" id="selectionUl">');
     $("#selectionUl").append('<ul class="tabs" id="ulTabs">');
-    $("#ulTabs").append('<li class="tab col s6" ><a class="active" id="volChooser">Volunteers</a></li>');
-    $("#ulTabs").append('<li class="tab col s6" ><a id="orgChooser">Organizations</a></li>');
-    
+    $("#ulTabs").append('<li class="tab col s6" ><a class="active" id="volChooser">מתנדבים בארגון</a></li>');
     $('ul.tabs').tabs();
     
-    $("#volChooser").click(function(){
-        alert("ani gay");
+    $("#intro").wrap('<center>');
+	$("#Register").append('<div id="dataZoneScroll">');
+    
+    insertButtons("Volunteer", "מתנדב", "OrganizationPage");
+
+    $("#dataZoneScroll").append('<ul class="collection" id="volAvatar" dir="rtl">');
+    var volunteers = [];
+    $.getJSON("/GetRecord?{?collection?:?volunteers?,?filter?:{}}",function(result) {
+        console.log(result);
+        //TODO: implement Volunteers list
+        insertVolunteersAvatars(result);
     });
     
-    //$("#index-banner").append('<div id="volTab" class="col s12">Volunteers</div>');
-    //$("#index-banner").append('<div id="orgTab" class="col s12">Organizations</div>');
-    
-    
-    ///////////////////
-    //$("#Register").empty();
-    $("#Register").css("color","black");
-    $("#Register").append('<div id="VolunteerData-left">BLA left </div>');
-    $("#Register").append('<div id="OrganizationData-right">BLA right </div>');
-    
-    
-    
-    $("#intro").empty();
-    $("#intro").wrap('<center>')
-    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light orange tooltipped" data-position="top" data-delay="50" data-tooltip="Clear your selection" type="submit" name="action" id = "clearBtn"></button>');
-	$("#clearBtn").append('<i class="material-icons">clear_all</i>');
-	
-    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light grey tooltipped" data-position="top" data-delay="50" data-tooltip="Print your selection" type="submit" name="action" id = "printBtn"></button>');
-	$("#printBtn").append('<i class="material-icons">print</i>');
-   
-	$("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light green tooltipped" data-position="right" data-delay="50" data-tooltip="Find a Match" type="submit" name="action" id = "findMatch"></button>');
-	$("#findMatch").append('<i class="material-icons">repeat</i>');
-    
-    /*
+    $("#work").remove();
 
-	$('.modal-trigger2').leanModal();
-	$('.modal-trigger3').leanModal();
-	
-	$("#addBtn").click(function(){
-		$("#addUserName").focus();
-	});
-	
-	$("#deleteBtn").click(function(){
-		$("#delName").focus();
-	});
-	
-    
-	$("#clearBtn").click(function(){
-		$('.tooltipped').tooltip('remove');
-		loadAdminPage(user);
-	});
-    
-	$("#loginAddBtn").click(function(event){
-		
-		if($("#addUserName").val() === ""){
-			$('#addUserName').removeClass('valid');
-			$('#addUserName').addClass('invalid');
-			$("#addUserName").val("");
-			$("#addUserName").focus();
-			//$('#modal2').openModal();
-
-			//alert("User exists, please choose another username!");
-			return;
-		}	
-		for(var i=1; i<=employeeID; i++)
-		{
-			if(JSON.parse(localStorage.getItem(i.toString())) === null)
-				continue;
-				
-			if(JSON.parse(localStorage.getItem(i.toString())).userName == $("#addUserName").val()){
-				$('#addUserName').removeClass('valid');
-				$('#addUserName').addClass('invalid');
-				$("#addUserName").val("");
-				$("#addUserName").focus();
-				//$('#modal2').openModal();
-
-				//alert("User exists, please choose another username!");
-				return;
-			}		
-		}
-		if($("#choosePass").val() === "")
-		{
-			$('#choosePass').removeClass('valid');
-			$('#choosePass').addClass('invalid');
-			$("#choosePass").val("");
-			$("#choosePass").focus();
-			//$('#modal2').openModal();
-			return;
-		}	
-		
-		var obj = new Object();
-		obj.userName = $("#addUserName").val();
-		obj.password = $("#choosePass").val();	
-		obj.telephone = $("#icon_telephone").val();
-		obj.permissions = $('#permissions:checked').val();
-		obj.email = $("#email").val();
-		Materialize.toast("Employee Registered!!", 4000)
-		//alert("Employee Registered!!");
-		employeeID++;
-		localStorage.setItem(employeeID.toString(), JSON.stringify(obj));
-		localStorage.setItem("numberOfEmployees", employeeID.toString());
-						$("#addUserName").val("");
-		$("#modal2").closeModal();
-	});
-
-	$("#delBtn").click(function(event){
-		var userToDel = $("#delName").val();
-		for(var i=1; i<=employeeID; i++){
-			if(JSON.parse(localStorage.getItem(i.toString())) === null)
-				continue;
-			if(JSON.parse(localStorage.getItem(i.toString())).userName == userToDel){
-				localStorage.removeItem(i.toString());
-				for(var j=(i+1); j<= employeeID; j++)
-				{
-					var tmpItem = localStorage.getItem(j.toString());
-					localStorage.setItem(i.toString(), tmpItem);
-					i++;
-				}
-				localStorage.removeItem(i.toString());
-				employeeID--;
-				localStorage.setItem("numberOfEmployees", employeeID.toString());
-				Materialize.toast("User deleted successfully!", 4000)
-				//alert("User deleted successfully!");
-				$("#modal3").closeModal();
-				return;
-			}
-			$('#delName').removeClass('valid');
-			$('#delName').addClass('invalid');
-			$("#delName").val("");
-			$("#delName").focus();
-		}
-			//$('#modal3').openModal();
-		//alert("User doesn't exists, please choose another username and try again!");		
-	});
-	*/
 	$("#dataZone").empty();
     //To-Do: implement the data for the admin view
 	
@@ -1019,55 +985,21 @@ function loadOrganizationPage(user){
     });
 	$('select').material_select();
 	
-	$("#submitBtn").click(function(event){
-		if(localStorage.getItem("Shifts"))
-			localStorage.removeItem("Shifts");
-	
-		var obj = new Object();
-		obj.givenShifts = new Array(3);
-		obj.givenShifts[0] = new Array(7);
-		obj.givenShifts[1] = new Array(7);
-		obj.givenShifts[2] = new Array(7);
-		
-		for(var i = 0; i<7; i++)
-		{
-			obj.givenShifts[0][i] = [];
-			obj.givenShifts[1][i] = [];
-			obj.givenShifts[2][i] = [];
-		}
-		
-		for(var i = 0; i<3; i++)
-		{
-			for(var j = 0; j<7; j++)
-			{
-				//Selecting the related <select> to <td>
-				$('#'+i+j+'s :selected').each(function(k, selected){
-						if($(selected).text() !== "")
-							obj.givenShifts[i][j].push($(selected).text());
-				});
-				//alert(obj.givenShifts[i][j] + " number of elements: " + obj.givenShifts[i][j].length);
-			}
-		}
-		
-		localStorage.setItem("Shifts", JSON.stringify(obj));
-		Materialize.toast("Thank you", 4000)
-		//alert("Thank you");
-	});
-	
-	
+
 	$('.tooltipped').tooltip({delay: 50});
 }
+     
       
-      $("#loginBtn").click(function(event){
+$("#loginBtn").click(function(event){
 		
         var user = $("#username").val();
         var pass = $("#password").val();
 
 		  loadPageByUser(user, pass);
-    });
+});
 
 	  //TODO: get users from DB
-	function loadPageByUser(user, pass){
+function loadPageByUser(user, pass){
 		var userType = getUser(user, pass);
 
 		console.log(user);

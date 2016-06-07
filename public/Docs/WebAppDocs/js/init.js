@@ -85,7 +85,7 @@
 
 		 setTimeout(function(){
 		 window.location.reload();
-		 }, 2000);
+		 }, 1000);
 
 	});
 
@@ -563,14 +563,28 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
                     var objId = result[0]._id;
                     delete result[0]._id;
                     result[0].StartedVolunteering =  result[0].StartedVolunteering == "false" ? "true" : "false";
+                    
+                    $.post('/UpdateRecord?{?collection?:?volunteers?,?filter?:{?_id?:?'+objId+'?}}', result[0]); 
+                    
+                    //TODO: Add organiztion name!
+                   
+                    var details = {
+                        firstName : result[0].firstName,
+                        lastName : result[0].lastName,
+                        IDnumber : result[0].IDnumber,
+                        emailAdress : result[0].emailAdress,
+                        orgName : "שם זמני"
+                    };
+                    
+                    $.post('/SendMail', details); 
 
-                    $.post('/UpdateRecord?{?collection?:?volunteers?,?filter?:{?_id?:?'+objId+'?}}', result[0]);
                 });
 
             }
 
             var $toastContent = $('<span>הרשומה עודכנה</span>');
             Materialize.toast($toastContent, 3000);
+
 
             setTimeout(function(){
             window.location.reload();
@@ -697,7 +711,6 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
 			setTimeout(function(){
 				window.location.reload();
 			}, 1000);
-        });
 	});
 
 	$("#findMatch").click(function(){
@@ -750,6 +763,10 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
 
 					var $toastContent = $('<span>רשומה עודכנה</span>');
 					Materialize.toast($toastContent, 3000);
+					
+					setTimeout(function(){
+						window.location.reload();
+					}, 1000);
 				});
 			});
 		}

@@ -7,7 +7,7 @@ var DBLogics = require("./DBLogics");
 var url  = require('url');
 var qs = require('querystring');
 var ObjectID = mongodb.ObjectID;
-
+var nodemailer = require('nodemailer');
 
 var app = express();
 
@@ -44,6 +44,56 @@ function handleError(res, reason, message, code) {
  *    GET: finds all contacts
  *    POST: creates a new contact
  */
+
+
+app.post("/SendMail*", function(req, res){
+//var newRecord = req.body;
+  //DBLogics.AddRecord(req, res, newRecord);
+  var body = "";
+  req.on('data', function (data) {
+    body += data;
+    // Too much POST data, kill the connection!
+    // 1e6 === 1 * Math.pow(10, 6) === 1 * 1000000 ~~~ 1MB
+    if (body.length > 1e6)
+      req.connection.destroy();
+  });
+
+  req.on('end', function () {
+    var details = qs.parse(body);
+    sendMail(req, res, details);
+  });
+});
+
+function sendMail(req, res, details) {
+
+    var transporter = nodemailer.createTransport({
+        service: 'Gmail',
+        auth: {
+            user: 'easyvol.mevaseret@gmail.com', // Your email id
+            pass: 'Easy1234' // Your password
+        }
+    });
+    
+    var text = 'רכז המתנדבים שלום, \n\nהמתנדב/ת ' +details.firstName+ ' ' + details.lastName+ ', תעודת זהות ' + details.IDnumber +', החל/ה להתנדב בארגון ' + details.orgName + '\n\n בברכה, \n מערכת EasyVol';
+    var mailOptions = {
+        from: '<easyvol.mevaseret@gmail.com>', // sender address
+        to: details.emailAdress, // list of receivers
+        subject: 'השמת ' +details.firstName+ ' ' + details.lastName + ' לארגון', // Subject line
+        text: text //, // plaintext body
+        // html: '<b>Hello world ✔</b>' // You can choose to send an HTML body instead
+    };
+    
+    transporter.sendMail(mailOptions, function(error, info){
+    if(error){
+        console.log(error);
+        res.json({yo: 'error'});
+    }else{
+        console.log('Message sent: ' + info.response);
+        res.json({yo: info.response});
+    }
+    
+});
+};
 
 
 app.get("/GetRecord*", function(req, res) {

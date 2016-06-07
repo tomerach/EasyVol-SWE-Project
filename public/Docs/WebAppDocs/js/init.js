@@ -1,4 +1,6 @@
 (function ($){
+	var g_array;
+
   $(function(){
     $('.button-collapse').sideNav();
 	$('.scrollspy').scrollSpy();
@@ -770,23 +772,38 @@ function GetCheckedAvatars()
 	return selectedIds;
 }
 
-function insertVolunteersAvatars(result)
+function insertVolunteersAvatars(records)
 {
-  for(var i=0; i<result.length; i++)
+	g_array = [];
+  for(var i=0; i<records.length; i++)
   {
-      $("#volAvatar").append('<li class="collection-item avatar" id="li'+result[i]._id +'">');
-      $("#li" +result[i]._id).append('<i class="material-icons circle light-blue">perm_identity</i>');
-      $("#li" +result[i]._id).append('<span class="title" > ' + result[i].firstName + '</span>');
-      $("#li" +result[i]._id).append('<p id="contentP' +result[i]._id+'">' + result[i].lastName + '<br>' + result[i].ID);
+	  var relatedOrganization = "אינו משוייך לארגון";
 
-      $("#contentP" +result[i]._id).append('<img class="avatarImage left tooltipped" id="fourtyHoursImage'+ result[i]._id + '" data-position="top" data-delay="50" data-tooltip="המתנדב השלים 40 שעות" src="Docs/WebAppDocs/Pics/fouryHours.png"/>');
-      $("#contentP" +result[i]._id).append('<img class="avatarImage left tooltipped" id="finishedImage'+ result[i]._id +'" data-position="top" data-delay="50" data-tooltip="המתנדב התחיל להתנדב" src="Docs/WebAppDocs/Pics/finished.png"/>');
+      $("#volAvatar").append('<li class="collection-item avatar" id="li'+records[i]._id +'">');
+      $("#li" +records[i]._id).append('<i class="material-icons circle light-blue">perm_identity</i>');
+      $("#li" +records[i]._id).append('<span class="title" > ' + records[i].firstName + " " + records[i].lastName + '</span>');
+      $("#li" +records[i]._id).append('<p id="contentP' +records[i]._id+'">');
+	  $("#contentP" +records[i]._id).append('<div class="row" id="row'+ records[i]._id + '" style="margin-bottom: 0px">');
+	  $("#row" +records[i]._id).append('<div class="col s8" id="contentPfirst' +records[i]._id+'"><b>'+ relatedOrganization + '</b></div>');
+	  //$("#contentP" +records[i]._id).append('</br>');
+	  $("#row" +records[i]._id).append('<div class="col s8" id="contentPsecond' +records[i]._id+'">'+  "טלפון - " + records[i].phone + '</div>');
 
-      $("#li" +result[i]._id).append('<p class="secondary-content" id="p' +result[i]._id+'">');
-      $("#p" +result[i]._id).append('<input type="checkbox" id="' +result[i]._id+ '"/><label for="' +result[i]._id+ '"></label>');
+      $("#row" +records[i]._id).append('<img class="avatarImage left tooltipped" id="fourtyHoursImage'+ records[i]._id + '" data-position="top" data-delay="50" data-tooltip="המתנדב השלים 40 שעות" src="Docs/WebAppDocs/Pics/fouryHours.png"/>');
+      $("#row" +records[i]._id).append('<img class="avatarImage left tooltipped" id="finishedImage'+ records[i]._id +'" data-position="top" data-delay="50" data-tooltip="המתנדב התחיל להתנדב" src="Docs/WebAppDocs/Pics/finished.png"/>');
 
-      result[i].FourtyHours == "false" ? $('#fourtyHoursImage' + result[i]._id).hide() : $('#fourtyHoursImage' + result[i]._id).show();
-      result[i].StartedVolunteering == "false" ? $('#finishedImage' + result[i]._id).hide() : $('#finishedImage' + result[i]._id).show();
+      $("#li" +records[i]._id).append('<p class="secondary-content" id="p' +records[i]._id+'">');
+      $("#p" +records[i]._id).append('<input type="checkbox" id="' +records[i]._id+ '"/><label for="' +records[i]._id+ '"></label>');
+
+	  records[i].FourtyHours == "false" ? $('#fourtyHoursImage' + records[i]._id).hide() : $('#fourtyHoursImage' + records[i]._id).show();
+	  records[i].StartedVolunteering == "false" ? $('#finishedImage' + records[i]._id).hide() : $('#finishedImage' + records[i]._id).show();
+
+	  if(records[i].Organization != ""){
+		  g_array.push(records[i]);
+		  $.getJSON('/GetRecord?{?collection?:?organizations?,?filter?:{?_id?:?'+records[i].Organization+'?}}', function (result) {
+			  var tmp = g_array.pop();
+			  $("#contentPfirst" + tmp._id).text("מתנדב בארגון - " + result[0].organizationName);
+		  });
+	  }
   }
   $('.tooltipped').tooltip({delay: 50});
 }

@@ -547,15 +547,7 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
 		});
 
 		console.log(filter);
-		//var jsonFilter = JSON.parse(filter.toString());
-		//console.log(jsonFilter);
-		//var volunteer = {
-		//	firstName: $("#fName").val(),
-		//	lastName: $("#lName").val(),
-		//	phone: $("#telephone").val()
-        //
-		//};
-		//console.log(volunteer);
+
         if(filter['ids'].length > 0)
         {
             
@@ -571,13 +563,9 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
             var $toastContent = $('<span>יש לסמן מתנדב אחד לפחות</span>');
 		Materialize.toast($toastContent, 3000);
         }
-
-
 	});
     
     $("#editVolunteer").click(function(){
-        
-        
 		var n = $("input:checked");
 		var filter = {};
 		filter['ids'] = [];
@@ -634,18 +622,6 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
 				$("#StudentVoluntaryExtra").val(result[0].StudentVoluntaryExtra);
 				$("#StudentHomeTwon").val(result[0].StudentHomeTwon);
             });
-
-
-            
-            //var jsonFilter = JSON.parse(filter.toString());
-            //console.log(jsonFilter);
-            //var volunteer = {
-            //	firstName: $("#fName").val(),
-            //	lastName: $("#lName").val(),
-            //	phone: $("#telephone").val()
-            //
-            //};
-            //console.log(volunteer);
         }
                      
         else{  
@@ -675,15 +651,79 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
 				window.location.reload();
 			}, 2000);
         });
-        
-        });
-    
-    
+	});
+
+	$("#findMatch").click(function(){
+		var selected = GetCheckedAvatars();
+
+		if(selected.length != 1){
+			var $toastContent = $('<span>יש לסמן מתנדב אחד בדיוק</span>');
+			Materialize.toast($toastContent, 3000);
+			return;
+		}
+		else{
+
+			$("#Tinder").empty();
+			$.getJSON("/GetRecord?{?collection?:?organizations?,?filter?:{}}", function (result) {
+				for (var i = 0; i < result.length; i++) {
+					$("#Tinder").append('<li class="collection-item avatar MatchingOrgs" id="li' + result[i]._id + '">');
+					$("#li" + result[i]._id).append('<i class="material-icons circle red">description</i>');
+					$("#li" + result[i]._id).append('<span class="title" > ' + result[i].organizationName + '</span>');
+					$("#li" + result[i]._id).append('<p>' + result[i].contactName + '<br>' + result[i].contactPhone);
+				}
+				$(".MatchingOrgs").click(function(){
+					$(".MatchingOrgs").removeClass("active");
+					$(this).addClass("active");
+				});
+			});
+
+
+
+			$("#MatchBtn").click(function(){
+				var selectedOrganization = $(".active.MatchingOrgs").attr("id");
+				console.log(selectedOrganization);
+				if(selectedOrganization == undefined || selectedOrganization.length == 0){
+					var $toastContent = $('<span>יש לבחור ארגון להתאמה</span>');
+					Materialize.toast($toastContent, 3000);
+					return;
+				}
+				var myRegexp = /li(.*)/g;
+				var match = myRegexp.exec(selectedOrganization);
+				var selectedOrgId = match[1];
+
+				$.getJSON('/GetRecord?{?collection?:?volunteers?,?filter?:{?_id?:?'+selected[0]+'?}}',function(result) {
+					var objId = result[0]._id;
+					delete result[0]._id;
+
+					result[0].Organization = selectedOrgId;
+
+					$.post('/UpdateRecord?{?collection?:?volunteers?,?filter?:{?_id?:?'+objId+'?}}', result[0]);
+
+					$("#MatchingModal").closeModal();
+
+					var $toastContent = $('<span>רשומה עודכנה</span>');
+					Materialize.toast($toastContent, 3000);
+				});
+			});
+		}
+
+
+		$("#MatchingModal").openModal();
+	});
     
 	$('.modal-trigger').leanModal();
 }
 
+function GetCheckedAvatars()
+{
+	var n = $("input:checked");
+	var selectedIds = [];
+	Array.from(n).forEach(function(item, index){
+		selectedIds.push(item.id);
+	});
 
+	return selectedIds;
+}
 
 function loadAdminPage(user){
     
@@ -745,7 +785,6 @@ function loadAdminPage(user){
 			}
 
 		});
-
 	}
     
 	function loadOrganizationsView(){

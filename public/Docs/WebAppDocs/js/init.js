@@ -120,8 +120,10 @@
 			 StudentYearDates: $("#YearDates").val(),
 			 StudentYearDatesOther: $("#YearDatesOther").val(),
 			 StudentVoluntaryExtra: $("#StudentVoluntaryExtra").val(),
-			 StudentHomeTwon: $("#StudentHomeTwon").val()
-
+			 StudentHomeTwon: $("#StudentHomeTwon").val(),
+			 FourtyHours : false,
+			 Organization: "",
+			 StartedVolunteering: false
 		 };
 
 		 return volunteer;

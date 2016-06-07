@@ -822,9 +822,9 @@ function loadOrganizationPage(user){
             $("#volAvatar").append('<li class="collection-item avatar" id="li'+result[i]._id +'">');
             $("#li" +result[i]._id).append('<i class="material-icons circle light-blue">perm_identity</i>');
             $("#li" +result[i]._id).append('<span class="title" > ' + result[i].firstName + '</span>');
-            $("#li" +result[i]._id).append('<p>' + result[i].lastName + '<br>' + result[i].ID);
+            $("#li" +result[i]._id).append('<p id="contentP' +result[i]._id+'">' + result[i].lastName + '<br>' + result[i].ID);
+			$("#contentP" +result[i]._id).append('<img class="fourtyHoursImage left" id="fourtyHoursImage'+ result[i]._id +'" src="Docs/WebAppDocs/Pics/fouryHours.png" />')
             $("#li" +result[i]._id).append('<p class="secondary-content" id="p' +result[i]._id+'">');
-            $("#p" +result[i]._id).append('<img class="fourtyHoursImage" id="fourtyHoursImage'+ result[i]._id +'" src="Docs/WebAppDocs/Pics/fouryHours.png" />')
             $("#p" +result[i]._id).append('<input type="checkbox" id="' +result[i]._id+ '"/><label for="' +result[i]._id+ '"></label>');
             $('#fourtyHoursImage' + result[i]._id).hide();
         }

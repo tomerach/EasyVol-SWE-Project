@@ -19,7 +19,6 @@ module.exports = {
 
 
 function ConnectDB(){
-    var urlll = 'mongodb://admin:admin@ds017862.mlab.com:17862/itorerutdb';
     mongodb.MongoClient.connect(dbURL, function (err, database) {
         if (err) {
             console.log(err);

@@ -656,7 +656,15 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
             $('#submitBtnOrg').hide();
             $('#updateBtnOrg').show();
             $('#orgFormName').html("עריכת ארגון");
-            $("#OrganizationQuestModal").openModal();
+            $("#OrganizationQuestModal").openModal({
+				dismissible: true, // Modal can be dismissed by clicking outside of the modal
+				opacity: .5, // Opacity of modal background
+				in_duration: 300, // Transition in duration
+				out_duration: 200, // Transition out duration
+				complete: function() { setTimeout(function(){
+					window.location.reload();
+				}, 200); } // Callback for Modal close
+			});
 
             console.log(filter['ids'][0]);
             $.getJSON('/GetRecord?{?collection?:?organizations?,?filter?:{?_id?:?' + filter['ids'][0] + '?}}', function (result) {
@@ -738,7 +746,15 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
 			$('#submitBtnVol').hide();
 			$('#updateBtnVol').show();
 			$('#volFormName').html("עריכת מתנדב");
-			$("#VolunteerQuestModal").openModal();
+			$("#VolunteerQuestModal").openModal({
+				dismissible: true, // Modal can be dismissed by clicking outside of the modal
+				opacity: .5, // Opacity of modal background
+				in_duration: 300, // Transition in duration
+				out_duration: 200, // Transition out duration
+				complete: function() { setTimeout(function(){
+					window.location.reload();
+				}, 200); } // Callback for Modal close
+			});
 
 			console.log(filter['ids'][0]);
 

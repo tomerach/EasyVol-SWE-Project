@@ -479,10 +479,10 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
 
      $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light orange tooltipped" data-position="top" data-delay="50" data-tooltip="בחר הכל" type="submit" name="action" id = "markAllBtn"></button>');
 	$("#markAllBtn").append('<i class="material-icons">done_all</i>');
-    
+        
     $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light orange tooltipped" data-position="top" data-delay="50" data-tooltip="נקה את בחירתך" type="submit" name="action" id = "clearBtn"></button>');
 	$("#clearBtn").append('<i class="material-icons">clear_all</i>');
-   
+    
 
     if(typeOfPage === "AdminPage"){
 
@@ -493,7 +493,7 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
 
     if(typeOfPage === "AdminPage"){
         $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light red tooltipped modal-trigger3" href="#modal3" data-position="top" data-delay="50" data-tooltip=" מחק ' +heName+ '" type="submit" name="action" id = "delete' +typeOfInsert+ '"></button>');
->>>>>>> 391d27c4e75d2985fb93ca801dd922b836da55f0
+
         $('#delete' +typeOfInsert).append('<i class="material-icons">delete</i>');
 
         $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light light-blue lighten-1 tooltipped" href="#" data-position="top" data-delay="50" data-tooltip="ערוך ' +heName+ '" type="submit" name="action" id = "edit' +typeOfInsert+ '"></button>');
@@ -515,7 +515,7 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
 	$('.tooltipped').tooltip({delay: 50});
 
     
-=======
+
  /*   $('#VolunteerQuestModal')
         .on('hide', function () {
         alert("modal");

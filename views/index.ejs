@@ -115,7 +115,7 @@
 </div>
 
 <!--Work-->
-<div class="section scrollspy" id="work">
+<div class="section scrollspy" id="work" >
     <div class="container" dir="rtl">
         <h2 class="header text_b">שיתופי הפעולה שלנו</h2>
         <div class="row">
@@ -409,6 +409,8 @@
                 </div>
             </div>
 
+
+
             <div class="row">
                 <div class="input-field col s12" dir="rtl">
                     <i class="material-icons prefix">vpn_key</i>
@@ -424,10 +426,43 @@
         <a href="#!" class=" modal-action waves-effect waves-green btn-flat left" id = "loginBtn">התחבר</a>
     </div>
 </div>
+    
+    
+<div id="mailToAllModal" class="modal" collapse="false">
+    <div class="modal-content" dir="rtl">
+        <h4 style="font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif; color: #2196F3; margin: auto; letter-spacing: 3px;"><center><b>שליחת מייל ליעד</b></center></h4>
+        <p class="big"></p>
+        <form class="col s12">
+            <div class="row">
+                <div class="input-field col s12" dir="rtl">
+                    <i class="material-icons prefix">message</i>
+                    <input id="mailSubject" type="text" autofocus>
+                    <label for="mailSubject">נושא</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s12" dir="rtl">
+                    <i class="material-icons prefix">mode_edit</i>
+                    <textarea id="mailContent" type="text"></textarea>
+                  <!--  <textarea id="mailContent" rows="8" cols="50"></textarea>-->
+                    <label for="mailContent">תוכן ההודעה</label>
+
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class=" modal-action waves-effect waves-green btn-flat left" id = "senMailModalBtn">שלח</a>
+    </div>
+</div>
 
 <div id="OrganizationQuestModal" class="modal" dir="rtl">
-    <div class="modal-content">
-        <h4>שאלון ארגונים</h4>
+    <div class="modal-content" >
+        <h4 style="font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif; color: #2196F3; margin: auto; letter-spacing: 3px;"><center><b id="orgFormName">שאלון ארגונים</b></center></h4>
+
+
         <form class="col s12">
             <div class="row">
                 <div class="input-field col s6">
@@ -487,16 +522,163 @@
                     <input id="fieldEmail" type="email" class="validate">
                     <label for="fieldEmail">אימייל הסוכן</label>
                 </div>
-                <div class="input-field col s4">
+                <div class="input-field col s6">
                     <i class="material-icons prefix">phone</i>
                     <input id="fieldManPhone" type="text">
                     <label for="fieldManPhone">טלפון הסוכן</label>
                 </div>
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input id="orgUserName" type="text">
+                    <label for="orgUserName">בחר שם משתמש (אנגלית)</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">vpn_key</i>
+                    <input id="orgPassword" type="text">
+                    <label for="orgPassword">בחר סיסמא (אנגלית)</label>
+                </div>
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">vpn_key</i>
+                    <input id="cPassword" type="text" >
+                    <label for="cPassword">וידוא סיסמא</label>
+                </div>
             </div>
+
+            <h4 style="font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif; color: #2196F3; margin: auto; letter-spacing: 3px;"><center><b id="orgFormName">העדפות מתנדבים</b></center></h4>
+            </br>
+            <h6 style="font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif; color: #2196F3; margin: auto; letter-spacing: 3px;"><center><b id="orgFormName">מלא את הפרטים הרצויים מהמתנדבים</b></center></h6>
+            </br>
+            <div class="row">
+
+                <div class="input-field col s6" dir="rtl">
+                    <i class="material-icons prefix">date_range</i>
+                    <select multiple id="orgMultiDates">
+                        <option value="" disabled selected></option>
+
+                        <option value="ראשון">ראשון</option>
+                        <option value="שני">שני</option>
+                        <option value="שלישי">שלישי</option>
+                        <option value="רביעי">רביעי</option>
+                        <option value="חמישי">חמישי</option>
+                        <option value="שישי">שישי</option>
+
+                    </select>
+                    <label>באילו ימים יש צורך במתנדבים?</label>
+                </div>
+
+                <div class="input-field col s6" dir="rtl">
+                    <i class="material-icons prefix">query_builder</i>
+                    <select multiple id="orgMultiHours">
+                        <option value="" disabled selected></option>
+
+                        <option value="בבוקר">בבוקר - 08:00-12:00</option>
+                        <option value="בצהריים">בצהריים - 12:00-15:00</option>
+                        <option value="אחה"צ>אחה"צ - 15:00-18:00</option>
+                        <option value="בערב">בשעות הערב - 18:00-22:00</option>
+
+                    </select>
+                    <label>באילו שעות זקוקים למתנדבים?</label>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="input-field col s6" dir="rtl">
+                    <i class="material-icons prefix">room</i>
+                    <select id="orgVolunteerLociton">
+                        <option value="" disabled selected></option>
+
+                        <option value="במבשרת ציון">במבשרת ציון</option>
+                        <option value="אחר">אחר</option>
+
+                    </select>
+                    <label>באיזה איזור ישנה דרישה למתנדבים?</label>
+                </div>
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">create</i>
+                    <input id="orgVolunteerLocationOther" type="text">
+                    <label for="orgVolunteerLocationOther">אחר: אם כן - נא לציין באיזה איזור</label>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="input-field col s6" dir="rtl">
+                    <i class="material-icons prefix">done_all</i>
+                    <select multiple id="orgMultiVolTypes">
+                        <option value="" disabled selected></option>
+
+                        <option value="עבודה פרטנית עם ילדים \ נוער">עבודה פרטנית עם ילדים \ נוער</option>
+                        <option value="עבודה עם ילדים \ נוער">עבודה קבוצתית עם ילדים \ נוער</option>
+                        <option value="עבודה פרטנית עם קשישים">עבודה פרטנית עם קשישים</option>
+                        <option value="עבודה קבוצתית עם קשישים">עבודה קבוצתית עם קשישים</option>
+                        <option value="עזרה לימודית">עזרה לימודית</option>
+                        <option value="הדרכה">הדרכה</option>
+                        <option value="עבודה עם אוכלוסיות צרכים מיוחדים">עבודה עם אוכלוסיות צרכים מיוחדים</option>
+                        <option value="שיוור ופרסום">שיווק ופרסום</option>
+                        <option value="עבודה פיסית - גינון, שיפוץ וכו`">עבודה פיסית - גינון, שיפוץ וכו`</option>
+                        <option value="העברת סקרים \ שאלונים">העברת סקרים \ שאלונים</option>
+                        <option value="בכל מה שצריך">בכל מה שצריך</option>
+                    </select>
+                    <label>באילו תחומים זקוקים למתנדבים?</label>
+                </div>
+
+
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">create</i>
+                    <input id="orgMultiVolTypesOther" type="text">
+                    <label for="orgMultiVolTypesOther">אחר: אם כן - נא לציין באיזה תחום</label>
+                </div>
+
+            </div>
+
+            <div class="row" >
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">update</i>
+                    <select id="orgTimePeriod">
+                        <option value="" disabled selected></option>
+
+                        <option value="עד שנה"> עד שנה</option>
+                        <option value="שנה שנתיים">שנה שנתיים </option>
+                        <option value="יותר משנתיים"> יותר משנתיים</option>
+
+
+                    </select>
+                    <label>לאיזו תקופת זמן דרושים מתנדבים?</label>
+                </div>
+
+
+                <div class="input-field col s6" dir="rtl">
+                    <i class="material-icons prefix">translate</i>
+                    <select multiple id="orgMultiLanguage">
+                        <option value="" disabled selected></option>
+
+                        <option value="אנגלית">דובר אנגלית</option>
+                        <option value="ספרדית">דובר ספרדית</option>
+                        <option value="רוסית">דובר רוסית</option>
+                        <option value="איטלקית">דובר איטלקית</option>
+                        <option value="צרפתית">דובר צרפתית</option>
+                        <option value="אמהרית">דובר אמהרית</option>
+
+
+                    </select>
+                    <label>אם יש צורך בידיעת שפה נוספת אנא בחרו שפה</label>
+                </div>
+
+
+            </div>
+
         </form>
-    </div>
-    <div class="modal-footer">
-        <a href="#!" class=" modal-action waves-effect waves-green btn-flat left" id = "organizationSubmitBtn" onclick="">שלח</a>
+        <button id="submitBtnOrg" class="btn waves-effect waves-light left" type="submit" name="action">שלח
+            <i class="material-icons left fa-rotate-180">send</i>
+        </button>
+
+        <button id="updateBtnOrg" class="btn waves-effect waves-light left" type="submit" name="action">עדכן
+            <i class="material-icons left fa-rotate-180">send</i>
+        </button>
+
+
     </div>
 </div>
 

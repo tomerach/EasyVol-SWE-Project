@@ -73,14 +73,12 @@ function sendMail(req, res, details) {
             pass: 'Easy1234' // Your password
         }
     });
-    
-    var text = 'רכז המתנדבים שלום, \n\nהמתנדב/ת ' +details.firstName+ ' ' + details.lastName+ ', תעודת זהות ' + details.IDnumber +', החל/ה להתנדב בארגון ' + details.orgName + '\n\n בברכה, \n מערכת EasyVol';
+
     var mailOptions = {
         from: '<easyvol.mevaseret@gmail.com>', // sender address
         to: details.emailAdress, // list of receivers
-        subject: 'השמת ' +details.firstName+ ' ' + details.lastName + ' לארגון', // Subject line
-        text: text //, // plaintext body
-        // html: '<b>Hello world ✔</b>' // You can choose to send an HTML body instead
+        subject: details.subject, // Subject line
+        text: details.mailContent //, // plaintext body
     };
     
     transporter.sendMail(mailOptions, function(error, info){

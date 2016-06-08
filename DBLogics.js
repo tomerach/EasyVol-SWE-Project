@@ -1,4 +1,4 @@
-/**
+ /**
  * Created by aryekoga on 21-May-16.
  */
 var dbURL = 'mongodb://easyvol:easy1234@ds036069.mlab.com:36069/easy_vol'; // mongoDB URL to mLAB
@@ -108,7 +108,7 @@ function UpdateRecord(req, res, newVal)
     console.log(query.filter);
 
 
-    db.collection(query.collection).update({_id: new ObjectID(query.filter._id)}, newVal, function(err, doc) {
+    db.collection(query.collection).update({_id: new ObjectID(query.filter._id)},{$set:newVal}, function(err, doc) {
         if (err) {
             handleError(res, err.message, "Failed to update the record.");
         } else {
@@ -116,3 +116,4 @@ function UpdateRecord(req, res, newVal)
         }
     });
 }
+

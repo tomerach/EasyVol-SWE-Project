@@ -482,18 +482,10 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
         
     $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light orange tooltipped" data-position="top" data-delay="50" data-tooltip="נקה את בחירתך" type="submit" name="action" id = "clearBtn"></button>');
 	$("#clearBtn").append('<i class="material-icons">clear_all</i>');
-    
 
-    if(typeOfPage === "AdminPage"){
-
-        $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light red tooltipped modal-trigger" href="#modal3" data-position="top" data-delay="50" data-tooltip=" מחק ' +heName+ '" type="submit" name="action" id = "delete' +typeOfInsert+ '"></button>');
-
-    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light orange tooltipped" data-position="top" data-delay="50" data-tooltip="נקה את בחירתך" type="submit" name="action" id = "clearBtn"></button>');
-	$("#clearBtn").append('<i class="material-icons">clear_all</i>');
 
     if(typeOfPage === "AdminPage"){
         $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light red tooltipped modal-trigger3" href="#modal3" data-position="top" data-delay="50" data-tooltip=" מחק ' +heName+ '" type="submit" name="action" id = "delete' +typeOfInsert+ '"></button>');
-
         $('#delete' +typeOfInsert).append('<i class="material-icons">delete</i>');
 
         $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light light-blue lighten-1 tooltipped" href="#" data-position="top" data-delay="50" data-tooltip="ערוך ' +heName+ '" type="submit" name="action" id = "edit' +typeOfInsert+ '"></button>');
@@ -514,26 +506,6 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
 
 	$('.tooltipped').tooltip({delay: 50});
 
-    
-
- /*   $('#VolunteerQuestModal')
-        .on('hide', function () {
-        alert("modal");
-        $('#submitBtnVol').show();
-        $('#updateBtnVol').hide();
-        $('#volFormName').html("הרשמה להתנדבות");
-    })
-   .on('hidden', function(){
-       console.log('hidden');
-   })
-   .on('show', function() {
-       console.log('show');
-   })
-   .on('shown', function(){
-      console.log('shown' )
-   });
-   */
-
     $("#clearBtn").click(function(){
         $( "input:checked").prop('checked', false);
     });
@@ -544,8 +516,6 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
 
     $("#mailToAllBtn").click(function(){
          //var selected = GetCheckedAvatars();
-
-    $('#fourtyHours').click(function(){
 
         var n = $( "input:checked");
 		var filter = {};
@@ -563,10 +533,7 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
         }
         
         $("#senMailModalBtn").click(function(){
-
-
-        {
-
+            
             for(var i=0; i<filter['ids'].length; i++){
                 $.getJSON('/GetRecord?{?collection?:?volunteers?,?filter?:{?_id?:?'+filter['ids'][i]+'?}}',function(result) {
 
@@ -656,7 +623,6 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
                             subject :  "השמת " +result[0].firstName+ " " + result[0].lastName + " לארגון",
                             emailAdress: result[0].emailAdress
                         };
-                        alert("mail");
                     $.post('/SendMail', details); 
                     }
 

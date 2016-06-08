@@ -20,6 +20,19 @@
     $('#updateBtnVol').hide();
       $('#updateBtnOrg').hide();
 
+      $("#mailFromHomePage").click(function(){
+            var details = {
+                subject: $("#icon_prefix").val() + " רוצה להתנדב!",
+                mailContent: $("#icon_prefix2").val() + "\n\n\n" + $("#icon_email").val(),
+                emailAdress: '<easyvol.mevaseret@gmail.com>',
+            };
+            $.post('/SendMail', details);  
+
+            var $toastContent = $('<span>המייל נשלח בהצלחה</span>');
+            Materialize.toast($toastContent, 3000);
+            $("#mailToAllModal").closeModal();
+      });
+      
 	  $("#submitBtnVol").click(function(){
 
 		  //TODO: Add validations before submitting details

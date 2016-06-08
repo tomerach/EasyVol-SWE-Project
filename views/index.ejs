@@ -318,12 +318,12 @@
     <div class="container" dir="rtl">
         <div class="row">
             <div class="col l8 s12">
-                <form class="col s12" action="Docs/WebAppDocs/php/contact.php" method="post">
+                <form class="col s12">
                     <div class="row">
                         <div class="input-field col s6">
                             <i class="mdi-action-account-circle prefix white-text"></i>
                             <input id="icon_prefix" name="name" type="text" class="validate white-text">
-                            <label for="icon_prefix" class="white-text">שם פרטי</label>
+                            <label for="icon_prefix" class="white-text">שם מלא</label>
                         </div>
                         <div class="input-field col s6">
                             <i class="mdi-communication-email prefix white-text"></i>
@@ -337,7 +337,7 @@
                         </div>
                         <div class="col offset-s0 s5">
                             <button class="btn waves-effect waves-light red darken-1 left" type="submit">שלח
-                                <i class="mdi-content-send left white-text fa-rotate-180"></i>
+                                <i class="mdi-content-send left white-text fa-rotate-180" id="mailFromHomePage"></i>
                             </button>
                         </div>
                     </div>
@@ -443,11 +443,9 @@
 
             <div class="row">
                 <div class="input-field col s12" dir="rtl">
-                    <i class="material-icons prefix">mode_edit</i>
-                    <textarea id="mailContent" type="text"></textarea>
-                  <!--  <textarea id="mailContent" rows="8" cols="50"></textarea>-->
+                   <i class="material-icons prefix">mode_edit</i>
+                    <textarea id="mailContent" name="message" class="materialize-textarea"></textarea>
                     <label for="mailContent">תוכן ההודעה</label>
-
                 </div>
             </div>
 
@@ -681,12 +679,6 @@
 
     </div>
 </div>
-
-
-
-
-
-
 
 
 <div id="VolunteerQuestModal" class="modal" dir="rtl">

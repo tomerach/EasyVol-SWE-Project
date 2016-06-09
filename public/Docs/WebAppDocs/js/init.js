@@ -14,7 +14,7 @@
 		  selectMonths: true, // Creates a dropdown to control month
 		  min: [1940,1,01],
 		  max: [2006,7,14],
-		  selectYears: 15 // Creates a dropdown of 15 years to control year
+		  selectYears: 70 // Creates a dropdown of 15 years to control year
 	  });
 
     $('#updateBtnVol').hide();

@@ -515,6 +515,8 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
         $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light light-blue lighten-1 tooltipped" href="#" data-position="top" data-delay="50" data-tooltip="המתנדב התחיל להתנדב" type="submit" name="action" id = "startedToVol"></button>');
         $('#startedToVol').append('<i class="material-icons">play_arrow</i>');
 
+		$("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light green tooltipped" href="#feedbackToVol" data-position="top" data-delay="50" data-tooltip="טופס משוב והערכת מתנדב" type="submit" name="action" id = "feedbackToVol"></button>');
+		$('#feedbackToVol').append('<i class="material-icons">assignment</i>');
     }
 
 	$('.tooltipped').tooltip({delay: 50});

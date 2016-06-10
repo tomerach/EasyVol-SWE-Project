@@ -482,15 +482,15 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
     if(typeOfPage === "AdminPage"){
         $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light green tooltipped" data-position="top" data-delay="50" data-tooltip="מציאת התאמה" type="submit" name="action" id = "findMatch"></button>');
         $("#findMatch").append('<i class="material-icons">repeat</i>');       
-        
-        $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light light-blue lighten-1 tooltipped " href="#" data-position="top" data-delay="50" data-tooltip="שלח מייל ליעדים נבחרים" type="submit" name="action" id = "mailToAllBtn"></button>');
-        $("#mailToAllBtn").append('<i class="material-icons">email</i>');
     }
+
+    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light light-blue lighten-1 tooltipped " href="#" data-position="top" data-delay="50" data-tooltip="שלח מייל ליעדים נבחרים" type="submit" name="action" id = "mailToAllBtn"></button>');
+    $("#mailToAllBtn").append('<i class="material-icons">email</i>');
 
     $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light grey tooltipped" data-position="top" data-delay="50" data-tooltip="הדפס" type="submit" name="action" id = "printBtn"></button>');
 	$("#printBtn").append('<i class="material-icons">print</i>');
 
-     $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light orange tooltipped" data-position="top" data-delay="50" data-tooltip="בחר הכל" type="submit" name="action" id = "markAllBtn"></button>');
+     $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light amber tooltipped" data-position="top" data-delay="50" data-tooltip="בחר הכל" type="submit" name="action" id = "markAllBtn"></button>');
 	$("#markAllBtn").append('<i class="material-icons">done_all</i>');
         
     $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light orange tooltipped" data-position="top" data-delay="50" data-tooltip="נקה את בחירתך" type="submit" name="action" id = "clearBtn"></button>');
@@ -501,10 +501,10 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
         $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light red tooltipped modal-trigger3" href="#modal3" data-position="top" data-delay="50" data-tooltip=" מחק ' +heName+ '" type="submit" name="action" id = "delete' +typeOfInsert+ '"></button>');
         $('#delete' +typeOfInsert).append('<i class="material-icons">delete</i>');
 
-        $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light light-blue lighten-1 tooltipped" href="#" data-position="top" data-delay="50" data-tooltip="ערוך ' +heName+ '" type="submit" name="action" id = "edit' +typeOfInsert+ '"></button>');
+        $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light blue-grey lighten-1 tooltipped" href="#" data-position="top" data-delay="50" data-tooltip="ערוך ' +heName+ '" type="submit" name="action" id = "edit' +typeOfInsert+ '"></button>');
         $('#edit' +typeOfInsert).append('<i class="material-icons">mode_edit</i>');
 
-        $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light lime tooltipped modal-trigger" href="#'+typeOfInsert+'QuestModal"'+ 'data-position="top" data-delay="50" data-tooltip="הוסף ' +heName+ '" type="submit" name="action" id = "add' +typeOfInsert+ '"></button>');
+        $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light teal tooltipped modal-trigger" href="#'+typeOfInsert+'QuestModal"'+ 'data-position="top" data-delay="50" data-tooltip="הוסף ' +heName+ '" type="submit" name="action" id = "add' +typeOfInsert+ '"></button>');
         $('#add' +typeOfInsert).append('<i class="material-icons">add</i>');
     }
 
@@ -512,7 +512,7 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
         $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light red tooltipped" href="#" data-position="top" data-delay="50" data-tooltip=" המתנדב השלים 40 שעות" type="submit" name="action" id = "fourtyHours"></button>');
         $('#fourtyHours').append('<i class="material-icons">done</i>');
 
-        $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light light-blue lighten-1 tooltipped" href="#" data-position="top" data-delay="50" data-tooltip="המתנדב התחיל להתנדב" type="submit" name="action" id = "startedToVol"></button>');
+        $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light green tooltipped" href="#" data-position="top" data-delay="50" data-tooltip="המתנדב התחיל להתנדב" type="submit" name="action" id = "startedToVol"></button>');
         $('#startedToVol').append('<i class="material-icons">play_arrow</i>');
 
     }
@@ -538,7 +538,6 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
 		});
 
         if(filter['ids'].length > 0)
-
             $("#mailToAllModal").openModal();
         else{
             var $toastContent = $('<span>יש לסמן מתנדב אחד לפחות</span>');
@@ -551,7 +550,6 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
                 $.getJSON('/GetRecord?{?collection?:?volunteers?,?filter?:{?_id?:?'+filter['ids'][i]+'?}}',function(result) {
 
                     var details = {
-                        typeOfMailPost: "toAll",
                         subject: $("#mailSubject").val(),
                         mailContent: $("#mailContent").val(),
                         emailAdress: result[0].emailAdress,
@@ -563,10 +561,6 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
             var $toastContent = $('<span>המייל נשלח בהצלחה</span>');
             Materialize.toast($toastContent, 3000);
             $("#mailToAllModal").closeModal();
-
-            setTimeout(function(){
-            window.location.reload();
-            }, 1000);           
 
         });
 
@@ -630,7 +624,6 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
                         //TODO: Add organiztion name!
 
                         var details = {
-                            typeOfMailPost: "toOne",
                             mailContent:  "רכז המתנדבים שלום, \n\nהמתנדב/ת " +result[0].firstName+ " " + result[0].lastName+ ", תעודת זהות " + result[0].IDnumber +", החל/ה להתנדב בארגון " + //details.orgName 
                             "שם ארגון זמני "+ "\n\n בברכה, \n מערכת EasyVol",
                             subject :  "השמת " +result[0].firstName+ " " + result[0].lastName + " לארגון",
@@ -638,22 +631,6 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
                         };
                     $.post('/SendMail', details); 
                     }
-
-                    $.post('/UpdateRecord?{?collection?:?volunteers?,?filter?:{?_id?:?'+objId+'?}}', result[0]);
-
-                    //TODO: Add organiztion name!
-
-                    var details = {
-                        firstName : result[0].firstName,
-                        lastName : result[0].lastName,
-                        IDnumber : result[0].IDnumber,
-                        emailAdress : result[0].emailAdress,
-                        orgName : "שם זמני"
-                    };
-
-                    $.post('/SendMail', details);
-
-
                 });
 
             }
@@ -673,10 +650,6 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
         }
 
     });
-
-
-
-
 
 
 	$('#delete' +typeOfInsert).click(function(){
@@ -792,13 +765,6 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
     });
 
 
-
-
-
-
-
-
-
     $("#editVolunteer").click(function() {
 		var n = $("input:checked");
 		var filter = {};
@@ -837,7 +803,14 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
 				$("#Hometelephone").val(result[0].Hometelephone);
 				$("#email").val(result[0].emailAdress);
 				$("#Birthday").val(result[0].BirthdayDate);
-				$("#familyStatus").val(result[0].familyStatus);
+			//	$("#familyStatus").val(result[0].familyStatus);
+                //console.log($("[value=" + result[0].familyStatus + "]").html());//attr("active selected");
+                //$('#familyStatus option[value="' +result[0].familyStatus + '"]').attr('selected','selected');
+                //$('#familyStatus option[value="' +result[0].familyStatus + '"]').attr('active','active');
+                $('select option[value="tmp"]').attr('active','');
+                $('select option[value="tmp"]').attr('selected','');
+               // $('#familyStatus option').attr('class','active');
+                // $("#familyStatus").value = result[0].familyStatus;
 				$("#education").val(result[0].educationLevel);
 				$("#occupation").val(result[0].workOccupation);
 				$("#Job").val(result[0].workJob);

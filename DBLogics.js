@@ -54,11 +54,11 @@ function GetRecords(req, res) {
     var url_parts = url.parse(req.url);
     var queryTemp = url_parts.query.replace(/\?/g,'\"');
     var query = JSON.parse(queryTemp);
-
+    console.log(query.filter);
     if('_id' in query.filter)
     {
         query.filter._id = new ObjectID(query.filter._id);
-        console.log(query.filter);
+
     }
     db.collection(query.collection).find(query.filter).toArray(function(err, docs) {
         if (err) {

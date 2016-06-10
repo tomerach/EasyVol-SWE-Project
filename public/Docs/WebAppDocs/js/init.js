@@ -1076,7 +1076,15 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
 		}
 
 
-		$("#MatchingModal").openModal();
+		$("#MatchingModal").openModal({
+			dismissible: true, // Modal can be dismissed by clicking outside of the modal
+			opacity: .5, // Opacity of modal background
+			in_duration: 300, // Transition in duration
+			out_duration: 200, // Transition out duration
+			complete: function() { setTimeout(function(){
+				window.location.reload();
+			}, 200); } // Callback for Modal close
+		});
 	});
 
 	$('.modal-trigger').leanModal();

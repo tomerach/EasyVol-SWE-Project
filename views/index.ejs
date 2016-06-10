@@ -1076,37 +1076,353 @@
 </div>
 
 
-<div id="feedbackToVol" class="modal" dir="rtl">
+<div id="feedbackToVolModal" class="modal" dir="rtl">
     <div class="modal-content">
 
         <!--Register-->
         <!--    <div id="Register" class="section scrollspy" dir="rtl">-->
 
-        <h4 style="font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif; color: #2196F3; margin: auto; letter-spacing: 3px;"><center><b id="volFormName">טופס משוב והערכת מתנדב</b></center></h4>
+        <h4 style="font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif; color: #2196F3; margin: auto; letter-spacing: 3px;"><center><b><u id="volFormName">טופס משוב והערכת מתנדב</u></b></center></h4>
         <p class="big"></p>
         <h6 style="font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif; color: #2196F3; margin: auto; letter-spacing: 3px;"><b><center>פרטיים אישים</center></b></h6>
         <p class="big"></p>
         <form class="col s12">
             <div class="row">
-                <div class="input-field col s4" >
+                <div class="input-field col s6" >
                     <i class="material-icons prefix">account_circle</i>
-                    <input id="fName" type="text" class="validate">
-                    <label for="fName">שם פרטי</label>
+                    <input id="FB_Personal_Name" type="text" class="validate">
+                    <label for="FB_Personal_Name">שם המתנדב</label>
 
                 </div>
-                <div class="input-field col s4" >
-                    <i class="material-icons prefix">account_circle</i>
-                    <input id="lName" type="text" class="validate">
-                    <label for="lName">שם משפחה</label>
+                <div class="input-field col s6" >
+                    <i class="material-icons prefix">access_time</i>
+                    <input id="FB_Personal_Time" type="text" class="validate">
+                    <label for="FB_Personal_Time">תקופת ההתנדבות</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6" >
+                    <i class="material-icons prefix">business_center</i>
+                    <input id="FB_Personal_Job" type="text" class="validate">
+                    <label for="FB_Personal_Job">תפקיד</label>
+
+                </div>
+                <div class="input-field col s6" >
+                    <i class="material-icons prefix">event_available</i>
+                    <input id="FB_Personal_FormDate" type="date"   class="datepicker">
+                    <label for="FB_Personal_FormDate">תאריך ההערכה</label>
+                </div>
+            </div>
+            <p class="big"></p>
+            <h5 style="font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif; color: #2196F3; margin: auto; letter-spacing: 3px;"><b><center>מטרות התפקיד</center></b></h5>
+            <p class="big"></p>
+            <div class="row">
+                <div class="input-field col s6" >
+                    <i class="material-icons prefix">adjust</i>
+                    <input id="FB_Gols_A" type="text" class="validate">
+                    <label for="FB_Gols_A">א.</label>
+
+                </div>
+               <p class="range-field col s6">
+                    <input id="FB_Gols_A_R" type="range" min='1' max ='5' step='1'>
+               </p>
+            </div>
+            <div class="row">
+                <div class="input-field col s6" >
+                    <i class="material-icons prefix">adjust</i>
+                    <input id="FB_Gols_B" type="text" class="validate">
+                    <label for="FB_Gols_B">ב.</label>
+
+                </div>
+                <p class="range-field col s6">
+                    <input id="FB_Gols_B_R" type="range" min='1' max ='5' step='1'>
+                </p>
+            </div>
+            <div class="row">
+                <div class="input-field col s6" >
+                    <i class="material-icons prefix">adjust</i>
+                    <input id="FB_Gols_C" type="text" class="validate">
+                    <label for="FB_Gols_C">ג.</label>
+
+                </div>
+                <p class="range-field col s6">
+                    <input id="FB_Gols_C_R" type="range" min='1' max ='5' step='1'>
+                </p>
+            </div>
+            <div class="row">
+                <div class="input-field col s6" >
+                    <i class="material-icons prefix">adjust</i>
+                    <input id="FB_Gols_D" type="text" class="validate">
+                    <label for="FB_Gols_D">ד.</label>
+
+                </div>
+                <p class="range-field col s6">
+                    <input id="FB_Gols_D_R" type="range" min='1' max ='5' step='1'>
+                </p>
+            </div>
+            <p class="big"></p>
+            <h5 style="font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif; color: #2196F3; margin: auto; letter-spacing: 3px;"><b><center>יחסי עבודה</center></b></h5>
+            <p class="big"></p>
+            <div class="row">
+                <div class="input-field col s6" >
+                    <i class="material-icons prefix">supervisor_account</i>
+                    <input id="FB_IndustrialRelations_A" type="text" class="validate">
+                    <label for="FB_IndustrialRelations_A">א.</label>
+
+                </div>
+                <p class="range-field col s6">
+                    <input id="FB_IndustrialRelations_A_R" type="range" min='1' max ='5' step='1'>
+                </p>
+            </div>
+            <div class="row">
+                <div class="input-field col s6" >
+                    <i class="material-icons prefix">supervisor_account</i>
+                    <input id="FB_IndustrialRelations_B" type="text" class="validate">
+                    <label for="FB_IndustrialRelations_B">ב.</label>
+
+                </div>
+                <p class="range-field col s6">
+                    <input id="FB_IndustrialRelations_B_R" type="range" min='1' max ='5' step='1'>
+                </p>
+            </div>
+            <div class="row">
+                <div class="input-field col s6" >
+                    <i class="material-icons prefix">supervisor_account</i>
+                    <input id="FB_IndustrialRelations_C" type="text" class="validate">
+                    <label for="FB_IndustrialRelations_C">ג.</label>
+
+                </div>
+                <p class="range-field col s6">
+                    <input id="FB_IndustrialRelations_C_R" type="range" min='1' max ='5' step='1'>
+                </p>
+            </div>
+            <div class="row">
+                <div class="input-field col s6" >
+                    <i class="material-icons prefix">supervisor_account</i>
+                    <input id="FB_IndustrialRelations_D" type="text" class="validate">
+                    <label for="FB_IndustrialRelations_D">ד.</label>
+                </div>
+                <p class="range-field col s6">
+                    <input id="FB_IndustrialRelations_D_R" type="range" min='1' max ='5' step='1'>
+                </p>
+            </div>
+            <div class="row">
+                <div class="input-field col s6" >
+                    <i class="material-icons prefix">supervisor_account</i>
+                    <input id="FB_IndustrialRelations_E" type="text" class="validate">
+                    <label for="FB_IndustrialRelations_E">ה.</label>
+                </div>
+                <p class="range-field col s6">
+                    <input id="FB_IndustrialRelations_E_R" type="range" min='1' max ='5' step='1'>
+                </p>
+            </div>
+            <p class="big"></p>
+            <h5 style="font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif; color: #2196F3; margin: auto; letter-spacing: 3px;"><b><center>אינדיקטורים לביצוע</center></b></h5>
+            <p class="big"></p>
+            <div class="row">
+                <div class="input-field col s6" >
+                    <i class="material-icons prefix">equalizer</i>
+                    <input id="FB_ProgressIndicators_A" type="text" class="validate">
+                    <label for="FB_ProgressIndicators_A">א. </label>
+
+                </div>
+                <p class="range-field col s6">
+                    <input id="FB_ProgressIndicators_A_R" type="range" min='1' max ='5' step='1'>
+                </p>
+            </div>
+            <div class="row">
+                <div class="input-field col s6" >
+                    <i class="material-icons prefix">equalizer</i>
+                    <input id="FB_ProgressIndicators_B" type="text" class="validate">
+                    <label for="FB_ProgressIndicators_B">ב. </label>
+
+                </div>
+                <p class="range-field col s6">
+                    <input id="FB_ProgressIndicators_B_R" type="range" min='1' max ='5' step='1'>
+                </p>
+            </div>
+            <div class="row">
+                <div class="input-field col s6" >
+                    <i class="material-icons prefix">equalizer</i>
+                    <input id="FB_ProgressIndicators_C" type="text" class="validate">
+                    <label for="FB_ProgressIndicators_C"> ג.</label>
+
+                </div>
+                <p class="range-field col s6">
+                    <input id="FB_ProgressIndicators_C_R" type="range" min='1' max ='5' step='1'>
+                </p>
+            </div>
+            <div class="row">
+                <div class="input-field col s6" >
+                    <i class="material-icons prefix">equalizer</i>
+                    <input id="FB_ProgressIndicators_D" type="text" class="validate">
+                    <label for="FB_ProgressIndicators_D">ד.</label>
+
+                </div>
+                <p class="range-field col s6">
+                    <input id="FB_ProgressIndicators_D_R" type="range" min='1' max ='5' step='1'>
+                </p>
+            </div>
+            <div class="row">
+                <div class="input-field col s6" >
+                    <i class="material-icons prefix">equalizer</i>
+                    <input id="FB_ProgressIndicators_E" type="text" class="validate">
+                    <label for="FB_ProgressIndicators_E">ה.</label>
+
+                </div>
+                <p class="range-field col s6">
+                    <input id="FB_ProgressIndicators_E_R" type="range" min='1' max ='5' step='1'>
+                </p>
+            </div>
+            <div class="row">
+                <div class="input-field col s6" >
+                    <i class="material-icons prefix">equalizer</i>
+                    <input id="FB_ProgressIndicators_F" type="text" class="validate">
+                    <label for="FB_ProgressIndicators_F">ו.</label>
+
+                </div>
+                <p class="range-field col s6">
+                    <input id="FB_ProgressIndicators_F_R" type="range" min='1' max ='5' step='1'>
+                </p>
+            </div>
+            <div class="row">
+                <div class="input-field col s6" >
+                    <i class="material-icons prefix">equalizer</i>
+                    <input id="FB_ProgressIndicators_G" type="text" class="validate">
+                    <label for="FB_ProgressIndicators_G">ז.</label>
+
+                </div>
+                <p class="range-field col s6">
+                    <input id="FB_ProgressIndicators_G_R" type="range" min='1' max ='5' step='1'>
+                </p>
+            </div>
+            <p class="big"></p>
+            <h5 style="font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif; color: #2196F3; margin: auto; letter-spacing: 3px;"><b><center>הערות מנהל ההתנדבות ביחס לתחומים הנ"ל</center></b></h5>
+            <p class="big"></p>
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">hearing</i>
+                    <textarea id="FB_ManagerComments" class="materialize-textarea"></textarea>
+                    <label for="FB_ManagerComments"></label>
+                </div>
+            </div>
+            <p class="big"></p>
+            <h5 style="font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif; color: #2196F3; margin: auto; letter-spacing: 3px;"><b><center>הערות המתנדב ביחס לתחומים הנ"ל</center></b></h5>
+            <p class="big"></p>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">hearing</i>
+                        <textarea id="FB_VolComments" class="materialize-textarea"></textarea>
+                        <label for="FB_VolComments"></label>
+                    </div>
+               </div>
+            <p class="big"></p>
+            <h5 style="font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif; color: #2196F3; margin: auto; letter-spacing: 3px;"><b><center>ההישג הבולט בתקופת הערכה(נקודות לשימור)</center></b></h5>
+            <p class="big"></p>
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">grade</i>
+                    <textarea id="FB_GreatAchievement" class="materialize-textarea"></textarea>
+                    <label for="FB_GreatAchievement"></label>
+                </div>
+            </div>
+            <p class="big"></p>
+            <h5 style="font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif; color: #2196F3; margin: auto; letter-spacing: 3px;"><b><center>נקודות לשיפור</center></b></h5>
+            <p class="big"></p>
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">timeline</i>
+                    <textarea id="FB_PointsForImprovement" class="materialize-textarea"></textarea>
+                    <label for="FB_PointsForImprovement"></label>
+                </div>
+            </div>
+            <p class="big"></p>
+            <h5 style="font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif; color: #2196F3; margin: auto; letter-spacing: 3px;"><b><center>תכניות לעתיד</center></b></h5>
+            <p class="big"></p>
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">fast_forward</i>
+                    <textarea id="FB_FuturePlans" class="materialize-textarea"></textarea>
+                    <label for="FB_FuturePlans"></label>
+                </div>
+            </div>
+            <p class="big"></p>
+            <h5 style="font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif; color: #2196F3; margin: auto; letter-spacing: 3px;"><b><center>יעדים מרכזיים להשגה עד להערכה הבאה</center></b></h5>
+            <p class="big"></p>
+            <div class="row">
+                <div class="input-field col s12" >
+                    <i class="material-icons prefix">thumb_up</i>
+                    <input id="FB_AchievableTarget_A" type="text" class="validate">
+                    <label for="FB_AchievableTarget_A">א.</label>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12" >
+                    <i class="material-icons prefix">thumb_up</i>
+                    <input id="FB_AchievableTarget_B" type="text" class="validate">
+                    <label for="FB_AchievableTarget_B">ב.</label>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12" >
+                    <i class="material-icons prefix">thumb_up</i>
+                    <input id="FB_AchievableTarget_C" type="text" class="validate">
+                    <label for="FB_AchievableTarget_C">ג.</label>
+
+                </div>
+            </div>
+            <p class="big"></p>
+            <h5 style="font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif; color: #2196F3; margin: auto; letter-spacing: 3px;"><b><center>דרכי פעולה ליישום להשגת יעדים אלה</center></b></h5>
+            <p class="big"></p>
+            <div class="row">
+                <div class="input-field col s12" >
+                    <i class="material-icons prefix">bubble_chart</i>
+                    <input id="FB_ActionAchievingTarget_A" type="text" class="validate">
+                    <label for="FB_ActionAchievingTarget_A">א.</label>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12" >
+                    <i class="material-icons prefix">bubble_chart</i>
+                    <input id="FB_ActionAchievingTarget_B" type="text" class="validate">
+                    <label for="FB_ActionAchievingTarget_B">ב.</label>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12" >
+                    <i class="material-icons prefix">bubble_chart</i>
+                    <input id="FB_ActionAchievingTarget_C" type="text" class="validate">
+                    <label for="FB_ActionAchievingTarget_C">ג.</label>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12" >
+                    <i class="material-icons prefix">bubble_chart</i>
+                    <input id="FB_ActionAchievingTarget_D" type="text" class="validate">
+                    <label for="FB_ActionAchievingTarget_D">ד.</label>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12" >
+                    <i class="material-icons prefix">bubble_chart</i>
+                    <input id="FB_ActionAchievingTarget_E" type="text" class="validate">
+                    <label for="FB_ActionAchievingTarget_E">ה.</label>
+
                 </div>
             </div>
         </form>
 
-        <button id="submitBtnVol" class="btn waves-effect waves-light left" type="submit" name="action">שלח
+        <button id="feedbackSubmitBtnVol" class="btn waves-effect waves-light left" type="submit" name="action">שלח
             <i class="material-icons left fa-rotate-180">send</i>
         </button>
 
-        <button id="updateBtnVol" class="btn waves-effect waves-light left" type="submit" name="action">עדכן
+        <button id="feedbackUpdateBtnVol" class="btn waves-effect waves-light left" type="submit" name="action">עדכן
             <i class="material-icons left fa-rotate-180">send</i>
         </button>
 

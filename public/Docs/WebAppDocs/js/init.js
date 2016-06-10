@@ -9,11 +9,29 @@
       $('.collapsible').collapsible({
       accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
     });
+	  $('#FB_IndustrialRelations_A').val('יחסים עם מתנדבים אחרים');
+	  $('#FB_IndustrialRelations_B').val('יחסים עם הצוות');
+	  $('#FB_IndustrialRelations_C').val('יחסים עם המוטבים/לקוחות');
+	  $('#FB_ProgressIndicators_A').val('עמידה בלוח זמנים וסיום משימות בזמן');
+	  $('#FB_ProgressIndicators_B').val('יוזמה');
+	  $('#FB_ProgressIndicators_C').val('גמישות');
+	  $('#FB_ManagerComments').val('');
+	  $('#FB_ManagerComments').trigger('autoresize');
+	  $('#FB_VolComments').val('');
+	  $('#FB_VolComments').trigger('autoresize');
+	  $('#FB_GreatAchievement').val('');
+	  $('#FB_GreatAchievement').trigger('autoresize');
+	  $('#FB_PointsForImprovement').val('');
+	  $('#FB_PointsForImprovement').trigger('autoresize');
+	  $('#FB_FuturePlans').val('');
+	  $('#FB_FuturePlans').trigger('autoresize');
+
+
 
 	  $('.datepicker').pickadate({
 		  selectMonths: true, // Creates a dropdown to control month
 		  min: [1940,1,01],
-		  max: [2006,7,14],
+		  max: [2020,7,14],
 		  selectYears: 70 // Creates a dropdown of 15 years to control year
 	  });
 
@@ -515,7 +533,7 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
         $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light light-blue lighten-1 tooltipped" href="#" data-position="top" data-delay="50" data-tooltip="המתנדב התחיל להתנדב" type="submit" name="action" id = "startedToVol"></button>');
         $('#startedToVol').append('<i class="material-icons">play_arrow</i>');
 
-		$("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light green tooltipped" href="#feedbackToVol" data-position="top" data-delay="50" data-tooltip="טופס משוב והערכת מתנדב" type="submit" name="action" id = "feedbackToVol"></button>');
+		$("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light green tooltipped" href="#" data-position="top" data-delay="50" data-tooltip="טופס משוב והערכת מתנדב" type="submit" name="action" id = "feedbackToVol"></button>');
 		$('#feedbackToVol').append('<i class="material-icons">assignment</i>');
     }
 
@@ -528,6 +546,22 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
     $("#markAllBtn").click(function(){
         $("input:checkbox:not(:checked)").prop('checked', true);   
     });
+	$("#feedbackToVol").click(function(){
+		var n = $( "input:checked");
+		var filter = {};
+		filter['ids'] = [];
+		Array.from(n).forEach(function(item, index){
+			filter['ids'].push(item.id);
+		});
+
+		if(filter['ids'].length == 1)
+			$("#feedbackToVolModal").openModal();
+
+		else{
+			var $toastContent = $('<span>יש לסמן מתנדב אחד לפחות</span>');
+			Materialize.toast($toastContent, 3000);
+		}
+	});
 
     $("#mailToAllBtn").click(function(){
          //var selected = GetCheckedAvatars();
@@ -865,6 +899,61 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
 				$("#StudentVoluntaryExtra").val(result[0].StudentVoluntaryExtra);
 				$("#StudentHomeTwon").val(result[0].StudentHomeTwon);
 			});
+/**
+			$.getJSON('/GetRecord?{?collection?:?volunteers?,?filter?:{?_id?:?' + filter['ids'][0] + '?}}', function (result) {
+				console.log(result);
+				$("#feedbackToVol label").attr('class', 'active');
+				$("#fName").attr('_id', filter['ids'][0]);
+				$("#FB_Personal_Name").val(result[0].firstName);
+				$("#FB_Personal_Time").val(result[0].FB_Personal_Time);
+				$("#FB_Personal_Job").val(result[0].FB_Personal_Job);
+				$("#FB_Personal_FormDate").val(result[0].FB_Personal_FormDate);
+				$("#FB_Gols_A").val(result[0].FB_Gols_A);
+				$("#FB_Gols_A_R").val(result[0].FB_Gols_A_R);
+				$("#FB_Gols_B").val(result[0].FB_Gols_B);
+				$("#FB_Gols_B_R").val(result[0].FB_Gols_B_R);
+				$("#FB_Gols_C").val(result[0].FB_Gols_C_R);
+				$("#FB_Gols_D").val(result[0].FB_Gols_D);
+				$("#FB_Gols_D_R").val(result[0].FB_Gols_D_R);
+				$("#FB_IndustrialRelations_A").val(result[0].FB_IndustrialRelations_A);
+				$("#FB_IndustrialRelations_A_R").val(result[0].FB_IndustrialRelations_A_R);
+				$("#FB_IndustrialRelations_B").val(result[0].FB_IndustrialRelations_B);
+				$("#FB_IndustrialRelations_B_R").val(result[0].FB_IndustrialRelations_B_R);
+				$("#FB_IndustrialRelations_C").val(result[0].FB_IndustrialRelations_C);
+				$("#FB_IndustrialRelations_C_R").val(result[0].FB_IndustrialRelations_C_R);
+				$("#FB_IndustrialRelations_D").val(result[0].FB_IndustrialRelations_D);
+				$("#FB_IndustrialRelations_D_R").val(result[0].FB_IndustrialRelations_D_R);
+				$("#FB_IndustrialRelations_E").val(result[0].FB_IndustrialRelations_E);
+				$("#FB_IndustrialRelations_E_R").val(result[0].FB_IndustrialRelations_E_R);
+				$("#FB_ProgressIndicators_A").val(result[0].FB_ProgressIndicators_A);
+				$("#FB_ProgressIndicators_A_R").val(result[0].FB_ProgressIndicators_A_R);
+				$("#FB_ProgressIndicators_B").val(result[0].FB_ProgressIndicators_B);
+				$("#FB_ProgressIndicators_B_R").val(result[0].FB_ProgressIndicators_B_R);
+				$("#FB_ProgressIndicators_C").val(result[0].FB_ProgressIndicators_C);
+				$("#FB_ProgressIndicators_C_R").val(result[0].FB_ProgressIndicators_C_R);
+				$("#FB_ProgressIndicators_D").val(result[0].FB_ProgressIndicators_D);
+				$("#FB_ProgressIndicators_D_R").val(result[0].FB_ProgressIndicators_D_R);
+				$("#FB_ProgressIndicators_E").val(result[0].FB_ProgressIndicators_E);
+				$("#FB_ProgressIndicators_E_R").val(result[0].FB_ProgressIndicators_E_R);
+				$("#FB_ProgressIndicators_F").val(result[0].FB_ProgressIndicators_F);
+				$("#FB_ProgressIndicators_F_R").val(result[0].FB_ProgressIndicators_F_R);
+				$("#FB_ProgressIndicators_G").val(result[0].FB_ProgressIndicators_G);
+				$("#FB_ProgressIndicators_G_R").val(result[0].FB_ProgressIndicators_G_R);
+				$("#FB_ManagerComments").val(result[0].FB_ManagerComments);
+				$("#FB_VolComments").val(result[0].FB_VolComments);
+				$("#FB_GreatAchievement").val(result[0].FB_GreatAchievement);
+				$("#FB_PointsForImprovement").val(result[0].FB_PointsForImprovement);
+				$("#FB_FuturePlans").val(result[0].FB_FuturePlans);
+				$("#FB_AchievableTarget_A").val(result[0].FB_AchievableTarget_A);
+				$("#FB_AchievableTarget_B").val(result[0].FB_AchievableTarget_B);
+				$("#FB_AchievableTarget_C").val(result[0].FB_AchievableTarget_C);
+				$("#FB_ActionAchievingTarget_A").val(result[0].FB_ActionAchievingTarget_A);
+				$("#FB_ActionAchievingTarget_B").val(result[0].FB_ActionAchievingTarget_B);
+				$("#FB_ActionAchievingTarget_C").val(result[0].FB_ActionAchievingTarget_C);
+				$("#FB_ActionAchievingTarget_D").val(result[0].FB_ActionAchievingTarget_D);
+				$("#FB_ActionAchievingTarget_E").val(result[0].FB_ActionAchievingTarget_E);
+			});
+ **/
 		}
 
 		else {

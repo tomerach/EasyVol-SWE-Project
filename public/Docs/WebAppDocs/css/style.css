@@ -86,7 +86,7 @@ td:hover {background-color: #f5f5f5}
 
 
 
-#addVolunteer, #addOrganization, #editVolunteer, #editOrganization, #deleteVolunteer, #deleteOrganization, #printBtn, #findMatch, #fourtyHours, #startedToVol, #markAllBtn, #mailToAllBtn{
+#addVolunteer, #feedbackToVol, #addOrganization, #editVolunteer, #editOrganization, #deleteVolunteer, #deleteOrganization, #printBtn, #findMatch, #fourtyHours, #startedToVol, #markAllBtn, #mailToAllBtn{
 	margin-right: 15px;
     margin-bottom: 25px;
 }

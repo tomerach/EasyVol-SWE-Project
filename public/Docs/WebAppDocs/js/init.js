@@ -536,7 +536,7 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
         $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light green tooltipped" href="#" data-position="top" data-delay="50" data-tooltip="המתנדב התחיל להתנדב" type="submit" name="action" id = "startedToVol"></button>');
         $('#startedToVol').append('<i class="material-icons">play_arrow</i>');
 
-		$("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light green tooltipped" href="#" data-position="top" data-delay="50" data-tooltip="טופס משוב והערכת מתנדב" type="submit" name="action" id = "feedbackToVol"></button>');
+		$("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light grey-blue tooltipped" href="#" data-position="top" data-delay="50" data-tooltip="טופס משוב והערכת מתנדב" type="submit" name="action" id = "feedbackToVol"></button>');
 		$('#feedbackToVol').append('<i class="material-icons">assignment</i>');
     }
 
@@ -549,6 +549,7 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
     $("#markAllBtn").click(function(){
         $("input:checkbox:not(:checked)").prop('checked', true);   
     });
+    
 	$("#feedbackToVol").click(function(){
 		var n = $( "input:checked");
 		var filter = {};
@@ -561,7 +562,7 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
 			$("#feedbackToVolModal").openModal();
 
 		else{
-			var $toastContent = $('<span>יש לסמן מתנדב אחד לפחות</span>');
+			var $toastContent = $('<span>יש לסמן מתנדב אחד בדיוק</span>');
 			Materialize.toast($toastContent, 3000);
 		}
 	});

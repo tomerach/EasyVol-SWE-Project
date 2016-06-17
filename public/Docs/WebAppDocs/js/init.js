@@ -37,9 +37,14 @@
 		  selectYears: 70 // Creates a dropdown of 15 years to control year
 	  });
 
+
+    $('.collapsible').collapsible({
+      accordion : true // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+    });
+
     $('#updateBtnVol').hide();
       $('#updateBtnOrg').hide();
-
+      $("#index-banner").append('<center><img id="officialLogo" src="Docs/WebAppDocs/Pics/Organization official logo transperant.jpg"/></center>');
       $("#mailFromHomePage").click(function(){
             var details = {
                 subject: $("#icon_prefix").val() + " רוצה להתנדב!",
@@ -457,61 +462,23 @@
 	}
 
 
-    function getUser(user, pass){
-
-        if(user === "1" && pass === "1")
-        {
-            return 0;
-        }
-        else if(user === "org" && pass === "org")
-        {
-            return 1;
-        /*for(var i=1; i<=employeeID; i++){
-            if(JSON.parse(localStorage.getItem(i.toString())) === null)
-                continue;
-            if(JSON.parse(localStorage.getItem(i.toString())).userName == user){
-                if(JSON.parse(localStorage.getItem(i.toString())).password == pass){
-                    if(JSON.parse(localStorage.getItem(i.toString())).permissions == "on")
-                        return 0;
-                    return 1;
-                }
-                $('#password').removeClass('valid');
-                $('#password').addClass('invalid');
-                $("#password").val("");
-                $("#password").focus();
-                //alert("Wrong password! please try again.");
-
-                return -1;
-            }
-        }
-
-        $("#username").removeClass('valid');
-        $("#username").addClass('invalid');
-        $("#username").val("");
-        $("#username").focus();
-        //alert("You are not registered. Please contact the Admin or try again.");
-        return -1;
-        */
-
-        }
-    }
-
 function insertButtons(typeOfInsert, heName, typeOfPage){
 
     $("#intro").empty();
 
     if(typeOfPage === "AdminPage"){
         $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light green tooltipped" data-position="top" data-delay="50" data-tooltip="מציאת התאמה" type="submit" name="action" id = "findMatch"></button>');
-        $("#findMatch").append('<i class="material-icons">repeat</i>');       
+        $("#findMatch").append('<i class="material-icons">repeat</i>');    
+        
+        $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light grey tooltipped" data-position="top" data-delay="50" data-tooltip="ראה משובים המשוייכים למתנדב" type="submit" name="action" id = "watchFeedbackBtn"></button>');
+        $("#watchFeedbackBtn").append('<i class="material-icons">assessment</i>');
     }
 
     $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light light-blue lighten-1 tooltipped " href="#" data-position="top" data-delay="50" data-tooltip="שלח מייל ליעדים נבחרים" type="submit" name="action" id = "mailToAllBtn"></button>');
     $("#mailToAllBtn").append('<i class="material-icons">email</i>');
 
-    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light grey tooltipped" data-position="top" data-delay="50" data-tooltip="הדפס" type="submit" name="action" id = "printBtn"></button>');
-	$("#printBtn").append('<i class="material-icons">print</i>');
 
-     $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light amber tooltipped" data-position="top" data-delay="50" data-tooltip="בחר הכל" type="submit" name="action" id = "markAllBtn"></button>');
+    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light amber tooltipped" data-position="top" data-delay="50" data-tooltip="בחר הכל" type="submit" name="action" id = "markAllBtn"></button>');
 	$("#markAllBtn").append('<i class="material-icons">done_all</i>');
         
     $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light orange tooltipped" data-position="top" data-delay="50" data-tooltip="נקה את בחירתך" type="submit" name="action" id = "clearBtn"></button>');
@@ -548,6 +515,23 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
 
     $("#markAllBtn").click(function(){
         $("input:checkbox:not(:checked)").prop('checked', true);   
+    });
+    
+    $("#watchFeedbackBtn").click(function(){
+        var n = $( "input:checked");
+		var filter = {};
+		filter['ids'] = [];
+		Array.from(n).forEach(function(item, index){
+			filter['ids'].push(item.id);
+		});
+
+		if(filter['ids'].length == 1)
+			$("#watchAllFeedbacksModal").openModal();
+
+		else{
+			var $toastContent = $('<span>יש לסמן מתנדב אחד בדיוק</span>');
+			Materialize.toast($toastContent, 3000);
+		}
     });
     
 	$("#feedbackToVol").click(function(){
@@ -1338,10 +1322,6 @@ $("#loginBtn").click(function(event){
 
 	  //TODO: get users from DB
 	function loadPageByUser(user, pass){
-		//var userType = getUser(user, pass);
-
-
-
 
 			$.getJSON('/GetRecord?{?collection?:?Admin?,?filter?:{?username?:?'+user+'?,?password?:?'+pass+'?}}',function(result) {
 				//Not Admin

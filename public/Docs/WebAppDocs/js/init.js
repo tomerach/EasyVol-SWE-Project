@@ -1,3 +1,5 @@
+//TODO: set global with last clicked - check for state in .MatcedRows
+
 (function ($){
 	var g_array;
 	var g_user;
@@ -462,13 +464,6 @@
 	}
 
 
-function openFeedback(numOfFeedback){
-    alert("sdfdsf");
-    $("#watchAllFeedbacksModal").closeModal();
-    $("#feedbackToVolModal").openModal();
-    $("#watchAllFeedbacksModal").empty();
-}
-
 function insertButtons(typeOfInsert, heName, typeOfPage){
 
     $("#intro").empty();
@@ -557,16 +552,24 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
     });
 
 	$("#feedbackToVol").click(function(){
-		var n = $( "input:checked");
-		var filter = {};
-		filter['ids'] = [];
-		Array.from(n).forEach(function(item, index){
-			filter['ids'].push(item.id);
-		});
+		var selected = GetCheckedAvatars();
 
-		if(filter['ids'].length == 1)
+		if(selected.length == 1) {
 			$("#feedbackToVolModal").openModal();
 
+			$.getJSON('/GetRecord?{?collection?:?volunteers?,?filter?:{?_id?:?' + selected[0] + '?}}', function (result) {
+				$("label[for=FB_Personal_Name]").attr('class', 'active');
+				$("#FB_Personal_Name").attr('disabled', 'disabled');//result[0].firstName);
+				$("#FB_Personal_Name").attr('value',result[0].firstName + " " + result[0].lastName);
+				$("label[for=FB_Personal_FormDate]").attr('class', 'active');
+				$("#FB_Personal_FormDate").attr('disabled', 'disabled');//result[0].firstName);
+				$("#FB_Personal_FormDate").val((new Date()).toDateString());
+				$("label[for=FB_Personal_Org]").attr('class', 'active');
+				$("#FB_Personal_Org").attr('disabled', 'disabled');//result[0].firstName);
+				$("#FB_Personal_Org").val(g_user.organizationName);
+
+			});
+		}
 
 		else{
 			var $toastContent = $('<span>יש לסמן מתנדב אחד בדיוק</span>');
@@ -695,6 +698,65 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
             var $toastContent = $('<span>יש לסמן מתנדב אחד לפחות</span>');
             Materialize.toast($toastContent, 3000);
         }
+/*
+		$('#feedbackToVol').click(function(){
+			//$("#feedbackToVol label").attr('class', 'active');
+			var n = $("input:checked");
+			var selectedIds = [];
+			Array.from(n).forEach(function(item, index){
+				selectedIds.push(item.id);
+			});
+			$("#fName").attr('_id', filter['ids'][0]);
+			$("#FB_Personal_Name").val(result[0].firstName);
+			$("#FB_Personal_Time").val(result[0].FB_Personal_Time);
+			$("#FB_Personal_Job").val(result[0].FB_Personal_Job);
+			$("#FB_Personal_FormDate").val(result[0].FB_Personal_FormDate);
+			$("#FB_Gols_A").val(result[0].FB_Gols_A);
+			$("#FB_Gols_A_R").val(result[0].FB_Gols_A_R);
+			$("#FB_Gols_B").val(result[0].FB_Gols_B);
+			$("#FB_Gols_B_R").val(result[0].FB_Gols_B_R);
+			$("#FB_Gols_C").val(result[0].FB_Gols_C_R);
+			$("#FB_Gols_D").val(result[0].FB_Gols_D);
+			$("#FB_Gols_D_R").val(result[0].FB_Gols_D_R);
+			$("#FB_IndustrialRelations_A").val(result[0].FB_IndustrialRelations_A);
+			$("#FB_IndustrialRelations_A_R").val(result[0].FB_IndustrialRelations_A_R);
+			$("#FB_IndustrialRelations_B").val(result[0].FB_IndustrialRelations_B);
+			$("#FB_IndustrialRelations_B_R").val(result[0].FB_IndustrialRelations_B_R);
+			$("#FB_IndustrialRelations_C").val(result[0].FB_IndustrialRelations_C);
+			$("#FB_IndustrialRelations_C_R").val(result[0].FB_IndustrialRelations_C_R);
+			$("#FB_IndustrialRelations_D").val(result[0].FB_IndustrialRelations_D);
+			$("#FB_IndustrialRelations_D_R").val(result[0].FB_IndustrialRelations_D_R);
+			$("#FB_IndustrialRelations_E").val(result[0].FB_IndustrialRelations_E);
+			$("#FB_IndustrialRelations_E_R").val(result[0].FB_IndustrialRelations_E_R);
+			$("#FB_ProgressIndicators_A").val(result[0].FB_ProgressIndicators_A);
+			$("#FB_ProgressIndicators_A_R").val(result[0].FB_ProgressIndicators_A_R);
+			$("#FB_ProgressIndicators_B").val(result[0].FB_ProgressIndicators_B);
+			$("#FB_ProgressIndicators_B_R").val(result[0].FB_ProgressIndicators_B_R);
+			$("#FB_ProgressIndicators_C").val(result[0].FB_ProgressIndicators_C);
+			$("#FB_ProgressIndicators_C_R").val(result[0].FB_ProgressIndicators_C_R);
+			$("#FB_ProgressIndicators_D").val(result[0].FB_ProgressIndicators_D);
+			$("#FB_ProgressIndicators_D_R").val(result[0].FB_ProgressIndicators_D_R);
+			$("#FB_ProgressIndicators_E").val(result[0].FB_ProgressIndicators_E);
+			$("#FB_ProgressIndicators_E_R").val(result[0].FB_ProgressIndicators_E_R);
+			$("#FB_ProgressIndicators_F").val(result[0].FB_ProgressIndicators_F);
+			$("#FB_ProgressIndicators_F_R").val(result[0].FB_ProgressIndicators_F_R);
+			$("#FB_ProgressIndicators_G").val(result[0].FB_ProgressIndicators_G);
+			$("#FB_ProgressIndicators_G_R").val(result[0].FB_ProgressIndicators_G_R);
+			$("#FB_ManagerComments").val(result[0].FB_ManagerComments);
+			$("#FB_VolComments").val(result[0].FB_VolComments);
+			$("#FB_GreatAchievement").val(result[0].FB_GreatAchievement);
+			$("#FB_PointsForImprovement").val(result[0].FB_PointsForImprovement);
+			$("#FB_FuturePlans").val(result[0].FB_FuturePlans);
+			$("#FB_AchievableTarget_A").val(result[0].FB_AchievableTarget_A);
+			$("#FB_AchievableTarget_B").val(result[0].FB_AchievableTarget_B);
+			$("#FB_AchievableTarget_C").val(result[0].FB_AchievableTarget_C);
+			$("#FB_ActionAchievingTarget_A").val(result[0].FB_ActionAchievingTarget_A);
+			$("#FB_ActionAchievingTarget_B").val(result[0].FB_ActionAchievingTarget_B);
+			$("#FB_ActionAchievingTarget_C").val(result[0].FB_ActionAchievingTarget_C);
+			$("#FB_ActionAchievingTarget_D").val(result[0].FB_ActionAchievingTarget_D);
+			$("#FB_ActionAchievingTarget_E").val(result[0].FB_ActionAchievingTarget_E);
+		});
+*/
 
     });
 
@@ -883,61 +945,6 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
 				$("#StudentVoluntaryExtra").val(result[0].StudentVoluntaryExtra);
 				$("#StudentHomeTwon").val(result[0].StudentHomeTwon);
 			});
-/**
-			$.getJSON('/GetRecord?{?collection?:?volunteers?,?filter?:{?_id?:?' + filter['ids'][0] + '?}}', function (result) {
-				console.log(result);
-				$("#feedbackToVol label").attr('class', 'active');
-				$("#fName").attr('_id', filter['ids'][0]);
-				$("#FB_Personal_Name").val(result[0].firstName);
-				$("#FB_Personal_Time").val(result[0].FB_Personal_Time);
-				$("#FB_Personal_Job").val(result[0].FB_Personal_Job);
-				$("#FB_Personal_FormDate").val(result[0].FB_Personal_FormDate);
-				$("#FB_Gols_A").val(result[0].FB_Gols_A);
-				$("#FB_Gols_A_R").val(result[0].FB_Gols_A_R);
-				$("#FB_Gols_B").val(result[0].FB_Gols_B);
-				$("#FB_Gols_B_R").val(result[0].FB_Gols_B_R);
-				$("#FB_Gols_C").val(result[0].FB_Gols_C_R);
-				$("#FB_Gols_D").val(result[0].FB_Gols_D);
-				$("#FB_Gols_D_R").val(result[0].FB_Gols_D_R);
-				$("#FB_IndustrialRelations_A").val(result[0].FB_IndustrialRelations_A);
-				$("#FB_IndustrialRelations_A_R").val(result[0].FB_IndustrialRelations_A_R);
-				$("#FB_IndustrialRelations_B").val(result[0].FB_IndustrialRelations_B);
-				$("#FB_IndustrialRelations_B_R").val(result[0].FB_IndustrialRelations_B_R);
-				$("#FB_IndustrialRelations_C").val(result[0].FB_IndustrialRelations_C);
-				$("#FB_IndustrialRelations_C_R").val(result[0].FB_IndustrialRelations_C_R);
-				$("#FB_IndustrialRelations_D").val(result[0].FB_IndustrialRelations_D);
-				$("#FB_IndustrialRelations_D_R").val(result[0].FB_IndustrialRelations_D_R);
-				$("#FB_IndustrialRelations_E").val(result[0].FB_IndustrialRelations_E);
-				$("#FB_IndustrialRelations_E_R").val(result[0].FB_IndustrialRelations_E_R);
-				$("#FB_ProgressIndicators_A").val(result[0].FB_ProgressIndicators_A);
-				$("#FB_ProgressIndicators_A_R").val(result[0].FB_ProgressIndicators_A_R);
-				$("#FB_ProgressIndicators_B").val(result[0].FB_ProgressIndicators_B);
-				$("#FB_ProgressIndicators_B_R").val(result[0].FB_ProgressIndicators_B_R);
-				$("#FB_ProgressIndicators_C").val(result[0].FB_ProgressIndicators_C);
-				$("#FB_ProgressIndicators_C_R").val(result[0].FB_ProgressIndicators_C_R);
-				$("#FB_ProgressIndicators_D").val(result[0].FB_ProgressIndicators_D);
-				$("#FB_ProgressIndicators_D_R").val(result[0].FB_ProgressIndicators_D_R);
-				$("#FB_ProgressIndicators_E").val(result[0].FB_ProgressIndicators_E);
-				$("#FB_ProgressIndicators_E_R").val(result[0].FB_ProgressIndicators_E_R);
-				$("#FB_ProgressIndicators_F").val(result[0].FB_ProgressIndicators_F);
-				$("#FB_ProgressIndicators_F_R").val(result[0].FB_ProgressIndicators_F_R);
-				$("#FB_ProgressIndicators_G").val(result[0].FB_ProgressIndicators_G);
-				$("#FB_ProgressIndicators_G_R").val(result[0].FB_ProgressIndicators_G_R);
-				$("#FB_ManagerComments").val(result[0].FB_ManagerComments);
-				$("#FB_VolComments").val(result[0].FB_VolComments);
-				$("#FB_GreatAchievement").val(result[0].FB_GreatAchievement);
-				$("#FB_PointsForImprovement").val(result[0].FB_PointsForImprovement);
-				$("#FB_FuturePlans").val(result[0].FB_FuturePlans);
-				$("#FB_AchievableTarget_A").val(result[0].FB_AchievableTarget_A);
-				$("#FB_AchievableTarget_B").val(result[0].FB_AchievableTarget_B);
-				$("#FB_AchievableTarget_C").val(result[0].FB_AchievableTarget_C);
-				$("#FB_ActionAchievingTarget_A").val(result[0].FB_ActionAchievingTarget_A);
-				$("#FB_ActionAchievingTarget_B").val(result[0].FB_ActionAchievingTarget_B);
-				$("#FB_ActionAchievingTarget_C").val(result[0].FB_ActionAchievingTarget_C);
-				$("#FB_ActionAchievingTarget_D").val(result[0].FB_ActionAchievingTarget_D);
-				$("#FB_ActionAchievingTarget_E").val(result[0].FB_ActionAchievingTarget_E);
-			});
- **/
 		}
 
 		else {

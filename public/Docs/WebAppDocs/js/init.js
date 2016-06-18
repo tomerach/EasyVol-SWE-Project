@@ -520,25 +520,79 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
     });
     
     $("#watchFeedbackBtn").click(function(){
-        var n = $( "input:checked");
-		var filter = {};
-		filter['ids'] = [];
-		Array.from(n).forEach(function(item, index){
-			filter['ids'].push(item.id);
-		});
 
-		if(filter['ids'].length == 1){
-            
-            var feedbacks = [5];
-            for(var i=0; i<5; i++ ){
-                $("#FeedbackList").append('<li id="feed' +i+ '"><div class="collapsible-header"><i class="material-icons">filter_drama</i>משוב מספר ' + (i+1)); 
-                $('#feed' +i).click(function(){
-                    $("#watchAllFeedbacksModal").closeModal();
-                    $("#feedbackToVolModal").openModal();
-                    $("#watchAllFeedbacksModal").empty();
-                });
-            }
-          
+        var selected = GetCheckedAvatars();
+        
+		if(selected.length == 1){
+                       
+            $.getJSON('/GetRecord?{?collection?:?feedbacks?,?filter?:{?Volunteer_ID?:?'+selected[0]+'?}}', function (result) {
+
+                for(var i=0; i<result.length; i++ ){
+                   $("#feedbackList").append('<li id="feed' +result[i]._id+ '" class="collection-item">' + result[i].Organization);
+
+                    $('#feed' + result[i]._id).click(function(){
+                        $.getJSON('/GetRecord?{?collection?:?feedbacks?,?filter?:{?_id?:?'+$(this).attr('id').substring(4)+'?}}', function (result) {
+                            $("#watchAllFeedbacksModal").closeModal();
+                            $("#feedbackList").html('');
+
+                            $("#FB_Personal_Name").val(result[0].PersonalName);
+                            $("#FB_Personal_Time").val(result[0].PersonalTime);
+                            $("#FB_Personal_Org").val(result[0].PersonalOrg);
+                            $("#FB_Personal_FormDate").val(result[0].PersonalFormDate);
+                            $("#FB_Gols_A").val(result[0].GolsA);
+                            $("#FB_Gols_A_R").val(result[0].GolsAR);
+                            $("#FB_Gols_B").val(result[0].GolsB);
+                            $("#FB_Gols_B_R").val(result[0].GolsBR);
+                            $("#FB_Gols_C").val(result[0].GolsC);
+                            $("#FB_Gols_C_R").val(result[0].GolsCR);
+                            $("#FB_Gols_D").val(result[0].GolsD);
+                            $("#FB_Gols_D_R").val(result[0].GolsDR);
+                            $("#FB_IndustrialRelations_A").val(result[0].IndustrialRelationsA);
+                            $("#FB_IndustrialRelations_A_R").val(result[0].IndustrialRelationsAR);
+                            $("#FB_IndustrialRelations_B").val(result[0].IndustrialRelationsB);
+                            $("#FB_IndustrialRelations_B_R").val(result[0].IndustrialRelationsBR);
+                            $("#FB_IndustrialRelations_C").val(result[0].IndustrialRelationsC);
+                            $("#FB_IndustrialRelations_C_R").val(result[0].IndustrialRelationsCR);
+                            $("#FB_IndustrialRelations_D").val(result[0].IndustrialRelationsD);
+                            $("#FB_IndustrialRelations_D_R").val(result[0].IndustrialRelationsDR);
+                            $("#FB_IndustrialRelations_E").val(result[0].IndustrialRelationsE);
+                            $("#FB_IndustrialRelations_E_R").val(result[0].IndustrialRelationsER);
+                            $("#FB_ProgressIndicators_A").val(result[0].ProgressIndicatorsA);
+                            $("#FB_ProgressIndicators_A_R").val(result[0].ProgressIndicatorsAR);
+                            $("#FB_ProgressIndicators_B").val(result[0].ProgressIndicatorsB);
+                            $("#FB_ProgressIndicators_B_R").val(result[0].ProgressIndicatorsBR);
+                            $("#FB_ProgressIndicators_C").val(result[0].ProgressIndicatorsC);
+                            $("#FB_ProgressIndicators_C_R").val(result[0].ProgressIndicatorsCR);
+                            $("#FB_ProgressIndicators_D").val(result[0].ProgressIndicatorsD);
+                            $("#FB_ProgressIndicators_D_R").val(result[0].ProgressIndicatorsDR);
+                            $("#FB_ProgressIndicators_E").val(result[0].ProgressIndicatorsE);
+                            $("#FB_ProgressIndicators_E_R").val(result[0].ProgressIndicatorsER);
+                            $("#FB_ProgressIndicators_F").val(result[0].ProgressIndicatorsF);
+                            $("#FB_ProgressIndicators_F_R").val(result[0].ProgressIndicatorsFR);
+                            $("#FB_ProgressIndicators_G").val(result[0].ProgressIndicatorsG);
+                            $("#FB_ProgressIndicators_G_R").val(result[0].ProgressIndicatorsGR);
+                            $("#FB_ManagerComments").val(result[0].ManagerComments);
+                            $("#FB_VolComments").val(result[0].VolComments);
+                            $("#FB_GreatAchievement").val(result[0].GreatAchievement);
+                            $("#FB_PointsForImprovement").val(result[0].PointsForImprovement);
+                            $("#FB_FuturePlans").val(result[0].FuturePlans);
+                            $("#FB_AchievableTarget_A").val(result[0].AchievableTargetA);
+                            $("#FB_AchievableTarget_B").val(result[0].AchievableTargetB);
+                            $("#FB_AchievableTarget_C").val(result[0].AchievableTargetC);
+                            $("#FB_ActionAchievingTarget_A").val(result[0].ActionAchievingTargetA);
+                            $("#FB_ActionAchievingTarget_B").val(result[0].ActionAchievingTargetB);
+                            $("#FB_ActionAchievingTarget_C").val(result[0].ActionAchievingTargetC);
+                            $("#FB_ActionAchievingTarget_D").val(result[0].ActionAchievingTargetD);
+                            $("#FB_ActionAchievingTarget_E").val(result[0].ActionAchievingTargetE);
+
+                            $("#feedbackToVolModal label").attr('class', 'active');
+                            $("#feedbackToVolModal label").attr('disabled', 'disabled');
+                            $("#feedbackSubmitBtnVol").hide();
+                            $("#feedbackToVolModal").openModal();
+                        });
+                    });
+                }
+            });
                 $("#watchAllFeedbacksModal").openModal();
             
         }
@@ -548,13 +602,13 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
 			Materialize.toast($toastContent, 3000);
 		}
             
-    
     });
 
 	$("#feedbackToVol").click(function(){
 		var selected = GetCheckedAvatars();
 
 		if(selected.length == 1) {
+            $("#feedbackSubmitBtnVol").show();
 			$("#feedbackToVolModal").openModal();
 
 			$.getJSON('/GetRecord?{?collection?:?volunteers?,?filter?:{?_id?:?' + selected[0] + '?}}', function (result) {
@@ -575,6 +629,74 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
 			var $toastContent = $('<span>יש לסמן מתנדב אחד בדיוק</span>');
 			Materialize.toast($toastContent, 3000);
 		}
+        
+        $("#feedbackSubmitBtnVol").click(function(){
+            console.log(selected[0]);
+            var feedback = {
+                
+                Volunteer_ID: selected[0],
+                Organization: g_user.organizationName,
+                PersonalName: $("#FB_Personal_Name").val(),
+                PersonalTime: $("#FB_Personal_Time").val(),
+                PersonalOrg: $("#FB_Personal_Org").val(),
+                PersonalFormDate: $("#FB_Personal_FormDate").val(),
+                GolsA: $("#FB_Gols_A").val(),
+                GolsAR: $("#FB_Gols_A_R").val(),
+                GolsB: $("#FB_Gols_B").val(),
+                GolsBR: $("#FB_Gols_B_R").val(),
+                GolsC: $("#FB_Gols_C").val(),
+                GolsCR: $("#FB_Gols_C_R").val(),
+                GolsD: $("#FB_Gols_D").val(),
+                GolsDR: $("#FB_Gols_D_R").val(),
+                IndustrialRelationsA: $("#FB_IndustrialRelations_A").val(),
+                IndustrialRelationsAR: $("#FB_IndustrialRelations_A_R").val(),
+                IndustrialRelationsB: $("#FB_IndustrialRelations_B").val(),
+                IndustrialRelationsBR: $("#FB_IndustrialRelations_B_R").val(),
+                IndustrialRelationsC: $("#FB_IndustrialRelations_C").val(),
+                IndustrialRelationsCR: $("#FB_IndustrialRelations_C_R").val(),
+                IndustrialRelationsD: $("#FB_IndustrialRelations_D").val(),
+                IndustrialRelationsDR: $("#FB_IndustrialRelations_D_R").val(),
+                IndustrialRelationsE: $("#FB_IndustrialRelations_E").val(),
+                IndustrialRelationsER: $("#FB_IndustrialRelations_E_R").val(),
+                ProgressIndicatorsA: $("#FB_ProgressIndicators_A").val(),
+                ProgressIndicatorsAR: $("#FB_ProgressIndicators_A_R").val(),
+                ProgressIndicatorsB: $("#FB_ProgressIndicators_B").val(),
+                ProgressIndicatorsBR: $("#FB_ProgressIndicators_B_R").val(),
+                ProgressIndicatorsC: $("#FB_ProgressIndicators_C").val(),
+                ProgressIndicatorsCR: $("#FB_ProgressIndicators_C_R").val(),
+                ProgressIndicatorsD: $("#FB_ProgressIndicators_D").val(),
+                ProgressIndicatorsDR: $("#FB_ProgressIndicators_D_R").val(),
+                ProgressIndicatorsE: $("#FB_ProgressIndicators_E").val(),
+                ProgressIndicatorsER: $("#FB_ProgressIndicators_E_R").val(),
+                ProgressIndicatorsF: $("#FB_ProgressIndicators_F").val(),
+                ProgressIndicatorsFR: $("#FB_ProgressIndicators_F_R").val(),
+                ProgressIndicatorsG: $("#FB_ProgressIndicators_G").val(),
+                ProgressIndicatorsGR: $("#FB_ProgressIndicators_G_R").val(),
+                ManagerComments: $("#FB_ManagerComments").val(),
+                VolComments: $("#FB_VolComments").val(),
+                GreatAchievement: $("#FB_GreatAchievement").val(),
+                PointsForImprovement: $("#FB_PointsForImprovement").val(),
+                FuturePlans: $("#FB_FuturePlans").val(),
+                AchievableTargetA: $("#FB_AchievableTarget_A").val(),
+                AchievableTargetB: $("#FB_AchievableTarget_B").val(),
+                AchievableTargetC: $("#FB_AchievableTarget_C").val(),
+                ActionAchievingTargetA: $("#FB_ActionAchievingTarget_A").val(),
+                ActionAchievingTargetB: $("#FB_ActionAchievingTarget_B").val(),
+                ActionAchievingTargetC: $("#FB_ActionAchievingTarget_C").val(),
+                ActionAchievingTargetD: $("#FB_ActionAchievingTarget_D").val(),
+                ActionAchievingTargetE: $("#FB_ActionAchievingTarget_E").val()
+            };
+            
+            $.post("/AddRecord?feedbacks",feedback);
+            
+            var $toastContent = $('<span>הרשומה עודכנה</span>');
+            Materialize.toast($toastContent, 3000);
+
+            setTimeout(function(){
+            window.location.reload();
+            }, 1000);
+        });
+        
 	});
 
     $("#mailToAllBtn").click(function(){
@@ -698,65 +820,7 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
             var $toastContent = $('<span>יש לסמן מתנדב אחד לפחות</span>');
             Materialize.toast($toastContent, 3000);
         }
-/*
-		$('#feedbackToVol').click(function(){
-			//$("#feedbackToVol label").attr('class', 'active');
-			var n = $("input:checked");
-			var selectedIds = [];
-			Array.from(n).forEach(function(item, index){
-				selectedIds.push(item.id);
-			});
-			$("#fName").attr('_id', filter['ids'][0]);
-			$("#FB_Personal_Name").val(result[0].firstName);
-			$("#FB_Personal_Time").val(result[0].FB_Personal_Time);
-			$("#FB_Personal_Job").val(result[0].FB_Personal_Job);
-			$("#FB_Personal_FormDate").val(result[0].FB_Personal_FormDate);
-			$("#FB_Gols_A").val(result[0].FB_Gols_A);
-			$("#FB_Gols_A_R").val(result[0].FB_Gols_A_R);
-			$("#FB_Gols_B").val(result[0].FB_Gols_B);
-			$("#FB_Gols_B_R").val(result[0].FB_Gols_B_R);
-			$("#FB_Gols_C").val(result[0].FB_Gols_C_R);
-			$("#FB_Gols_D").val(result[0].FB_Gols_D);
-			$("#FB_Gols_D_R").val(result[0].FB_Gols_D_R);
-			$("#FB_IndustrialRelations_A").val(result[0].FB_IndustrialRelations_A);
-			$("#FB_IndustrialRelations_A_R").val(result[0].FB_IndustrialRelations_A_R);
-			$("#FB_IndustrialRelations_B").val(result[0].FB_IndustrialRelations_B);
-			$("#FB_IndustrialRelations_B_R").val(result[0].FB_IndustrialRelations_B_R);
-			$("#FB_IndustrialRelations_C").val(result[0].FB_IndustrialRelations_C);
-			$("#FB_IndustrialRelations_C_R").val(result[0].FB_IndustrialRelations_C_R);
-			$("#FB_IndustrialRelations_D").val(result[0].FB_IndustrialRelations_D);
-			$("#FB_IndustrialRelations_D_R").val(result[0].FB_IndustrialRelations_D_R);
-			$("#FB_IndustrialRelations_E").val(result[0].FB_IndustrialRelations_E);
-			$("#FB_IndustrialRelations_E_R").val(result[0].FB_IndustrialRelations_E_R);
-			$("#FB_ProgressIndicators_A").val(result[0].FB_ProgressIndicators_A);
-			$("#FB_ProgressIndicators_A_R").val(result[0].FB_ProgressIndicators_A_R);
-			$("#FB_ProgressIndicators_B").val(result[0].FB_ProgressIndicators_B);
-			$("#FB_ProgressIndicators_B_R").val(result[0].FB_ProgressIndicators_B_R);
-			$("#FB_ProgressIndicators_C").val(result[0].FB_ProgressIndicators_C);
-			$("#FB_ProgressIndicators_C_R").val(result[0].FB_ProgressIndicators_C_R);
-			$("#FB_ProgressIndicators_D").val(result[0].FB_ProgressIndicators_D);
-			$("#FB_ProgressIndicators_D_R").val(result[0].FB_ProgressIndicators_D_R);
-			$("#FB_ProgressIndicators_E").val(result[0].FB_ProgressIndicators_E);
-			$("#FB_ProgressIndicators_E_R").val(result[0].FB_ProgressIndicators_E_R);
-			$("#FB_ProgressIndicators_F").val(result[0].FB_ProgressIndicators_F);
-			$("#FB_ProgressIndicators_F_R").val(result[0].FB_ProgressIndicators_F_R);
-			$("#FB_ProgressIndicators_G").val(result[0].FB_ProgressIndicators_G);
-			$("#FB_ProgressIndicators_G_R").val(result[0].FB_ProgressIndicators_G_R);
-			$("#FB_ManagerComments").val(result[0].FB_ManagerComments);
-			$("#FB_VolComments").val(result[0].FB_VolComments);
-			$("#FB_GreatAchievement").val(result[0].FB_GreatAchievement);
-			$("#FB_PointsForImprovement").val(result[0].FB_PointsForImprovement);
-			$("#FB_FuturePlans").val(result[0].FB_FuturePlans);
-			$("#FB_AchievableTarget_A").val(result[0].FB_AchievableTarget_A);
-			$("#FB_AchievableTarget_B").val(result[0].FB_AchievableTarget_B);
-			$("#FB_AchievableTarget_C").val(result[0].FB_AchievableTarget_C);
-			$("#FB_ActionAchievingTarget_A").val(result[0].FB_ActionAchievingTarget_A);
-			$("#FB_ActionAchievingTarget_B").val(result[0].FB_ActionAchievingTarget_B);
-			$("#FB_ActionAchievingTarget_C").val(result[0].FB_ActionAchievingTarget_C);
-			$("#FB_ActionAchievingTarget_D").val(result[0].FB_ActionAchievingTarget_D);
-			$("#FB_ActionAchievingTarget_E").val(result[0].FB_ActionAchievingTarget_E);
-		});
-*/
+
 
     });
 

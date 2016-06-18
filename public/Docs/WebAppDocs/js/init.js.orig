@@ -1,5 +1,9 @@
+//TODO: set global with last clicked - check for state in .MatcedRows
+
 (function ($){
 	var g_array;
+	var g_user;
+	var g_volunteer;
 
   $(function(){
     $('.button-collapse').sideNav();
@@ -9,17 +13,53 @@
       $('.collapsible').collapsible({
       accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
     });
+	  $('#FB_IndustrialRelations_A').val('יחסים עם מתנדבים אחרים');
+	  $('#FB_IndustrialRelations_B').val('יחסים עם הצוות');
+	  $('#FB_IndustrialRelations_C').val('יחסים עם המוטבים/לקוחות');
+	  $('#FB_ProgressIndicators_A').val('עמידה בלוח זמנים וסיום משימות בזמן');
+	  $('#FB_ProgressIndicators_B').val('יוזמה');
+	  $('#FB_ProgressIndicators_C').val('גמישות');
+	  $('#FB_ManagerComments').val('');
+	  $('#FB_ManagerComments').trigger('autoresize');
+	  $('#FB_VolComments').val('');
+	  $('#FB_VolComments').trigger('autoresize');
+	  $('#FB_GreatAchievement').val('');
+	  $('#FB_GreatAchievement').trigger('autoresize');
+	  $('#FB_PointsForImprovement').val('');
+	  $('#FB_PointsForImprovement').trigger('autoresize');
+	  $('#FB_FuturePlans').val('');
+	  $('#FB_FuturePlans').trigger('autoresize');
+
+
 
 	  $('.datepicker').pickadate({
 		  selectMonths: true, // Creates a dropdown to control month
 		  min: [1940,1,01],
-		  max: [2006,7,14],
-		  selectYears: 15 // Creates a dropdown of 15 years to control year
+		  max: [2020,7,14],
+		  selectYears: 70 // Creates a dropdown of 15 years to control year
 	  });
+
+
+    $('.collapsible').collapsible({
+      accordion : true // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+    });
 
     $('#updateBtnVol').hide();
       $('#updateBtnOrg').hide();
+      $("#index-banner").append('<center><img id="officialLogo" src="Docs/WebAppDocs/Pics/Organization official logo transperant.jpg"/></center>');
+      $("#mailFromHomePage").click(function(){
+            var details = {
+                subject: $("#icon_prefix").val() + " רוצה להתנדב!",
+                mailContent: $("#icon_prefix2").val() + "\n\n\n" + $("#icon_email").val(),
+                emailAdress: '<easyvol.mevaseret@gmail.com>',
+            };
+            $.post('/SendMail', details);  
 
+            var $toastContent = $('<span>המייל נשלח בהצלחה</span>');
+            Materialize.toast($toastContent, 3000);
+            $("#mailToAllModal").closeModal();
+      });
+      
 	  $("#submitBtnVol").click(function(){
 
 		  //TODO: Add validations before submitting details
@@ -163,7 +203,7 @@
 	var cookie = getCookie();
 	  if(cookie)
 	  {
-		  //alert("Got cookie!!: ["+cookie+"]");
+		  //alert("Got cookie!!: ["+cookie.user+","+cookie.password+"]");
 		  loadPageByUser(cookie.user, cookie.password);
 	  }
 
@@ -424,43 +464,12 @@
 	}
 
 
-    function getUser(user, pass){
-        if(user === "1" && pass === "1")
-        {
-            return 0;
-        }
-        else if(user === "org" && pass === "org")
-        {
-            return 1;
-        /*for(var i=1; i<=employeeID; i++){
-            if(JSON.parse(localStorage.getItem(i.toString())) === null)
-                continue;
-            if(JSON.parse(localStorage.getItem(i.toString())).userName == user){
-                if(JSON.parse(localStorage.getItem(i.toString())).password == pass){
-                    if(JSON.parse(localStorage.getItem(i.toString())).permissions == "on")
-                        return 0;
-                    return 1;
-                }
-                $('#password').removeClass('valid');
-                $('#password').addClass('invalid');
-                $("#password").val("");
-                $("#password").focus();
-                //alert("Wrong password! please try again.");
-
-                return -1;
-            }
-        }
-
-        $("#username").removeClass('valid');
-        $("#username").addClass('invalid');
-        $("#username").val("");
-        $("#username").focus();
-        //alert("You are not registered. Please contact the Admin or try again.");
-        return -1;
-        */
-
-        }
-    }
+function openFeedback(numOfFeedback){
+    alert("sdfdsf");
+    $("#watchAllFeedbacksModal").closeModal();
+    $("#feedbackToVolModal").openModal();
+    $("#watchAllFeedbacksModal").empty();
+}
 
 function insertButtons(typeOfInsert, heName, typeOfPage){
 
@@ -468,43 +477,31 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
 
     if(typeOfPage === "AdminPage"){
         $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light green tooltipped" data-position="top" data-delay="50" data-tooltip="מציאת התאמה" type="submit" name="action" id = "findMatch"></button>');
-        $("#findMatch").append('<i class="material-icons">repeat</i>');       
-        
-        $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light light-blue lighten-1 tooltipped " href="#" data-position="top" data-delay="50" data-tooltip="שלח מייל ליעדים נבחרים" type="submit" name="action" id = "mailToAllBtn"></button>');
-        $("#mailToAllBtn").append('<i class="material-icons">email</i>');
+        $("#findMatch").append('<i class="material-icons">repeat</i>');
+
+        $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light grey tooltipped" data-position="top" data-delay="50" data-tooltip="ראה משובים המשוייכים למתנדב" type="submit" name="action" id = "watchFeedbackBtn"></button>');
+        $("#watchFeedbackBtn").append('<i class="material-icons">assessment</i>');
     }
 
-    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light grey tooltipped" data-position="top" data-delay="50" data-tooltip="הדפס" type="submit" name="action" id = "printBtn"></button>');
-	$("#printBtn").append('<i class="material-icons">print</i>');
+    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light light-blue lighten-1 tooltipped " href="#" data-position="top" data-delay="50" data-tooltip="שלח מייל ליעדים נבחרים" type="submit" name="action" id = "mailToAllBtn"></button>');
+    $("#mailToAllBtn").append('<i class="material-icons">email</i>');
 
-<<<<<<< HEAD
-     $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light orange tooltipped" data-position="top" data-delay="50" data-tooltip="בחר הכל" type="submit" name="action" id = "markAllBtn"></button>');
+
+    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light amber tooltipped" data-position="top" data-delay="50" data-tooltip="בחר הכל" type="submit" name="action" id = "markAllBtn"></button>');
 	$("#markAllBtn").append('<i class="material-icons">done_all</i>');
-    
+        
     $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light orange tooltipped" data-position="top" data-delay="50" data-tooltip="נקה את בחירתך" type="submit" name="action" id = "clearBtn"></button>');
 	$("#clearBtn").append('<i class="material-icons">clear_all</i>');
-   
 
-    if(typeOfPage === "AdminPage"){
-
-        $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light red tooltipped modal-trigger" href="#modal3" data-position="top" data-delay="50" data-tooltip=" מחק ' +heName+ '" type="submit" name="action" id = "delete' +typeOfInsert+ '"></button>');
-
-    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light orange tooltipped" data-position="top" data-delay="50" data-tooltip="נקה את בחירתך" type="submit" name="action" id = "clearBtn"></button>');
-	$("#clearBtn").append('<i class="material-icons">clear_all</i>');
-=======
-    $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light orange tooltipped" data-position="top" data-delay="50" data-tooltip="נקה את בחירתך" type="submit" name="action" id = "clearBtn"></button>');
-	$("#clearBtn").append('<i class="material-icons">clear_all</i>');
->>>>>>> 391d27c4e75d2985fb93ca801dd922b836da55f0
 
     if(typeOfPage === "AdminPage"){
         $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light red tooltipped modal-trigger3" href="#modal3" data-position="top" data-delay="50" data-tooltip=" מחק ' +heName+ '" type="submit" name="action" id = "delete' +typeOfInsert+ '"></button>');
->>>>>>> 391d27c4e75d2985fb93ca801dd922b836da55f0
         $('#delete' +typeOfInsert).append('<i class="material-icons">delete</i>');
 
-        $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light light-blue lighten-1 tooltipped" href="#" data-position="top" data-delay="50" data-tooltip="ערוך ' +heName+ '" type="submit" name="action" id = "edit' +typeOfInsert+ '"></button>');
+        $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light blue-grey lighten-1 tooltipped" href="#" data-position="top" data-delay="50" data-tooltip="ערוך ' +heName+ '" type="submit" name="action" id = "edit' +typeOfInsert+ '"></button>');
         $('#edit' +typeOfInsert).append('<i class="material-icons">mode_edit</i>');
 
-        $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light lime tooltipped modal-trigger" href="#'+typeOfInsert+'QuestModal"'+ 'data-position="top" data-delay="50" data-tooltip="הוסף ' +heName+ '" type="submit" name="action" id = "add' +typeOfInsert+ '"></button>');
+        $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light teal tooltipped modal-trigger" href="#'+typeOfInsert+'QuestModal"'+ 'data-position="top" data-delay="50" data-tooltip="הוסף ' +heName+ '" type="submit" name="action" id = "add' +typeOfInsert+ '"></button>');
         $('#add' +typeOfInsert).append('<i class="material-icons">add</i>');
     }
 
@@ -512,48 +509,86 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
         $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light red tooltipped" href="#" data-position="top" data-delay="50" data-tooltip=" המתנדב השלים 40 שעות" type="submit" name="action" id = "fourtyHours"></button>');
         $('#fourtyHours').append('<i class="material-icons">done</i>');
 
-        $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light light-blue lighten-1 tooltipped" href="#" data-position="top" data-delay="50" data-tooltip="המתנדב התחיל להתנדב" type="submit" name="action" id = "startedToVol"></button>');
+        $("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light green tooltipped" href="#" data-position="top" data-delay="50" data-tooltip="המתנדב התחיל להתנדב" type="submit" name="action" id = "startedToVol"></button>');
         $('#startedToVol').append('<i class="material-icons">play_arrow</i>');
 
+		$("#intro").append('<button class="usrBttns btn-floating btn-large waves-effect waves-light grey-blue tooltipped" href="#" data-position="top" data-delay="50" data-tooltip="טופס משוב והערכת מתנדב" type="submit" name="action" id = "feedbackToVol"></button>');
+		$('#feedbackToVol').append('<i class="material-icons">assignment</i>');
     }
 
 	$('.tooltipped').tooltip({delay: 50});
-
-    
-=======
- /*   $('#VolunteerQuestModal')
-        .on('hide', function () {
-        alert("modal");
-        $('#submitBtnVol').show();
-        $('#updateBtnVol').hide();
-        $('#volFormName').html("הרשמה להתנדבות");
-    })
-   .on('hidden', function(){
-       console.log('hidden');
-   })
-   .on('show', function() {
-       console.log('show');
-   })
-   .on('shown', function(){
-      console.log('shown' )
-   });
-   */
 
     $("#clearBtn").click(function(){
         $( "input:checked").prop('checked', false);
     });
 
-<<<<<<< HEAD
     $("#markAllBtn").click(function(){
         $("input:checkbox:not(:checked)").prop('checked', true);   
     });
+    
+    $("#watchFeedbackBtn").click(function(){
+        var n = $( "input:checked");
+		var filter = {};
+		filter['ids'] = [];
+		Array.from(n).forEach(function(item, index){
+			filter['ids'].push(item.id);
+		});
+
+		if(filter['ids'].length == 1){
+            
+            var feedbacks = [5];
+            for(var i=0; i<5; i++ ){
+                $("#FeedbackList").append('<li id="feed' +i+ '"><div class="collapsible-header"><i class="material-icons">filter_drama</i>משוב מספר ' + (i+1)); 
+                $('#feed' +i).click(function(){
+                    $("#watchAllFeedbacksModal").closeModal();
+                    $("#feedbackToVolModal").openModal();
+                    $("#watchAllFeedbacksModal").empty();
+                });
+            }
+          
+                $("#watchAllFeedbacksModal").openModal();
+            
+        }
+
+		else{
+			var $toastContent = $('<span>יש לסמן מתנדב אחד בדיוק</span>');
+			Materialize.toast($toastContent, 3000);
+		}
+            
+    
+    });
+
+	$("#feedbackToVol").click(function(){
+		var selected = GetCheckedAvatars();
+
+		if(selected.length == 1) {
+			$("#feedbackToVolModal").openModal();
+
+<<<<<<< HEAD
+=======
+			$.getJSON('/GetRecord?{?collection?:?volunteers?,?filter?:{?_id?:?' + selected[0] + '?}}', function (result) {
+				$("label[for=FB_Personal_Name]").attr('class', 'active');
+				$("#FB_Personal_Name").attr('disabled', 'disabled');//result[0].firstName);
+				$("#FB_Personal_Name").attr('value',result[0].firstName + " " + result[0].lastName);
+				$("label[for=FB_Personal_FormDate]").attr('class', 'active');
+				$("#FB_Personal_FormDate").attr('disabled', 'disabled');//result[0].firstName);
+				$("#FB_Personal_FormDate").val((new Date()).toDateString());
+				$("label[for=FB_Personal_Org]").attr('class', 'active');
+				$("#FB_Personal_Org").attr('disabled', 'disabled');//result[0].firstName);
+				$("#FB_Personal_Org").val(g_user.organizationName);
+
+			});
+		}
+>>>>>>> c3621d20376703734811edfdec58dd7a1a5d9077
+
+		else{
+			var $toastContent = $('<span>יש לסמן מתנדב אחד בדיוק</span>');
+			Materialize.toast($toastContent, 3000);
+		}
+	});
 
     $("#mailToAllBtn").click(function(){
          //var selected = GetCheckedAvatars();
-
-=======
->>>>>>> 391d27c4e75d2985fb93ca801dd922b836da55f0
-    $('#fourtyHours').click(function(){
 
         var n = $( "input:checked");
 		var filter = {};
@@ -563,8 +598,6 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
 		});
 
         if(filter['ids'].length > 0)
-<<<<<<< HEAD
-
             $("#mailToAllModal").openModal();
         else{
             var $toastContent = $('<span>יש לסמן מתנדב אחד לפחות</span>');
@@ -572,18 +605,11 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
         }
         
         $("#senMailModalBtn").click(function(){
-
-
-        {
-
-=======
-        {
->>>>>>> 391d27c4e75d2985fb93ca801dd922b836da55f0
+            
             for(var i=0; i<filter['ids'].length; i++){
                 $.getJSON('/GetRecord?{?collection?:?volunteers?,?filter?:{?_id?:?'+filter['ids'][i]+'?}}',function(result) {
 
                     var details = {
-                        typeOfMailPost: "toAll",
                         subject: $("#mailSubject").val(),
                         mailContent: $("#mailContent").val(),
                         emailAdress: result[0].emailAdress,
@@ -595,10 +621,6 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
             var $toastContent = $('<span>המייל נשלח בהצלחה</span>');
             Materialize.toast($toastContent, 3000);
             $("#mailToAllModal").closeModal();
-
-            setTimeout(function(){
-            window.location.reload();
-            }, 1000);           
 
         });
 
@@ -654,7 +676,6 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
                     delete result[0]._id;
                     result[0].StartedVolunteering =  result[0].StartedVolunteering == "false" ? "true" : "false";
 
-<<<<<<< HEAD
                     var newVol = result[0];
                     $.post('/UpdateRecord?{?collection?:?volunteers?,?filter?:{?_id?:?'+objId+'?}}', result[0]);
                     console.log(result[0]);
@@ -663,36 +684,13 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
                         //TODO: Add organiztion name!
 
                         var details = {
-                            typeOfMailPost: "toOne",
                             mailContent:  "רכז המתנדבים שלום, \n\nהמתנדב/ת " +result[0].firstName+ " " + result[0].lastName+ ", תעודת זהות " + result[0].IDnumber +", החל/ה להתנדב בארגון " + //details.orgName 
                             "שם ארגון זמני "+ "\n\n בברכה, \n מערכת EasyVol",
                             subject :  "השמת " +result[0].firstName+ " " + result[0].lastName + " לארגון",
                             emailAdress: result[0].emailAdress
                         };
-                        alert("mail");
                     $.post('/SendMail', details); 
                     }
-
-=======
->>>>>>> 391d27c4e75d2985fb93ca801dd922b836da55f0
-                    $.post('/UpdateRecord?{?collection?:?volunteers?,?filter?:{?_id?:?'+objId+'?}}', result[0]);
-
-                    //TODO: Add organiztion name!
-
-                    var details = {
-                        firstName : result[0].firstName,
-                        lastName : result[0].lastName,
-                        IDnumber : result[0].IDnumber,
-                        emailAdress : result[0].emailAdress,
-                        orgName : "שם זמני"
-                    };
-
-                    $.post('/SendMail', details);
-<<<<<<< HEAD
-
-=======
->>>>>>> 391d27c4e75d2985fb93ca801dd922b836da55f0
-
                 });
 
             }
@@ -710,12 +708,67 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
             var $toastContent = $('<span>יש לסמן מתנדב אחד לפחות</span>');
             Materialize.toast($toastContent, 3000);
         }
+/*
+		$('#feedbackToVol').click(function(){
+			//$("#feedbackToVol label").attr('class', 'active');
+			var n = $("input:checked");
+			var selectedIds = [];
+			Array.from(n).forEach(function(item, index){
+				selectedIds.push(item.id);
+			});
+			$("#fName").attr('_id', filter['ids'][0]);
+			$("#FB_Personal_Name").val(result[0].firstName);
+			$("#FB_Personal_Time").val(result[0].FB_Personal_Time);
+			$("#FB_Personal_Job").val(result[0].FB_Personal_Job);
+			$("#FB_Personal_FormDate").val(result[0].FB_Personal_FormDate);
+			$("#FB_Gols_A").val(result[0].FB_Gols_A);
+			$("#FB_Gols_A_R").val(result[0].FB_Gols_A_R);
+			$("#FB_Gols_B").val(result[0].FB_Gols_B);
+			$("#FB_Gols_B_R").val(result[0].FB_Gols_B_R);
+			$("#FB_Gols_C").val(result[0].FB_Gols_C_R);
+			$("#FB_Gols_D").val(result[0].FB_Gols_D);
+			$("#FB_Gols_D_R").val(result[0].FB_Gols_D_R);
+			$("#FB_IndustrialRelations_A").val(result[0].FB_IndustrialRelations_A);
+			$("#FB_IndustrialRelations_A_R").val(result[0].FB_IndustrialRelations_A_R);
+			$("#FB_IndustrialRelations_B").val(result[0].FB_IndustrialRelations_B);
+			$("#FB_IndustrialRelations_B_R").val(result[0].FB_IndustrialRelations_B_R);
+			$("#FB_IndustrialRelations_C").val(result[0].FB_IndustrialRelations_C);
+			$("#FB_IndustrialRelations_C_R").val(result[0].FB_IndustrialRelations_C_R);
+			$("#FB_IndustrialRelations_D").val(result[0].FB_IndustrialRelations_D);
+			$("#FB_IndustrialRelations_D_R").val(result[0].FB_IndustrialRelations_D_R);
+			$("#FB_IndustrialRelations_E").val(result[0].FB_IndustrialRelations_E);
+			$("#FB_IndustrialRelations_E_R").val(result[0].FB_IndustrialRelations_E_R);
+			$("#FB_ProgressIndicators_A").val(result[0].FB_ProgressIndicators_A);
+			$("#FB_ProgressIndicators_A_R").val(result[0].FB_ProgressIndicators_A_R);
+			$("#FB_ProgressIndicators_B").val(result[0].FB_ProgressIndicators_B);
+			$("#FB_ProgressIndicators_B_R").val(result[0].FB_ProgressIndicators_B_R);
+			$("#FB_ProgressIndicators_C").val(result[0].FB_ProgressIndicators_C);
+			$("#FB_ProgressIndicators_C_R").val(result[0].FB_ProgressIndicators_C_R);
+			$("#FB_ProgressIndicators_D").val(result[0].FB_ProgressIndicators_D);
+			$("#FB_ProgressIndicators_D_R").val(result[0].FB_ProgressIndicators_D_R);
+			$("#FB_ProgressIndicators_E").val(result[0].FB_ProgressIndicators_E);
+			$("#FB_ProgressIndicators_E_R").val(result[0].FB_ProgressIndicators_E_R);
+			$("#FB_ProgressIndicators_F").val(result[0].FB_ProgressIndicators_F);
+			$("#FB_ProgressIndicators_F_R").val(result[0].FB_ProgressIndicators_F_R);
+			$("#FB_ProgressIndicators_G").val(result[0].FB_ProgressIndicators_G);
+			$("#FB_ProgressIndicators_G_R").val(result[0].FB_ProgressIndicators_G_R);
+			$("#FB_ManagerComments").val(result[0].FB_ManagerComments);
+			$("#FB_VolComments").val(result[0].FB_VolComments);
+			$("#FB_GreatAchievement").val(result[0].FB_GreatAchievement);
+			$("#FB_PointsForImprovement").val(result[0].FB_PointsForImprovement);
+			$("#FB_FuturePlans").val(result[0].FB_FuturePlans);
+			$("#FB_AchievableTarget_A").val(result[0].FB_AchievableTarget_A);
+			$("#FB_AchievableTarget_B").val(result[0].FB_AchievableTarget_B);
+			$("#FB_AchievableTarget_C").val(result[0].FB_AchievableTarget_C);
+			$("#FB_ActionAchievingTarget_A").val(result[0].FB_ActionAchievingTarget_A);
+			$("#FB_ActionAchievingTarget_B").val(result[0].FB_ActionAchievingTarget_B);
+			$("#FB_ActionAchievingTarget_C").val(result[0].FB_ActionAchievingTarget_C);
+			$("#FB_ActionAchievingTarget_D").val(result[0].FB_ActionAchievingTarget_D);
+			$("#FB_ActionAchievingTarget_E").val(result[0].FB_ActionAchievingTarget_E);
+		});
+*/
 
     });
-
-
-
-
 
 
 	$('#delete' +typeOfInsert).click(function(){
@@ -831,13 +884,6 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
     });
 
 
-
-
-
-
-
-
-
     $("#editVolunteer").click(function() {
 		var n = $("input:checked");
 		var filter = {};
@@ -876,7 +922,14 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
 				$("#Hometelephone").val(result[0].Hometelephone);
 				$("#email").val(result[0].emailAdress);
 				$("#Birthday").val(result[0].BirthdayDate);
-				$("#familyStatus").val(result[0].familyStatus);
+			//	$("#familyStatus").val(result[0].familyStatus);
+                //console.log($("[value=" + result[0].familyStatus + "]").html());//attr("active selected");
+                //$('#familyStatus option[value="' +result[0].familyStatus + '"]').attr('selected','selected');
+                //$('#familyStatus option[value="' +result[0].familyStatus + '"]').attr('active','active');
+                $('select option[value="tmp"]').attr('active','');
+                $('select option[value="tmp"]').attr('selected','');
+               // $('#familyStatus option').attr('class','active');
+                // $("#familyStatus").value = result[0].familyStatus;
 				$("#education").val(result[0].educationLevel);
 				$("#occupation").val(result[0].workOccupation);
 				$("#Job").val(result[0].workJob);
@@ -943,15 +996,83 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
 			Materialize.toast($toastContent, 3000);
 			return;
 		}
-		else{
 
+		else{
+			$.getJSON('/GetRecord?{?collection?:?volunteers?,?filter?:{?_id?:?' + selected[0] + '?}}', function (result) {
+				g_volunteer = jQuery.extend(true, {}, result[0]);
+			});
 			$("#Tinder").empty();
+
 			$.getJSON("/GetRecord?{?collection?:?organizations?,?filter?:{}}", function (result) {
-				for (var i = 0; i < result.length; i++) {
-					$("#Tinder").append('<li class="collection-item avatar MatchingOrgs" id="li' + result[i]._id + '">');
-					$("#li" + result[i]._id).append('<i class="material-icons circle red">description</i>');
-					$("#li" + result[i]._id).append('<span class="title" > ' + result[i].organizationName + '</span>');
-					$("#li" + result[i]._id).append('<p>' + result[i].contactName + '<br>' + result[i].contactPhone);
+				console.log(result);
+				var sortedArray = getSortedArray(result);
+
+
+
+				for (var i = 0; i < sortedArray.length; i++) {
+					$("#Tinder").append('<li class="collection-item avatar MatchingOrgs" id="li' + sortedArray[i].Organization._id + '">');
+					$("#li" + sortedArray[i].Organization._id).append('<i class="material-icons circle red">description</i>');
+					$("#li" + sortedArray[i].Organization._id).append('<span class="title" > ' + sortedArray[i].Organization.organizationName + '</span>');
+					$("#li" + sortedArray[i].Organization._id).append('<p>' + sortedArray[i].Organization.contactName + '<br>' + sortedArray[i].Organization.contactPhone);
+					$("#li" + sortedArray[i].Organization._id).append('<p class="secondary-content" id="p' + sortedArray[i].Organization._id + '">');
+
+					sortedArray[i].Days.forEach(function(item, index){
+						$("#p" + sortedArray[i].Organization._id).append('<div class="chip red dayChip daysChip' + sortedArray[i].Organization._id+'" id="daysChip' + sortedArray[i].Organization._id + '">יום: '+item+'</div>');
+					});
+					sortedArray[i].Hours.forEach(function(item, index){
+						$("#p" + sortedArray[i].Organization._id).append('<div class="chip green houreChip houresChip' + sortedArray[i].Organization._id + '" id="houresChip' + sortedArray[i].Organization._id + '">שעות: '+item+'</div>');
+					});
+					sortedArray[i].VolPeriod.forEach(function(item, index){
+						$("#p" + sortedArray[i].Organization._id).append('<div class="chip blue periodChip volPeriodChip' + sortedArray[i].Organization._id + '" id="volPeriodChip' + sortedArray[i].Organization._id + '">תקופה: '+item+'</div>');
+					});
+					$("#p" + sortedArray[i].Organization._id).append('</br>');
+					sortedArray[i].VolType.forEach(function(item, index){
+						$("#p" + sortedArray[i].Organization._id).append('<div class="chip yellow typeChip volTypeChip' + sortedArray[i].Organization._id+'" id="volTypeChip' + sortedArray[i].Organization._id + '">סוג:  '+item+'</div>');
+					});
+					$(".dayChip").hide();
+					$(".houreChip").hide();
+					$(".periodChip").hide();
+					$(".typeChip").hide();
+					$("#p" + sortedArray[i].Organization._id).append('<div class="chip red" id="sumDaysChip' + sortedArray[i].Organization._id + '">'+sortedArray[i].Days.length+' ימים</div>');
+					$("#p" + sortedArray[i].Organization._id).append('<div class="chip green" id="sumHoursChip' + sortedArray[i].Organization._id + '">'+sortedArray[i].Hours.length+' שעות</div>');
+					$("#p" + sortedArray[i].Organization._id).append('<div class="chip blue" id="sumVolPeriodChip' + sortedArray[i].Organization._id + '">'+sortedArray[i].VolPeriod.length+' תקופות התנדבות</div>');
+					$("#p" + sortedArray[i].Organization._id).append('<div class="chip yellow" id="sumVolTypeChip' + sortedArray[i].Organization._id + '">'+sortedArray[i].VolType.length+' סוגי התנדבות</div>');
+
+					$("#sumDaysChip" + sortedArray[i].Organization._id).click(function(){
+						$(this).hide();
+						$(".daysChip" + $(this).attr('id').substring(11)).show();
+						$(".daysChip" + $(this).attr('id').substring(11)).click(function(){
+							$(".daysChip" + $(this).attr('id').substring(8)).hide();
+							$("#sumDaysChip" + $(this).attr('id').substring(8)).show();
+						});
+					});
+
+					$("#sumHoursChip" + sortedArray[i].Organization._id).click(function(){
+						$(this).hide();
+						$(".houresChip" + $(this).attr('id').substring(12)).show();
+						$(".houresChip" + $(this).attr('id').substring(12)).click(function(){
+							$(".houresChip" + $(this).attr('id').substring(10)).hide();
+							$("#sumHoursChip" + $(this).attr('id').substring(10)).show();
+						});
+					});
+
+					$("#sumVolPeriodChip" + sortedArray[i].Organization._id).click(function(){
+						$(this).hide();
+						$(".volPeriodChip" + $(this).attr('id').substring(16)).show();
+						$(".volPeriodChip" + $(this).attr('id').substring(16)).click(function(){
+							$(".volPeriodChip" + $(this).attr('id').substring(13)).hide();
+							$("#sumVolPeriodChip" + $(this).attr('id').substring(13)).show();
+						});
+					});
+
+					$("#sumVolTypeChip" + sortedArray[i].Organization._id).click(function(){
+						$(this).hide();
+						$(".volTypeChip" + $(this).attr('id').substring(14)).show();
+						$(".volTypeChip" + $(this).attr('id').substring(14)).click(function(){
+							$(".volTypeChip" + $(this).attr('id').substring(11)).hide();
+							$("#sumVolTypeChip" + $(this).attr('id').substring(11)).show();;
+						});
+					});
 				}
 				$(".MatchingOrgs").click(function(){
 					$(".MatchingOrgs").removeClass("active");
@@ -963,6 +1084,7 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
 
 			$("#MatchBtn").click(function(){
 				var selectedOrganization = $(".active.MatchingOrgs").attr("id");
+				console.log("------Selected organization:")
 				console.log(selectedOrganization);
 				if(selectedOrganization == undefined || selectedOrganization.length == 0){
 					var $toastContent = $('<span>יש לבחור ארגון להתאמה</span>');
@@ -976,9 +1098,11 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
 				$.getJSON('/GetRecord?{?collection?:?volunteers?,?filter?:{?_id?:?'+selected[0]+'?}}',function(result) {
 					var objId = result[0]._id;
 					delete result[0]._id;
-
+					console.log("-------Setting ["+result[0].firstName+"] from: ["+result[0].Organization+"]");
 					result[0].Organization = selectedOrgId;
-
+					console.log("-------To: ["+result[0].Organization+"]");
+					console.log("-------Posting:");
+					console.log(result[0]);
 					$.post('/UpdateRecord?{?collection?:?volunteers?,?filter?:{?_id?:?'+objId+'?}}', result[0]);
 
 					$("#MatchingModal").closeModal();
@@ -994,11 +1118,89 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
 		}
 
 
-		$("#MatchingModal").openModal();
+		$("#MatchingModal").openModal({
+			dismissible: true, // Modal can be dismissed by clicking outside of the modal
+			opacity: .5, // Opacity of modal background
+			in_duration: 300, // Transition in duration
+			out_duration: 200, // Transition out duration
+			complete: function() { setTimeout(function(){
+				window.location.reload();
+			}, 200); } // Callback for Modal close
+		});
 	});
 
 	$('.modal-trigger').leanModal();
 }
+
+	  function getSortedArray(result){
+
+		  var matches = new Array(result.length);
+		  console.log("VOLUNTEER IS:");
+		  console.log(g_volunteer);
+		  for(var i = 0; i < result.length; i++)
+		  {
+			  matches[i]= {
+				  OrgId: result[i]._id,
+				  Days: [],
+				  Hours: [],
+				  VolType: [],
+				  VolPeriod: [],
+				  NumOfMatches: 0,
+				  Organization: new Object()
+			  };
+			  result[i] = toArrays(result[i]);
+			  result[i]["orgMultiHours[]"].forEach(function(item,index){
+				  if(g_volunteer["InterestMultiHours[]"].includes(item)){
+					  matches[i].Hours.push(item);
+				  }
+			  });
+			  result[i]["orgMultiDates[]"].forEach(function(item,index){
+				  if(g_volunteer["InterestMultiDates[]"].includes(item)){
+					  matches[i].Days.push(item);
+				  }
+			  });
+			  result[i]["orgMultiVolTypes[]"].forEach(function(item,index){
+				  if(g_volunteer["InterestmultiVolTypes[]"].includes(item)){
+					  matches[i].VolType.push(item);
+				  }
+			  });
+			  if(result[i].orgTimePeriod == g_volunteer.InterestTimePeriod){
+					  matches[i].VolPeriod.push(g_volunteer.InterestTimePeriod);
+			  }
+			  matches[i].NumOfMatches = matches[i].Days.length + matches[i].Hours.length + matches[i].VolType.length + matches[i].VolPeriod.length;
+			  matches[i].Organization = result[i];
+		  }
+
+		  console.log("MATCHES ARRAY:");
+		  console.log(matches);
+
+		  var sorted = matches.sort(function(a, b) {
+			  return parseFloat(b.NumOfMatches) - parseFloat(a.NumOfMatches);
+		  });
+
+		  console.log("SORTED ARRAY:");
+		  console.log(sorted);
+
+		  return sorted;
+	  }
+
+	  function toArrays(result){
+		  console.log("PARSING RESULT TO ARRAYS:");
+		  console.log(result);
+		  if(!Array.isArray(result["InterestMultiDates[]"])){
+			  result["InterestMultiDates[]"] = new Array(result["InterestMultiDates[]"]);
+		  }
+		  if(!Array.isArray(result["orgMultiHours[]"])){
+			  result["orgMultiHours[]"] = new Array(result["orgMultiHours[]"]);
+		  }
+		  if(!Array.isArray(result["orgMultiVolTypes[]"])){
+			  result["orgMultiVolTypes[]"] = new Array(result["orgMultiVolTypes[]"]);
+		  }
+
+		  console.log("PARSED:");
+		  console.log(result);
+		  return result;
+	  }
 
 function GetCheckedAvatars()
 {
@@ -1014,9 +1216,10 @@ function GetCheckedAvatars()
 function insertVolunteersAvatars(records)
 {
 	g_array = [];
+	var relatedOrganization = "אינו משוייך לארגון";
   for(var i=0; i<records.length; i++)
   {
-	  var relatedOrganization = "אינו משוייך לארגון";
+
 
       $("#volAvatar").append('<li class="collection-item avatar" id="li'+records[i]._id +'">');
       $("#li" +records[i]._id).append('<i class="material-icons circle light-blue">perm_identity</i>');
@@ -1035,29 +1238,22 @@ function insertVolunteersAvatars(records)
 
 	  records[i].FourtyHours == "false" ? $('#fourtyHoursImage' + records[i]._id).hide() : $('#fourtyHoursImage' + records[i]._id).show();
 	  records[i].StartedVolunteering == "false" ? $('#finishedImage' + records[i]._id).hide() : $('#finishedImage' + records[i]._id).show();
+
 	  if(records[i].Organization != "") {
-		  g_array.push(records[i]);
+		  $.getJSON('/GetRecord?{?collection?:?organizations?,?filter?:{?_id?:?'+records[i].Organization+'?}}', function (id,result) {
+
+			  $("#contentPfirst" + id).text("מתנדב בארגון - " + result[0].organizationName);
+		  }.bind(null,records[i]._id));
 	  }
   }
-	g_array = g_array.reverse();
-	for(var i=0; i<records.length; i++){
-		if(records[i].Organization != ""){
-			//g_array.push(records[i]);
-			$.getJSON('/GetRecord?{?collection?:?organizations?,?filter?:{?_id?:?'+records[i].Organization+'?}}', function (result) {
-				var tmp = g_array.pop();
-				$("#contentPfirst" + tmp._id).text("מתנדב בארגון - " + result[0].organizationName);
-			});
-		}
-	}
-
-  $('.tooltipped').tooltip({delay: 50});
 }
 
-function loadAdminPage(user){
+
+function loadAdminPage(){
 
 	//Change page layout
     $("#links").empty();
-    $("#links").append('<li> ברוך הבא ' + user + '</li>');
+    $("#links").append('<li>ברוך הבא מנהל</li>');
     $("#links").append('<li><a class="waves-effect waves-light modal-trigger tooltipped" id="disconnectUser" data-position="Down" data-delay="50" data-tooltip="התנתק" ><i class="material-icons">settings_power</i></a></li>');
 
 	$("#disconnectUser").click(function(){
@@ -1143,11 +1339,11 @@ function loadAdminPage(user){
 	$('.tooltipped').tooltip({delay: 50});
 }
 
-function loadOrganizationPage(user){
+function loadOrganizationPage(){
 
 	//Change page layout
     $("#links").empty();
-    $("#links").append('<li> ברוך הבא ' + user + '</li>');
+    $("#links").append('<li> ברוך הבא ' + g_user.organizationName + '</li>');
     $("#links").append('<li><a class="waves-effect waves-light modal-trigger tooltipped" id="disconnectUser" data-position="Down" data-delay="50" data-tooltip="התנתק" ><i class="material-icons">settings_power</i></a></li>');
 
 	$("#disconnectUser").click(function(){
@@ -1173,7 +1369,7 @@ function loadOrganizationPage(user){
 
     $("#dataZoneScroll").append('<ul class="collection" id="volAvatar" dir="rtl">');
     var volunteers = [];
-    $.getJSON("/GetRecord?{?collection?:?volunteers?,?filter?:{}}",function(result) {
+    $.getJSON('/GetRecord?{?collection?:?volunteers?,?filter?:{?Organization?:?'+g_user._id+'?}}',function(result) {
         console.log(result);
         //TODO: implement Volunteers list
         insertVolunteersAvatars(result);
@@ -1209,30 +1405,41 @@ $("#loginBtn").click(function(event){
 });
 
 	  //TODO: get users from DB
-function loadPageByUser(user, pass){
-		var userType = getUser(user, pass);
+	function loadPageByUser(user, pass){
+		//var userType = getUser(user, pass);
 
-		console.log(user);
 
-		if(userType == 0) //Admin
-		{
-			$("#modalLogin").closeModal();
-			loadAdminPage(user);
-		}
-		else if(userType == 1) //Organization
-		{
-			$("#modalLogin").closeModal();
-			loadOrganizationPage(user);
-		}
-		else //error
-		{
-			//$("#modal1").closeModal();
-			//sleep(1);
-			//$("#modal1").openModal();
-		}
-		//TODO: exit function in the last else (on error)
-		setCookie(user,pass);
+
+
+			$.getJSON('/GetRecord?{?collection?:?Admin?,?filter?:{?username?:?'+user+'?,?password?:?'+pass+'?}}',function(result) {
+				//Not Admin
+				if(result.length == 0) {
+					$.getJSON('/GetRecord?{?collection?:?organizations?,?filter?:{?orgUserName?:?'+user+'?,?orgPassword?:?'+pass+'?}}',function(result) {
+
+						g_user = result.length == 0? null : result[0];
+
+						if(g_user != null) //Organization
+						{
+							$("#modalLogin").closeModal();
+							loadOrganizationPage();
+						}
+						else //error
+						{
+							//TODO: exit function in the last else (on error)
+							//$("#modal1").closeModal();
+							//sleep(1);
+							//$("#modal1").openModal();
+						}
+					});
+				}
+				else{
+					$("#modalLogin").closeModal();
+					loadAdminPage();
+				}
+			});
+			setCookie(user,pass);
 	}
+
 
 	// [].forEach.call(card, function(card) {
 	// 	card.addEventListener('click', scaleCard, false);

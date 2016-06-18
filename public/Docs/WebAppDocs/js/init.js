@@ -462,6 +462,13 @@
 	}
 
 
+function openFeedback(numOfFeedback){
+    alert("sdfdsf");
+    $("#watchAllFeedbacksModal").closeModal();
+    $("#feedbackToVolModal").openModal();
+    $("#watchAllFeedbacksModal").empty();
+}
+
 function insertButtons(typeOfInsert, heName, typeOfPage){
 
     $("#intro").empty();
@@ -525,13 +532,28 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
 			filter['ids'].push(item.id);
 		});
 
-		if(filter['ids'].length == 1)
-			$("#watchAllFeedbacksModal").openModal();
+		if(filter['ids'].length == 1){
+            
+            var feedbacks = [5];
+            for(var i=0; i<5; i++ ){
+                $("#FeedbackList").append('<li id="feed' +i+ '"><div class="collapsible-header"><i class="material-icons">filter_drama</i>משוב מספר ' + (i+1)); 
+                $('#feed' +i).click(function(){
+                    $("#watchAllFeedbacksModal").closeModal();
+                    $("#feedbackToVolModal").openModal();
+                    $("#watchAllFeedbacksModal").empty();
+                });
+            }
+          
+                $("#watchAllFeedbacksModal").openModal();
+            
+        }
 
 		else{
 			var $toastContent = $('<span>יש לסמן מתנדב אחד בדיוק</span>');
 			Materialize.toast($toastContent, 3000);
 		}
+            
+    
     });
 
 	$("#feedbackToVol").click(function(){
@@ -544,6 +566,7 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
 
 		if(filter['ids'].length == 1)
 			$("#feedbackToVolModal").openModal();
+
 
 		else{
 			var $toastContent = $('<span>יש לסמן מתנדב אחד בדיוק</span>');

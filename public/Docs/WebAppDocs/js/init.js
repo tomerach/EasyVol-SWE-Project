@@ -83,6 +83,7 @@
 
 	  });
 
+	  //Functionality of the get full organizations list button in home page
 	  $("#OrganizationsListBtn").click(function() {
 		  $("#OrganizationsListCollection").empty();
 
@@ -110,8 +111,6 @@
 	  });
 
       $("#submitBtnOrg").click(function(){
-
-          //TODO: Add validations before submitting details
 
           var organization = getOrgObject();
 

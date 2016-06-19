@@ -1457,12 +1457,7 @@ $("#loginBtn").click(function(event){
         loadPageByUser(user, pass);
 });
 
-	  //TODO: get users from DB
 	function loadPageByUser(user, pass){
-		//var userType = getUser(user, pass);
-
-
-
 
 			$.getJSON('/GetRecord?{?collection?:?Admin?,?filter?:{?username?:?'+user+'?,?password?:?'+pass+'?}}',function(result) {
 				//Not Admin
@@ -1475,22 +1470,26 @@ $("#loginBtn").click(function(event){
 						{
 							$("#modalLogin").closeModal();
 							loadOrganizationPage();
+							setCookie(user,pass);
 						}
 						else //error
 						{
-							//TODO: exit function in the last else (on error)
-							//$("#modal1").closeModal();
-							//sleep(1);
-							//$("#modal1").openModal();
+							$("#username").removeClass('valid');
+							$("#username").addClass('invalid');
+							$("#username").val("");
+							$("#password").removeClass('valid');
+							$("#password").addClass('invalid');
+							$("#password").val("");
+							$("#username").focus();
 						}
 					});
 				}
 				else{
 					$("#modalLogin").closeModal();
 					loadAdminPage();
+					setCookie(user,pass);
 				}
 			});
-			setCookie(user,pass);
 	}
 
 

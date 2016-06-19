@@ -39,7 +39,7 @@ Please visit our wiki for furthur project info:
 - [Iteration 1 - MVP](https://github.com/tomerach/EasyVol-SWE-Project/wiki/Iter-1)
 - [Iteration 2 - Events feature](https://github.com/tomerach/EasyVol-SWE-Project/wiki/Iter-2)
 - [Iteration 3 - Tasks feature](https://github.com/tomerach/EasyVol-SWE-Project/wiki/Iter-3)
-- [Iteration 4 - Checking](https://github.com/tomerach/EasyVol-SWE-Project/wiki/Iter-4)
+- [Iteration 4 - Extras](https://github.com/tomerach/EasyVol-SWE-Project/wiki/Iter-4)
 
 
 

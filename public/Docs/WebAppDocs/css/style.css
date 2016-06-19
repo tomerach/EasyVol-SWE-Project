@@ -1,19 +1,23 @@
 body{
     font-family: GillSans, Calibri, Trebuchet, sans-serif;
 }
+
 nav ul a,
 nav .brand-logo {
   color: #444;
 }
+
 #logo-container{
 	float: right;
 }
+
 #logo-container img{
 	margin-top: 3px;
 	width: 135px;
 	height: 60px;
 	float: left;
 }
+
 p {
   line-height: 2rem;
 }
@@ -51,6 +55,7 @@ p {
 .icon-block {
   padding: 0 15px;
 }
+
 .icon-block .material-icons {
   font-size: inherit;
 }
@@ -62,15 +67,18 @@ footer.page-footer {
 #dataZone{
 	min-height: 380px;
 }
+
 .shift-table{
 	margin: auto;
     width: 1000px;
     height: 500px;
 }
+
 .shift-table thead th {
     vertical-align: bottom;
     border-bottom: 2px solid #eceeef;
 }
+
 .shift-table td, .shift-table th {
     padding: .75rem;
     line-height: 1.5;
@@ -82,9 +90,8 @@ footer.page-footer {
 td, th {
     padding: 0;
 }
+
 td:hover {background-color: #f5f5f5}
-
-
 
 #addVolunteer, #feedbackToVol, #addOrganization, #editVolunteer, #editOrganization, #deleteVolunteer, #deleteOrganization, #watchFeedbackBtn, #findMatch, #fourtyHours, #startedToVol, #markAllBtn, #mailToAllBtn{
 	margin-right: 15px;
@@ -106,22 +113,6 @@ td:hover {background-color: #f5f5f5}
 #permissionsSpan{
 	margin-top: 30px;
 }
-
-/* appears in loadOrganization - will remove soon
-#VolunteerData-left{
-    float: left;
-    margin: 20px;
-    border-style: solid;
-    border-width: 5px;
-}
-
-#OrganizationData-right{
-    float: right;
-    margin: 20px;
-    border-style: solid;
-    border-width: 5px;
-}
-*/
 
 #dataZoneScroll
 {

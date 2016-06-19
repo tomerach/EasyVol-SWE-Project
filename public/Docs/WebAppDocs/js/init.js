@@ -83,6 +83,32 @@
 
 	  });
 
+	  $("#OrganizationsListBtn").click(function() {
+		  $("#OrganizationsListCollection").empty();
+
+		  $.getJSON("/GetRecord?{?collection?:?organizations?,?filter?:{}}", function (result) {
+			  console.log(result);
+			  //var fields;
+			  $("#OrganizationsListModal").openModal({
+				  dismissible: true, // Modal can be dismissed by clicking outside of the modal
+				  opacity: .5, // Opacity of modal background
+				  in_duration: 300, // Transition in duration
+				  out_duration: 200, // Transition out duration
+				  complete: function() { setTimeout(function(){
+					  window.location.reload();
+				  }, 200); } // Callback for Modal close
+			  });
+			  for (var i = 0; i < result.length; i++) {
+				  $("#OrganizationsListCollection").append('<li class="collection-item avatar " id="li' + result[i]._id + '">');
+				  $("#li" + result[i]._id).append('<i class="material-icons circle red">description</i>');
+				  $("#li" + result[i]._id).append('<span class="title" > <b>' + result[i].organizationName + '</b></span>');
+				  //fields = "";
+				  //for( var j = 0; j<result[i]['orgMultiVolTypes[]'])
+				  $("#li" + result[i]._id).append('<p><b> כתובת מייל: </b>' + result[i].organizationEmail + '<br><b>תחומי התנדבות: </b>' + result[i]["orgMultiVolTypes[]"]);
+			  }
+		  });
+	  });
+
       $("#submitBtnOrg").click(function(){
 
           //TODO: Add validations before submitting details
@@ -1447,6 +1473,8 @@ function loadOrganizationPage(){
 
 	$('.tooltipped').tooltip({delay: 50});
 }
+
+
 
 
 $("#loginBtn").click(function(event){

@@ -1479,10 +1479,11 @@ $("#loginBtn").click(function(event){
 						}
 						else //error
 						{
-							//TODO: exit function in the last else (on error)
-							//$("#modal1").closeModal();
-							//sleep(1);
-							//$("#modal1").openModal();
+							$("#username").removeClass('valid');
+							$("#username").addClass('invalid');
+							$("#username").val("");
+							$("#password").val("");
+							$("#username").focus();
 						}
 					});
 				}

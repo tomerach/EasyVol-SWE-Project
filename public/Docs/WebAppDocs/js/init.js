@@ -586,7 +586,6 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
                             $("#FB_ActionAchievingTarget_E").val(result[0].ActionAchievingTargetE);
 
                             $("#feedbackToVolModal label").attr('class', 'active');
-                            $("#feedbackToVolModal label").attr('disabled', 'disabled');
                             $("#feedbackSubmitBtnVol").hide();
                             $("#feedbackToVolModal").openModal();
                         });
@@ -799,7 +798,7 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
                             mailContent:  "רכז המתנדבים שלום, \n\nהמתנדב/ת " +result[0].firstName+ " " + result[0].lastName+ ", תעודת זהות " + result[0].IDnumber +", החל/ה להתנדב בארגון " + //details.orgName 
                             "שם ארגון זמני "+ "\n\n בברכה, \n מערכת EasyVol",
                             subject :  "השמת " +result[0].firstName+ " " + result[0].lastName + " לארגון",
-                            emailAdress: result[0].emailAdress
+                            emailAdress: "<" + result[0].emailAdress + ">, <easyvol.mevaseret@gmail.com>"
                         };
                     $.post('/SendMail', details); 
                     }

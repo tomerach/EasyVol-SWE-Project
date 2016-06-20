@@ -1079,84 +1079,88 @@ function insertButtons(typeOfInsert, heName, typeOfPage){
 			$.getJSON('/GetRecord?{?collection?:?volunteers?,?filter?:{?_id?:?' + selected[0] + '?}}', function (result) {
 				g_volunteer = jQuery.extend(true, {}, result[0]);
 			});
+
 			$("#Tinder").empty();
 
-			$.getJSON("/GetRecord?{?collection?:?organizations?,?filter?:{}}", function (result) {
-				console.log(result);
-				var sortedArray = getSortedArray(result);
+			setTimeout(function(){
+				$.getJSON("/GetRecord?{?collection?:?organizations?,?filter?:{}}", function (result) {
+					console.log(result);
+					var sortedArray = getSortedArray(result);
 
 
 
-				for (var i = 0; i < sortedArray.length; i++) {
-					$("#Tinder").append('<li class="collection-item avatar MatchingOrgs" id="li' + sortedArray[i].Organization._id + '">');
-					$("#li" + sortedArray[i].Organization._id).append('<i class="material-icons circle red">description</i>');
-					$("#li" + sortedArray[i].Organization._id).append('<span class="title" > ' + sortedArray[i].Organization.organizationName + '</span>');
-					$("#li" + sortedArray[i].Organization._id).append('<p>' + sortedArray[i].Organization.contactName + '<br>' + sortedArray[i].Organization.contactPhone);
-					$("#li" + sortedArray[i].Organization._id).append('<p class="secondary-content" id="p' + sortedArray[i].Organization._id + '">');
+					for (var i = 0; i < sortedArray.length; i++) {
+						$("#Tinder").append('<li class="collection-item avatar MatchingOrgs" id="li' + sortedArray[i].Organization._id + '">');
+						$("#li" + sortedArray[i].Organization._id).append('<i class="material-icons circle red">description</i>');
+						$("#li" + sortedArray[i].Organization._id).append('<span class="title" > ' + sortedArray[i].Organization.organizationName + '</span>');
+						$("#li" + sortedArray[i].Organization._id).append('<p>' + sortedArray[i].Organization.contactName + '<br>' + sortedArray[i].Organization.contactPhone);
+						$("#li" + sortedArray[i].Organization._id).append('<p class="secondary-content" id="p' + sortedArray[i].Organization._id + '">');
 
-					sortedArray[i].Days.forEach(function(item, index){
-						$("#p" + sortedArray[i].Organization._id).append('<div class="chip red dayChip daysChip' + sortedArray[i].Organization._id+'" id="daysChip' + sortedArray[i].Organization._id + '">יום: '+item+'</div>');
-					});
-					sortedArray[i].Hours.forEach(function(item, index){
-						$("#p" + sortedArray[i].Organization._id).append('<div class="chip green houreChip houresChip' + sortedArray[i].Organization._id + '" id="houresChip' + sortedArray[i].Organization._id + '">שעות: '+item+'</div>');
-					});
-					sortedArray[i].VolPeriod.forEach(function(item, index){
-						$("#p" + sortedArray[i].Organization._id).append('<div class="chip blue periodChip volPeriodChip' + sortedArray[i].Organization._id + '" id="volPeriodChip' + sortedArray[i].Organization._id + '">תקופה: '+item+'</div>');
-					});
-					$("#p" + sortedArray[i].Organization._id).append('</br>');
-					sortedArray[i].VolType.forEach(function(item, index){
-						$("#p" + sortedArray[i].Organization._id).append('<div class="chip yellow typeChip volTypeChip' + sortedArray[i].Organization._id+'" id="volTypeChip' + sortedArray[i].Organization._id + '">סוג:  '+item+'</div>');
-					});
-					$(".dayChip").hide();
-					$(".houreChip").hide();
-					$(".periodChip").hide();
-					$(".typeChip").hide();
-					$("#p" + sortedArray[i].Organization._id).append('<div class="chip red" id="sumDaysChip' + sortedArray[i].Organization._id + '">'+sortedArray[i].Days.length+' ימים</div>');
-					$("#p" + sortedArray[i].Organization._id).append('<div class="chip green" id="sumHoursChip' + sortedArray[i].Organization._id + '">'+sortedArray[i].Hours.length+' שעות</div>');
-					$("#p" + sortedArray[i].Organization._id).append('<div class="chip blue" id="sumVolPeriodChip' + sortedArray[i].Organization._id + '">'+sortedArray[i].VolPeriod.length+' תקופות התנדבות</div>');
-					$("#p" + sortedArray[i].Organization._id).append('<div class="chip yellow" id="sumVolTypeChip' + sortedArray[i].Organization._id + '">'+sortedArray[i].VolType.length+' סוגי התנדבות</div>');
-
-					$("#sumDaysChip" + sortedArray[i].Organization._id).click(function(){
-						$(this).hide();
-						$(".daysChip" + $(this).attr('id').substring(11)).show();
-						$(".daysChip" + $(this).attr('id').substring(11)).click(function(){
-							$(".daysChip" + $(this).attr('id').substring(8)).hide();
-							$("#sumDaysChip" + $(this).attr('id').substring(8)).show();
+						sortedArray[i].Days.forEach(function(item, index){
+							$("#p" + sortedArray[i].Organization._id).append('<div class="chip red dayChip daysChip' + sortedArray[i].Organization._id+'" id="daysChip' + sortedArray[i].Organization._id + '">יום: '+item+'</div>');
 						});
-					});
-
-					$("#sumHoursChip" + sortedArray[i].Organization._id).click(function(){
-						$(this).hide();
-						$(".houresChip" + $(this).attr('id').substring(12)).show();
-						$(".houresChip" + $(this).attr('id').substring(12)).click(function(){
-							$(".houresChip" + $(this).attr('id').substring(10)).hide();
-							$("#sumHoursChip" + $(this).attr('id').substring(10)).show();
+						sortedArray[i].Hours.forEach(function(item, index){
+							$("#p" + sortedArray[i].Organization._id).append('<div class="chip green houreChip houresChip' + sortedArray[i].Organization._id + '" id="houresChip' + sortedArray[i].Organization._id + '">שעות: '+item+'</div>');
 						});
-					});
-
-					$("#sumVolPeriodChip" + sortedArray[i].Organization._id).click(function(){
-						$(this).hide();
-						$(".volPeriodChip" + $(this).attr('id').substring(16)).show();
-						$(".volPeriodChip" + $(this).attr('id').substring(16)).click(function(){
-							$(".volPeriodChip" + $(this).attr('id').substring(13)).hide();
-							$("#sumVolPeriodChip" + $(this).attr('id').substring(13)).show();
+						sortedArray[i].VolPeriod.forEach(function(item, index){
+							$("#p" + sortedArray[i].Organization._id).append('<div class="chip blue periodChip volPeriodChip' + sortedArray[i].Organization._id + '" id="volPeriodChip' + sortedArray[i].Organization._id + '">תקופה: '+item+'</div>');
 						});
-					});
-
-					$("#sumVolTypeChip" + sortedArray[i].Organization._id).click(function(){
-						$(this).hide();
-						$(".volTypeChip" + $(this).attr('id').substring(14)).show();
-						$(".volTypeChip" + $(this).attr('id').substring(14)).click(function(){
-							$(".volTypeChip" + $(this).attr('id').substring(11)).hide();
-							$("#sumVolTypeChip" + $(this).attr('id').substring(11)).show();;
+						$("#p" + sortedArray[i].Organization._id).append('</br>');
+						sortedArray[i].VolType.forEach(function(item, index){
+							$("#p" + sortedArray[i].Organization._id).append('<div class="chip yellow typeChip volTypeChip' + sortedArray[i].Organization._id+'" id="volTypeChip' + sortedArray[i].Organization._id + '">סוג:  '+item+'</div>');
 						});
+						$(".dayChip").hide();
+						$(".houreChip").hide();
+						$(".periodChip").hide();
+						$(".typeChip").hide();
+						$("#p" + sortedArray[i].Organization._id).append('<div class="chip red" id="sumDaysChip' + sortedArray[i].Organization._id + '">'+sortedArray[i].Days.length+' ימים</div>');
+						$("#p" + sortedArray[i].Organization._id).append('<div class="chip green" id="sumHoursChip' + sortedArray[i].Organization._id + '">'+sortedArray[i].Hours.length+' שעות</div>');
+						$("#p" + sortedArray[i].Organization._id).append('<div class="chip blue" id="sumVolPeriodChip' + sortedArray[i].Organization._id + '">'+sortedArray[i].VolPeriod.length+' תקופות התנדבות</div>');
+						$("#p" + sortedArray[i].Organization._id).append('<div class="chip yellow" id="sumVolTypeChip' + sortedArray[i].Organization._id + '">'+sortedArray[i].VolType.length+' סוגי התנדבות</div>');
+
+						$("#sumDaysChip" + sortedArray[i].Organization._id).click(function(){
+							$(this).hide();
+							$(".daysChip" + $(this).attr('id').substring(11)).show();
+							$(".daysChip" + $(this).attr('id').substring(11)).click(function(){
+								$(".daysChip" + $(this).attr('id').substring(8)).hide();
+								$("#sumDaysChip" + $(this).attr('id').substring(8)).show();
+							});
+						});
+
+						$("#sumHoursChip" + sortedArray[i].Organization._id).click(function(){
+							$(this).hide();
+							$(".houresChip" + $(this).attr('id').substring(12)).show();
+							$(".houresChip" + $(this).attr('id').substring(12)).click(function(){
+								$(".houresChip" + $(this).attr('id').substring(10)).hide();
+								$("#sumHoursChip" + $(this).attr('id').substring(10)).show();
+							});
+						});
+
+						$("#sumVolPeriodChip" + sortedArray[i].Organization._id).click(function(){
+							$(this).hide();
+							$(".volPeriodChip" + $(this).attr('id').substring(16)).show();
+							$(".volPeriodChip" + $(this).attr('id').substring(16)).click(function(){
+								$(".volPeriodChip" + $(this).attr('id').substring(13)).hide();
+								$("#sumVolPeriodChip" + $(this).attr('id').substring(13)).show();
+							});
+						});
+
+						$("#sumVolTypeChip" + sortedArray[i].Organization._id).click(function(){
+							$(this).hide();
+							$(".volTypeChip" + $(this).attr('id').substring(14)).show();
+							$(".volTypeChip" + $(this).attr('id').substring(14)).click(function(){
+								$(".volTypeChip" + $(this).attr('id').substring(11)).hide();
+								$("#sumVolTypeChip" + $(this).attr('id').substring(11)).show();;
+							});
+						});
+					}
+					$(".MatchingOrgs").click(function(){
+						$(".MatchingOrgs").removeClass("active");
+						$(this).addClass("active");
 					});
-				}
-				$(".MatchingOrgs").click(function(){
-					$(".MatchingOrgs").removeClass("active");
-					$(this).addClass("active");
 				});
-			});
+			}, 200);
+
 
 
 
